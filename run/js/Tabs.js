@@ -1,12 +1,12 @@
-function Tabs () {
+function Tabs (tripTimeListener, tripDistanceListener, clockListener) {
 
 //    var maxSpeedTab = MaxSpeedTab()
 
-    var tripTimeTab = TripTimeTab()
+    var tripTimeTab = TripTimeTab(tripTimeListener)
 
-    var tripDistanceTab = TripDistanceTab()
+    var tripDistanceTab = TripDistanceTab(tripDistanceListener)
 
-    var clockTab = ClockTab()
+    var clockTab = ClockTab(clockListener)
 
     var element = Div('Tabs')
     element.appendChild(tripDistanceTab)

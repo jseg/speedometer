@@ -1,0 +1,23 @@
+.ClockPanel {
+    font-size: 80px;
+    line-height: 90px;
+    text-align: center;
+}
+
+.ClockPanel-hour {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.ClockPanel-colon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 50px;
+}
+
+.ClockPanel-minute {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+}

@@ -1,18 +1,34 @@
 .SpeedLabel {
-    position: absolute;
-    top: 0;
-    right: 32px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
     font-size: 110px;
-    line-height: 120px;
+    line-height: 140px;
+}
+
+.SpeedLabel-grey {
+    display: inline;
+    color: #111;
+    font-weight: bold;
 }
 
 .SpeedLabel-integerPart {
-    display: inline-block;
+    display: inline;
     font-weight: bold;
 }
 
 .SpeedLabel-fractionalPart {
-    display: inline-block;
+    display: inline;
+    font-weight: bold;
     font-size: 50px;
     line-height: 60px;
+}
+
+.SpeedLabel-unit {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    font-size: 20px;
+    line-height: 24px;
 }

@@ -6,7 +6,16 @@ function MainPanel () {
 
     var speedLabel = SpeedLabel()
 
-    var tabs = Tabs()
+    var tabs = Tabs(function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(tripTimePanel)
+    }, function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(tripDistancePanel)
+    }, function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(clockPanel)
+    })
 
     var tripTimePanel = TripTimePanel()
 
@@ -14,13 +23,19 @@ function MainPanel () {
 
     var clockPanel = ClockPanel()
 
-    var element = Div('MainPanel')
+    var classPrefix = 'MainPanel'
+
+    var panelElement = Div(classPrefix + '-panel')
+    panelElement.appendChild(clockPanel)
+
+    var element = Div(classPrefix)
     element.appendChild(speedLabel.element)
     element.appendChild(tabs.element)
-    element.appendChild(tripDistancePanel)
+//    element.appendChild(tripDistancePanel)
+    element.appendChild(panelElement)
 
     setInterval(function () {
-        setSpeed(Math.random() * 10)
+        setSpeed(Math.random() * 20)
     }, 500)
 /*
     navigator.geolocation.watchPosition(function (position) {
