@@ -6,8 +6,18 @@ function MainPanel () {
 
     var speedLabel = SpeedLabel()
 
+    var tabs = Tabs()
+
+    var tripTimePanel = TripTimePanel()
+
+    var tripDistancePanel = TripDistancePanel()
+
+    var clockPanel = ClockPanel()
+
     var element = Div('MainPanel')
     element.appendChild(speedLabel.element)
+    element.appendChild(tabs.element)
+    element.appendChild(tripDistancePanel)
 
     setInterval(function () {
         setSpeed(Math.random() * 10)

@@ -2,12 +2,12 @@
     position: absolute;
     top: 0;
     right: 32px;
+    font-size: 110px;
+    line-height: 120px;
 }
 
 .SpeedLabel-integerPart {
     display: inline-block;
-    font-size: 110px;
-    line-height: 120px;
     font-weight: bold;
 }
 

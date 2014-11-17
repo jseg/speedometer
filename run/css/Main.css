@@ -2,14 +2,16 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-family: FreeMono, monospace;
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: normal;
+    font: inherit;
+    cursor: inherit;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 html, body {
     background: #000;
     color: #fff;
     height: 100%;
+    cursor: default;
+    font: normal 14px/18px FreeMono, monospace;
 }

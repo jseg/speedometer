@@ -1,0 +1,11 @@
+.Tab {
+    display: inline-block;
+    vertical-align: top;
+    width: 96px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background: #444;
+    margin: 4px;
+    cursor: pointer;
+}

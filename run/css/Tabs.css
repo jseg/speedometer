@@ -1,0 +1,9 @@
+.Tabs {
+    position: absolute;
+    top: 120px;
+    right: 0;
+    left: 0;
+    height: 64px;
+    background: #222;
+    padding: 4px;
+}
