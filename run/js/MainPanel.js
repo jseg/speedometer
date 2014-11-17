@@ -1,8 +1,18 @@
 function MainPanel () {
 
-    var element = document.createElement('div')
-    element.className = 'MainPanel'
+    function setSpeed (n) {
+        speedLabel.setSpeed(n)
+    }
 
+    var speedLabel = SpeedLabel()
+
+    var element = Div('MainPanel')
+    element.appendChild(speedLabel.element)
+
+    setInterval(function () {
+        setSpeed(Math.random() * 10)
+    }, 500)
+/*
     navigator.geolocation.watchPosition(function (position) {
         var div = document.createElement('div')
         div.appendChild(TextNode(position.coords.speed))
@@ -14,6 +24,7 @@ function MainPanel () {
     }, {
         enableHighAccuracy: true,
     })
+*/
 
     return { element: element }
 
