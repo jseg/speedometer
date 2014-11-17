@@ -26,7 +26,7 @@ function MainPanel () {
     var classPrefix = 'MainPanel'
 
     var panelElement = Div(classPrefix + '-panel')
-    panelElement.appendChild(clockPanel)
+    panelElement.appendChild(tripDistancePanel)
 
     var element = Div(classPrefix)
     element.appendChild(speedLabel.element)

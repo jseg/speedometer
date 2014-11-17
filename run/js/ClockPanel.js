@@ -12,13 +12,15 @@ function ClockPanel () {
     var minuteElement = Div(classPrefix + '-minute')
     minuteElement.appendChild(minuteNode)
 
-    var colonElement = Div(classPrefix + '-colon')
-    colonElement.appendChild(TextNode(':'))
+    var secondElement = Div(classPrefix + '-second')
+    secondElement.appendChild(TextNode(':'))
+    secondElement.appendChild(TextNode('00'))
 
     var element = Div(classPrefix + ' BottomPanel')
     element.appendChild(hourElement)
-    element.appendChild(colonElement)
+    element.appendChild(TextNode(':'))
     element.appendChild(minuteElement)
+    element.appendChild(secondElement)
 
     return element
 

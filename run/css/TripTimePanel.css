@@ -1,18 +1,18 @@
-.ClockPanel {
+.TripTimePanel {
     font-size: 68px;
     line-height: 140px;
     font-weight: bold;
 }
 
-.ClockPanel-hour {
+.TripTimePanel-hour {
     display: inline;
 }
 
-.ClockPanel-minute {
+.TripTimePanel-minute {
     display: inline;
 }
 
-.ClockPanel-second {
+.TripTimePanel-second {
     display: inline;
     font-size: 34px;
 }

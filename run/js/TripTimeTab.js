@@ -1,7 +1,13 @@
 function TripTimeTab (listener) {
 
-    var element = Div('Tab TripTimeTab')
-    element.appendChild(TextNode('TRIP TIME'))
+    var classPrefix = 'TripTimeTab'
+
+    var contentElement = Div(classPrefix + '-content Tab-content')
+    contentElement.appendChild(TextNode('TRIP TIME'))
+
+    var element = Div(classPrefix + ' Tab')
+    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
+    element.appendChild(contentElement)
 
     var click = OnClick(element, listener)
     click.enable()
