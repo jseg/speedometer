@@ -25,7 +25,8 @@ function TripTimePanel () {
     element.appendChild(secondElement)
 
     var tripTime = 0,
-        startTime = null
+        startTime = null,
+        maxTripTime = 1000 * 60 * 60 * 100 - 1000
 
     return {
         element: element,
@@ -34,6 +35,7 @@ function TripTimePanel () {
         },
         stop: function () {
             tripTime += Date.now() - startTime
+            tripTime = Math.min(tripTime, maxTripTime)
             startTime = null
         },
         update: function () {
@@ -43,11 +45,16 @@ function TripTimePanel () {
                 tripTime += now - startTime
                 startTime = now
             }
+            tripTime = Math.min(tripTime, maxTripTime)
 
-            var tripSeconds = tripTime / 1000
-            hourNode.nodeValue = TwoDigitPad(Math.floor(tripSeconds / (60 * 60)))
-            minuteNode.nodeValue = TwoDigitPad(Math.floor(tripSeconds / 60))
-            secondNode.nodeValue = TwoDigitPad(Math.floor(tripSeconds))
+            var seconds = tripTime / 1000
+            secondNode.nodeValue = TwoDigitPad(Math.floor(seconds % 60))
+
+            var minutes = seconds / 60
+            minuteNode.nodeValue = TwoDigitPad(Math.floor(minutes % 60))
+
+            var hours = minutes / 60
+            hourNode.nodeValue = TwoDigitPad(Math.floor(hours))
 
         },
     }
