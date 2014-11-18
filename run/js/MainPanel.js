@@ -4,6 +4,13 @@ function MainPanel () {
         speedLabel.setSpeed(n)
     }
 
+    function update () {
+        requestAnimationFrame(function () {
+            clockPanel.update()
+            update()
+        })
+    }
+
     var speedLabel = SpeedLabel()
 
     var tabs = Tabs(function () {
@@ -14,7 +21,7 @@ function MainPanel () {
         panelElement.appendChild(tripDistancePanel)
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(clockPanel)
+        panelElement.appendChild(clockPanel.element)
     })
 
     var tripTimePanel = TripTimePanel()
@@ -31,7 +38,6 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(speedLabel.element)
     element.appendChild(tabs.element)
-//    element.appendChild(tripDistancePanel)
     element.appendChild(panelElement)
 
     setInterval(function () {
@@ -50,6 +56,8 @@ function MainPanel () {
         enableHighAccuracy: true,
     })
 */
+
+    update()
 
     return { element: element }
 

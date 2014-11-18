@@ -12,6 +12,7 @@ function TripDistanceTab (listener) {
     element.appendChild(contentElement)
 
     var classList = element.classList
+    classList.add('selected')
 
     var click = OnClick(element, function () {
         listener()

@@ -12,9 +12,11 @@ function ClockPanel () {
     var minuteElement = Div(classPrefix + '-minute')
     minuteElement.appendChild(minuteNode)
 
+    var secondNode = TextNode('00')
+
     var secondElement = Div(classPrefix + '-second')
     secondElement.appendChild(TextNode(':'))
-    secondElement.appendChild(TextNode('00'))
+    secondElement.appendChild(secondNode)
 
     var element = Div(classPrefix + ' BottomPanel')
     element.appendChild(hourElement)
@@ -22,6 +24,14 @@ function ClockPanel () {
     element.appendChild(minuteElement)
     element.appendChild(secondElement)
 
-    return element
+    return {
+        element: element,
+        update: function () {
+            var date = new Date
+            hourNode.nodeValue = TwoDigitPad(date.getHours())
+            minuteNode.nodeValue = TwoDigitPad(date.getMinutes())
+            secondNode.nodeValue = TwoDigitPad(date.getSeconds())
+        },
+    }
 
 }
