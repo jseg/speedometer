@@ -22,13 +22,13 @@
     display: inline;
     font-weight: bold;
     font-size: 55px;
-    line-height: 60px;
+    line-height: 55px;
 }
 
 .SpeedLabel-unit {
     position: absolute;
-    top: 28px;
+    top: 30px;
     right: 0;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 20px;
 }

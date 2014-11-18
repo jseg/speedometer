@@ -19,6 +19,7 @@
     display: inline;
     font-weight: bold;
     font-size: 40px;
+    line-height: 40px;
 }
 
 .TripDistancePanel-unit {
@@ -26,5 +27,5 @@
     top: 40px;
     right: 0px;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 20px;
 }
