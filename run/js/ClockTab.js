@@ -3,9 +3,19 @@ function ClockTab (listener) {
     var element = Div('Tab ClockTab')
     element.appendChild(TextNode('CLOCK'))
 
-    var click = OnClick(element, listener)
+    var classList = element.classList
+
+    var click = OnClick(element, function () {
+        listener()
+        classList.add('selected')
+    })
     click.enable()
 
-    return element
+    return {
+        element: element,
+        deselect: function () {
+            classList.remove('selected')
+        },
+    }
 
 }

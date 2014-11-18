@@ -1,18 +1,27 @@
 function Tabs (tripTimeListener, tripDistanceListener, clockListener) {
 
-//    var maxSpeedTab = MaxSpeedTab()
+    var tripDistanceTab = TripDistanceTab(function () {
+        tripTimeTab.deselect()
+        clockTab.deselect()
+        tripDistanceListener()
+    })
 
-    var tripTimeTab = TripTimeTab(tripTimeListener)
+    var tripTimeTab = TripTimeTab(function () {
+        tripDistanceTab.deselect()
+        clockTab.deselect()
+        tripTimeListener()
+    })
 
-    var tripDistanceTab = TripDistanceTab(tripDistanceListener)
-
-    var clockTab = ClockTab(clockListener)
+    var clockTab = ClockTab(function () {
+        tripDistanceTab.deselect()
+        tripTimeTab.deselect()
+        clockListener()
+    })
 
     var element = Div('Tabs')
-    element.appendChild(tripDistanceTab)
-    element.appendChild(tripTimeTab)
-//    element.appendChild(maxSpeedTab.element)
-    element.appendChild(clockTab)
+    element.appendChild(tripDistanceTab.element)
+    element.appendChild(tripTimeTab.element)
+    element.appendChild(clockTab.element)
 
     return { element: element }
 

@@ -3,15 +3,27 @@ function TripDistanceTab (listener) {
     var classPrefix = 'TripDistanceTab'
 
     var contentElement = Div(classPrefix + '-content Tab-content')
-    contentElement.appendChild(TextNode('TRIP DISTANCE'))
+    contentElement.appendChild(TextNode('TRIP'))
+    contentElement.appendChild(document.createElement('br'))
+    contentElement.appendChild(TextNode('DISTANCE'))
 
     var element = Div(classPrefix + ' Tab')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
 
-    var click = OnClick(element, listener)
+    var classList = element.classList
+
+    var click = OnClick(element, function () {
+        listener()
+        classList.add('selected')
+    })
     click.enable()
 
-    return element
+    return {
+        element: element,
+        deselect: function () {
+            classList.remove('selected')
+        },
+    }
 
 }
