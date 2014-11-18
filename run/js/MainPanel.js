@@ -37,8 +37,8 @@ function MainPanel () {
 
     var element = Div(classPrefix)
     element.appendChild(speedLabel.element)
-    element.appendChild(tabs.element)
     element.appendChild(panelElement)
+    element.appendChild(tabs.element)
 
     setInterval(function () {
         setSpeed(Math.random() * 20)
