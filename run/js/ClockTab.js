@@ -1,6 +1,6 @@
 function ClockTab (listener) {
 
-    var element = Div('Tab ClockTab')
+    var element = Div('Tab ClockTab Button')
     element.appendChild(TextNode('CLOCK'))
 
     var classList = element.classList

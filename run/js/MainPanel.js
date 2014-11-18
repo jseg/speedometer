@@ -35,10 +35,13 @@ function MainPanel () {
     var panelElement = Div(classPrefix + '-panel')
     panelElement.appendChild(tripDistancePanel)
 
+    var startStopButton = StartStopButton()
+
     var element = Div(classPrefix)
     element.appendChild(speedLabel.element)
     element.appendChild(panelElement)
     element.appendChild(tabs.element)
+    element.appendChild(startStopButton.element)
 
     setInterval(function () {
         setSpeed(Math.random() * 20)

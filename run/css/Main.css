@@ -4,6 +4,7 @@
     border: 0;
     font: inherit;
     cursor: inherit;
+    white-space: inherit;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
@@ -14,4 +15,5 @@ html, body {
     height: 100%;
     cursor: default;
     font: normal 14px/18px FreeMono, monospace;
+    white-space: nowrap;
 }

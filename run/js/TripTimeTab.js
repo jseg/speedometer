@@ -7,7 +7,7 @@ function TripTimeTab (listener) {
     contentElement.appendChild(document.createElement('br'))
     contentElement.appendChild(TextNode('TIME'))
 
-    var element = Div(classPrefix + ' Tab')
+    var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
 

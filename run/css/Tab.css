@@ -3,16 +3,7 @@
     vertical-align: top;
     width: 93px;
     height: 50px;
-    text-align: center;
-    background: #444;
     margin: 0 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-.Tab.active {
-    background: rgba(255, 255, 255, 0.5);
-    background: #222;
 }
 .Tab.selected {
     background: #07f;
