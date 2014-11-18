@@ -11,9 +11,11 @@ function StartStopButton (startListener, stopListener) {
         if (started) {
             started = false
             node.nodeValue = 'START'
+            stopListener()
         } else {
             started = true
             node.nodeValue = 'STOP'
+            startListener()
         }
     })
     click.enable()

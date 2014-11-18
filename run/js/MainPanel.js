@@ -6,6 +6,7 @@ function MainPanel () {
 
     function update () {
         requestAnimationFrame(function () {
+            tripTimePanel.update()
             clockPanel.update()
             update()
         })
@@ -15,7 +16,7 @@ function MainPanel () {
 
     var tabs = Tabs(function () {
         panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripTimePanel)
+        panelElement.appendChild(tripTimePanel.element)
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(tripDistancePanel)
@@ -35,7 +36,11 @@ function MainPanel () {
     var panelElement = Div(classPrefix + '-panel')
     panelElement.appendChild(tripDistancePanel)
 
-    var startStopButton = StartStopButton()
+    var startStopButton = StartStopButton(function () {
+        tripTimePanel.start()
+    }, function () {
+        tripTimePanel.stop()
+    })
 
     var element = Div(classPrefix)
     element.appendChild(speedLabel.element)
