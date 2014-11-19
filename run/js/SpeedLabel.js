@@ -19,7 +19,10 @@ function SpeedLabel () {
     fractionalPartElement.appendChild(fractionalPartNode)
 
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('km/h'))
+    unitElement.appendChild(TextNode('KM/H'))
+
+    var labelElement = Div(classPrefix + '-label')
+    labelElement.appendChild(TextNode('SPEED'))
 
     var contentElement = Div(classPrefix + '-content')
     contentElement.appendChild(greyElement)
@@ -28,6 +31,7 @@ function SpeedLabel () {
     contentElement.appendChild(unitElement)
 
     var element = Div(classPrefix)
+    element.appendChild(labelElement)
     element.appendChild(contentElement)
 
     return {

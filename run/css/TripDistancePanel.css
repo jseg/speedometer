@@ -5,6 +5,15 @@
     vertical-align: top;
 }
 
+.TripDistancePanel-label {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 15px;
+    line-height: 30px;
+    color: #999;
+}
+
 .TripDistancePanel-grey {
     display: inline;
     color: transparent;
@@ -24,9 +33,9 @@
 
 .TripDistancePanel-unit {
     position: absolute;
-    top: 34px;
+    top: 32px;
     right: 0px;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 20px;
     color: #999;
 }

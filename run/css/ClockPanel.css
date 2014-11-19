@@ -4,6 +4,15 @@
     font-weight: bold;
 }
 
+.ClockPanel-label {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 15px;
+    line-height: 30px;
+    color: #999;
+}
+
 .ClockPanel-hour {
     display: inline;
 }

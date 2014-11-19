@@ -24,7 +24,11 @@ function TripTimePanel () {
     contentElement.appendChild(minuteElement)
     contentElement.appendChild(secondElement)
 
+    var labelElement = Div(classPrefix + '-label')
+    labelElement.appendChild(TextNode('TRIP TIME'))
+
     var element = Div('BottomPanel')
+    element.appendChild(labelElement)
     element.appendChild(contentElement)
 
     var tripTime = 0,

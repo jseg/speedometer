@@ -24,7 +24,11 @@ function ClockPanel () {
     contentElement.appendChild(minuteElement)
     contentElement.appendChild(secondElement)
 
+    var labelElement = Div(classPrefix + '-label')
+    labelElement.appendChild(TextNode('CLOCK'))
+
     var element = Div('BottomPanel')
+    element.appendChild(labelElement)
     element.appendChild(contentElement)
 
     return {

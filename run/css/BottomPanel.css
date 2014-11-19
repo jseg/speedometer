@@ -1,4 +1,5 @@
 .BottomPanel {
+    position: relative;
     background: #111;
     margin: 2px;
 }

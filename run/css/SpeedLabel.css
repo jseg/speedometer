@@ -3,6 +3,15 @@
     background: #111;
 }
 
+.SpeedLabel-label {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #999;
+}
+
 .SpeedLabel-content {
     position: relative;
     display: inline-block;
