@@ -26,5 +26,6 @@
     document.body.appendChild(mainPanel.element)
 
     addEventListener('resize', resize)
+    resize()
 
 })()
