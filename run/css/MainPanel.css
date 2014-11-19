@@ -4,8 +4,16 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 320px;
-    height: 370px;
+    width: 0;
+    height: 0;
     margin: auto;
     text-align: center;
+}
+
+.MainPanel-content {
+    position: absolute;
+    top: -185px;
+    left: -160px;
+    width: 320px;
+    height: 370px;
 }

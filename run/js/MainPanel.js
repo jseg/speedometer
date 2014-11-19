@@ -42,11 +42,14 @@ function MainPanel () {
         tripTimePanel.stop()
     })
 
+    var contentElement = Div(classPrefix + '-content')
+    contentElement.appendChild(speedLabel.element)
+    contentElement.appendChild(panelElement)
+    contentElement.appendChild(tabs.element)
+    contentElement.appendChild(startStopButton.element)
+
     var element = Div(classPrefix)
-    element.appendChild(speedLabel.element)
-    element.appendChild(panelElement)
-    element.appendChild(tabs.element)
-    element.appendChild(startStopButton.element)
+    element.appendChild(contentElement)
 
     setInterval(function () {
         setSpeed(Math.random() * 20)
@@ -67,6 +70,13 @@ function MainPanel () {
 
     update()
 
-    return { element: element }
+    return {
+        element: element,
+        resize: function (width, height) {
+            var scale = width / 320
+            if (scale * 370 > height) scale = height / 370
+            element.style.transform = 'scale(' + scale +  ')'
+        },
+    }
 
 }

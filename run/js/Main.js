@@ -1,5 +1,9 @@
 (function () {
 
+    function resize () {
+        mainPanel.resize(innerWidth, innerHeight)
+    }
+
     ;(function () {
         var style = document.createElement('style')
         style.innerHTML =
@@ -20,5 +24,7 @@
 
     var mainPanel = MainPanel()
     document.body.appendChild(mainPanel.element)
+
+    addEventListener('resize', resize)
 
 })()
