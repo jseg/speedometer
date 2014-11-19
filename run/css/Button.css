@@ -6,6 +6,6 @@
     font-weight: bold;
 }
 .Button.active {
-    background: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
     background: #222;
 }

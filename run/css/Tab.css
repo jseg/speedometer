@@ -8,6 +8,9 @@
 .Tab.selected {
     background: #07f;
 }
+.Tab.selected.active {
+    background: #05b;
+}
 
 .Tab-aligner {
     display: inline-block;
