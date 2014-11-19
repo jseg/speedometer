@@ -19,7 +19,7 @@ function MainPanel () {
         panelElement.appendChild(tripTimePanel.element)
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripDistancePanel)
+        panelElement.appendChild(tripDistancePanel.element)
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(clockPanel.element)
@@ -34,7 +34,12 @@ function MainPanel () {
     var classPrefix = 'MainPanel'
 
     var panelElement = Div(classPrefix + '-panel')
-    panelElement.appendChild(tripDistancePanel)
+    panelElement.appendChild(tripDistancePanel.element)
+
+    var resetButton = ResetButton(function () {
+        tripTimePanel.reset()
+        tripDistancePanel.reset()
+    })
 
     var startStopButton = StartStopButton(function () {
         tripTimePanel.start()
@@ -46,6 +51,7 @@ function MainPanel () {
     contentElement.appendChild(speedLabel.element)
     contentElement.appendChild(panelElement)
     contentElement.appendChild(tabs.element)
+    contentElement.appendChild(resetButton)
     contentElement.appendChild(startStopButton.element)
 
     var element = Div(classPrefix)

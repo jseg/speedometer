@@ -30,6 +30,10 @@ function TripTimePanel () {
 
     return {
         element: element,
+        reset: function () {
+            tripTime = 0
+            if (startTime !== null) startTime = Date.now()
+        },
         start: function () {
             startTime = Date.now()
         },

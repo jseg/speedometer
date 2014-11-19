@@ -23,6 +23,10 @@ function TripDistancePanel () {
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
 
-    return element
+    return {
+        element: element,
+        reset: function () {
+        },
+    }
 
 }

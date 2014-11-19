@@ -1,8 +1,7 @@
-.StartStopButton {
+.ResetButton {
     display: inline-block;
     vertical-align: top;
     margin-top: 10px;
-    margin-left: 10px;
     line-height: 50px;
-    width: 197px;
+    width: 93px;
 }
