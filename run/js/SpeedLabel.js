@@ -21,11 +21,14 @@ function SpeedLabel () {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(TextNode('km/h'))
 
+    var contentElement = Div(classPrefix + '-content')
+    contentElement.appendChild(greyElement)
+    contentElement.appendChild(integerPartElement)
+    contentElement.appendChild(fractionalPartElement)
+    contentElement.appendChild(unitElement)
+
     var element = Div(classPrefix)
-    element.appendChild(greyElement)
-    element.appendChild(integerPartElement)
-    element.appendChild(fractionalPartElement)
-    element.appendChild(unitElement)
+    element.appendChild(contentElement)
 
     return {
         element: element,

@@ -1,3 +1,9 @@
 .BottomPanel {
+    background: #111;
+    margin: 2px;
+}
+
+.BottomPanel-content {
     position: relative;
+    height: 120px;
 }

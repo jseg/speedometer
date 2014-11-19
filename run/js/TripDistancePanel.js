@@ -18,10 +18,13 @@ function TripDistancePanel () {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(TextNode('km'))
 
-    var element = Div(classPrefix + ' BottomPanel')
-    element.appendChild(integerPartElement)
-    element.appendChild(fractionalPartElement)
-    element.appendChild(unitElement)
+    var contentElement = Div(classPrefix + ' BottomPanel-content')
+    contentElement.appendChild(integerPartElement)
+    contentElement.appendChild(fractionalPartElement)
+    contentElement.appendChild(unitElement)
+
+    var element = Div('BottomPanel')
+    element.appendChild(contentElement)
 
     return {
         element: element,

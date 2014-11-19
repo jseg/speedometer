@@ -18,11 +18,14 @@ function ClockPanel () {
     secondElement.appendChild(TextNode(':'))
     secondElement.appendChild(secondNode)
 
-    var element = Div(classPrefix + ' BottomPanel')
-    element.appendChild(hourElement)
-    element.appendChild(TextNode(':'))
-    element.appendChild(minuteElement)
-    element.appendChild(secondElement)
+    var contentElement = Div(classPrefix + ' BottomPanel-content')
+    contentElement.appendChild(hourElement)
+    contentElement.appendChild(TextNode(':'))
+    contentElement.appendChild(minuteElement)
+    contentElement.appendChild(secondElement)
+
+    var element = Div('BottomPanel')
+    element.appendChild(contentElement)
 
     return {
         element: element,
