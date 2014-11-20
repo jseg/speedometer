@@ -75,6 +75,7 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
+/*
     setInterval(function () {
         updatePosition({
             coords: {
@@ -89,7 +90,7 @@ function MainPanel () {
             timestamp: Date.now(),
         })
     }, 500)
-/*
+*/
     navigator.geolocation.watchPosition(updatePosition, function (error) {
         var div = document.createElement('div')
         div.appendChild(TextNode(error.message))
@@ -97,7 +98,6 @@ function MainPanel () {
     }, {
         enableHighAccuracy: true,
     })
-*/
 
     update()
 
