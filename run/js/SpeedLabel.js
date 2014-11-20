@@ -7,12 +7,12 @@ function SpeedLabel () {
     var greyElement = Div(classPrefix + '-grey')
     greyElement.appendChild(greyNode)
 
-    var integerPartNode = TextNode('0')
+    var integerPartNode = TextNode('-')
 
     var integerPartElement = Div(classPrefix + '-integerPart')
     integerPartElement.appendChild(integerPartNode)
 
-    var fractionalPartNode = TextNode('0')
+    var fractionalPartNode = TextNode('-')
 
     var fractionalPartElement = Div(classPrefix + '-fractionalPart')
     fractionalPartElement.appendChild(TextNode('.'))
@@ -37,18 +37,29 @@ function SpeedLabel () {
     return {
         element: element,
         setSpeed: function (speed) {
+            var integerPart, fractionalPart, grey
+            if (isFinite(speed)) {
 
-            integerPartNode.nodeValue = Math.floor(speed)
-            fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
+                speed = speed * 18 / 5
+                speed = Math.min(999.99, speed)
 
-            var speedLength = integerPartNode.nodeValue.length
+                integerPart = String(Math.floor(speed))
+                fractionalPart = Math.floor(speed % 1 * 10)
 
-            var grey
-            if (speedLength == 3) grey = ''
-            else if (speedLength == 2) grey = '0'
-            else grey = '00'
+                var speedLength = integerPart.length
+
+                if (speedLength == 3) grey = ''
+                else if (speedLength == 2) grey = '0'
+                else grey = '00'
+
+            } else {
+                integerPart = '-'
+                fractionalPart = '-'
+                grey = '--'
+            }
+            integerPartNode.nodeValue = integerPart
+            fractionalPartNode.nodeValue = fractionalPart
             greyNode.nodeValue = grey
-
         },
     }
 

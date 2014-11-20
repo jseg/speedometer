@@ -13,7 +13,7 @@ function MainPanel () {
 
     function updatePosition (position) {
         if (started) positions.add(position)
-        speedLabel.setSpeed(position.coords.speed * 18 / 5)
+        speedLabel.setSpeed(position.coords.speed)
     }
 
     var requestAnimationFrame = window.requestAnimationFrame,
@@ -85,19 +85,19 @@ function MainPanel () {
                 acuracy: Math.random() * 20,
                 altitudeAcuracy: Math.random() * 10,
                 heading: Math.round() * 360,
-                speed: Math.random() * 10,
+                speed: Math.random() * 300,
             },
             timestamp: Date.now(),
         })
     }, 500)
 */
+///*
     navigator.geolocation.watchPosition(updatePosition, function (error) {
-        var div = document.createElement('div')
-        div.appendChild(TextNode(error.message))
-        element.appendChild(div)
+        console.log('error', error)
     }, {
         enableHighAccuracy: true,
     })
+//*/
 
     update()
 
