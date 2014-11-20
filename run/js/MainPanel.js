@@ -2,15 +2,25 @@ function MainPanel () {
 
     function update () {
         requestAnimationFrame(function () {
-            tripTimePanel.update()
-            clockPanel.update()
-            update()
+            setTimeout(function () {
+                tripDistancePanel.update()
+                tripTimePanel.update()
+                clockPanel.update()
+                update()
+            }, 50)
         })
     }
 
     function updatePosition (position) {
         if (started) positions.add(position)
         speedLabel.setSpeed(position.coords.speed * 18 / 5)
+    }
+
+    var requestAnimationFrame = window.requestAnimationFrame,
+        cancelAnimationFrame = window.cancelAnimationFrame
+    if (!requestAnimationFrame) {
+        requestAnimationFrame = window.mozRequestAnimationFrame
+        cancelAnimationFrame = window.mozCancelAnimationFrame
     }
 
     var started = false
@@ -32,7 +42,7 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel()
+    var tripDistancePanel = TripDistancePanel(positions)
 
     var clockPanel = ClockPanel()
 

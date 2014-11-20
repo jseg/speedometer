@@ -42,11 +42,12 @@ function SpeedLabel () {
             fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
 
             var speedLength = integerPartNode.nodeValue.length
-            var greyValue
-            if (speedLength == 3) greyValue = ''
-            else if (speedLength == 2) greyValue = '0'
-            else greyValue = '00'
-            greyNode.nodeValue = greyValue
+
+            var grey
+            if (speedLength == 3) grey = ''
+            else if (speedLength == 2) grey = '0'
+            else grey = '00'
+            greyNode.nodeValue = grey
 
         },
     }
