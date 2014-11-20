@@ -1,10 +1,5 @@
 function MainPanel () {
 
-    function setSpeed (speedMps) {
-        var speedKmph = speedMps * 18 / 5
-        speedLabel.setSpeed(speedKmph)
-    }
-
     function update () {
         requestAnimationFrame(function () {
             tripTimePanel.update()
@@ -12,6 +7,15 @@ function MainPanel () {
             update()
         })
     }
+
+    function updatePosition (position) {
+        if (started) positions.add(position)
+        speedLabel.setSpeed(position.coords.speed * 18 / 5)
+    }
+
+    var started = false
+
+    var positions = Positions()
 
     var speedLabel = SpeedLabel()
 
@@ -40,11 +44,14 @@ function MainPanel () {
     var resetButton = ResetButton(function () {
         tripTimePanel.reset()
         tripDistancePanel.reset()
+        positions.reset()
     })
 
     var startStopButton = StartStopButton(function () {
+        started = true
         tripTimePanel.start()
     }, function () {
+        started = false
         tripTimePanel.stop()
     })
 
@@ -59,14 +66,21 @@ function MainPanel () {
     element.appendChild(contentElement)
 
     setInterval(function () {
-        setSpeed(Math.random() * 20)
+        updatePosition({
+            coords: {
+                latitude: Math.round() * 360,
+                longitude: Math.round() * 360,
+                altitude: -10 + Math.random() * 20,
+                acuracy: Math.random() * 20,
+                altitudeAcuracy: Math.random() * 10,
+                heading: Math.round() * 360,
+                speed: Math.random() * 10,
+            },
+            timestamp: Date.now(),
+        })
     }, 500)
 /*
-    navigator.geolocation.watchPosition(function (position) {
-        var div = document.createElement('div')
-        div.appendChild(TextNode(position.coords.speed))
-        element.appendChild(div)
-    }, function (error) {
+    navigator.geolocation.watchPosition(updatePosition, function (error) {
         var div = document.createElement('div')
         div.appendChild(TextNode(error.message))
         element.appendChild(div)
