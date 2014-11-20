@@ -1,7 +1,8 @@
 function MainPanel () {
 
-    function setSpeed (n) {
-        speedLabel.setSpeed(n)
+    function setSpeed (speedMps) {
+        var speedKmph = speedMps * 18 / 5
+        speedLabel.setSpeed(speedKmph)
     }
 
     function update () {
