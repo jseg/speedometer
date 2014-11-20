@@ -17,10 +17,10 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/MainPanel.css" />',
     '<script type="text/javascript" src="js/ClockPanel.js"></script>'
     .'<script type="text/javascript" src="js/ClockTab.js"></script>'
+    .'<script type="text/javascript" src="js/Distance.js"></script>'
     .'<script type="text/javascript" src="js/Div.js"></script>'
     .'<script type="text/javascript" src="js/MainPanel.js"></script>'
     .'<script type="text/javascript" src="js/OnClick.js"></script>'
-    .'<script type="text/javascript" src="js/Positions.js"></script>'
     .'<script type="text/javascript" src="js/ResetButton.js"></script>'
     .'<script type="text/javascript" src="js/SpeedLabel.js"></script>'
     .'<script type="text/javascript" src="js/StartStopButton.js"></script>'

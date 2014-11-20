@@ -66,6 +66,27 @@ function ClockTab (listener) {
 
 }
 ;
+function Distance () {
+
+    var positions = []
+
+    var distance = 0
+
+    return {
+        add: function (position) {
+            positions.push(position)
+            distance += 32435
+        },
+        distance: function () {
+            return distance
+        },
+        reset: function () {
+            positions.splice(0)
+        },
+    }
+
+}
+;
 function Div (className) {
     var div = document.createElement('div')
     div.className = className
@@ -86,7 +107,7 @@ function MainPanel () {
     }
 
     function updatePosition (position) {
-        if (started) positions.add(position)
+        if (started) distances.add(position)
         speedLabel.setSpeed(position.coords.speed)
     }
 
@@ -99,7 +120,7 @@ function MainPanel () {
 
     var started = false
 
-    var positions = Positions()
+    var distance = Distance()
 
     var speedLabel = SpeedLabel()
 
@@ -116,7 +137,7 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(positions)
+    var tripDistancePanel = TripDistancePanel(distance)
 
     var clockPanel = ClockPanel()
 
@@ -128,7 +149,7 @@ function MainPanel () {
     var resetButton = ResetButton(function () {
         tripTimePanel.reset()
         tripDistancePanel.reset()
-        positions.reset()
+        distance.reset()
     })
 
     var startStopButton = StartStopButton(function () {
@@ -226,27 +247,6 @@ function OnClick (element, listener) {
         enable: function () {
             element.addEventListener('mousedown', mouseDown)
             element.addEventListener('touchstart', touchStart)
-        },
-    }
-
-}
-;
-function Positions () {
-
-    var positions = []
-
-    var distance = 0
-
-    return {
-        add: function (position) {
-            positions.push(position)
-            distance += 32435
-        },
-        distance: function () {
-            return distance
-        },
-        reset: function () {
-            positions.splice(0)
         },
     }
 

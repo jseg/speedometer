@@ -1,4 +1,4 @@
-function Positions () {
+function Distance () {
 
     var positions = []
 

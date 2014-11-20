@@ -9,10 +9,10 @@ var uglifyJs = require('uglify-js')
 var files = [
     'ClockPanel',
     'ClockTab',
+    'Distance',
     'Div',
     'MainPanel',
     'OnClick',
-    'Positions',
     'ResetButton',
     'SpeedLabel',
     'StartStopButton',

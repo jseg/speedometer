@@ -12,7 +12,7 @@ function MainPanel () {
     }
 
     function updatePosition (position) {
-        if (started) positions.add(position)
+        if (started) distances.add(position)
         speedLabel.setSpeed(position.coords.speed)
     }
 
@@ -25,7 +25,7 @@ function MainPanel () {
 
     var started = false
 
-    var positions = Positions()
+    var distance = Distance()
 
     var speedLabel = SpeedLabel()
 
@@ -42,7 +42,7 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(positions)
+    var tripDistancePanel = TripDistancePanel(distance)
 
     var clockPanel = ClockPanel()
 
@@ -54,7 +54,7 @@ function MainPanel () {
     var resetButton = ResetButton(function () {
         tripTimePanel.reset()
         tripDistancePanel.reset()
-        positions.reset()
+        distance.reset()
     })
 
     var startStopButton = StartStopButton(function () {
