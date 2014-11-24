@@ -150,8 +150,8 @@ function MainPanel () {
 
         var accuracy = coords.accuracy
         if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
-        else if (accuracy <= 12) statusPanel.setSpeed('SIGNAL OK')
-        else statusPanel.setSpeed('SIGNAL WEAK')
+        else if (accuracy <= 12) statusPanel.setStatus('SIGNAL OK')
+        else statusPanel.setStatus('SIGNAL WEAK')
 
     }
 
@@ -424,8 +424,8 @@ function StatusPanel () {
 
     return {
         element: element,
-        setStatus: function () {
-            node.nodeValue = node
+        setStatus: function (text) {
+            node.nodeValue = text
         },
     }
 

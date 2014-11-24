@@ -8,8 +8,8 @@ function StatusPanel () {
 
     return {
         element: element,
-        setStatus: function () {
-            node.nodeValue = node
+        setStatus: function (text) {
+            node.nodeValue = text
         },
     }
 
