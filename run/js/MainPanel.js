@@ -120,8 +120,7 @@ function MainPanel () {
 
     update()
 
-    var requestWakeLock = navigator.requestWakeLock
-    if (requestWakeLock) requestWakeLock('screen')
+    if (navigator.requestWakeLock) navigator.requestWakeLock('screen')
 
     return {
         element: element,
