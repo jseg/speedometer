@@ -1,7 +1,11 @@
 <?php
 
+include_once 'fns/get_run_revisions.php';
+$revisions = get_run_revisions();
+
 include_once 'fns/echo_html.php';
 echo_html(
-    '<link rel="stylesheet" type="text/css" href="compressed.css" />',
-    '<script type="text/javascript" src="compressed.js"></script>'
+    '<html manifest="cache-manifest/">',
+    '<link rel="stylesheet" type="text/css" href="compressed.css?'.$revisions['compressed.css'].'" />',
+    '<script type="text/javascript" src="compressed.js?'.$revisions['compressed.js'].'"></script>'
 );

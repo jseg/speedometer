@@ -1,9 +1,9 @@
 <?php
 
-function echo_html ($head, $body) {
+function echo_html ($html, $head, $body) {
     header('Content-Type: text/html; charset=UTF-8');
     echo '<!DOCTYPE html>'
-        .'<html>'
+        .$html
             .'<head>'
                 .'<title>Speedometer</title>'
                 .'<meta http-equiv="Content-Type"'

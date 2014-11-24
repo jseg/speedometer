@@ -2,6 +2,7 @@
 
 include_once 'fns/echo_html.php';
 echo_html(
+    '<html>',
     '<link rel="stylesheet" type="text/css" href="css/Main.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Button.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/BottomPanel.css" />'
