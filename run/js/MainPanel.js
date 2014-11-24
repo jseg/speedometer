@@ -101,6 +101,9 @@ function MainPanel () {
 
     update()
 
+    var requestWakeLock = navigator.requestWakeLock
+    if (requestWakeLock) requestWakeLock('screen')
+
     return {
         element: element,
         resize: function (width, height) {
