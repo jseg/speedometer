@@ -10,6 +10,7 @@ var files = [
     'ClockPanel',
     'ClockTab',
     'Distance',
+    'DistanceBetweenPositions',
     'Div',
     'MainPanel',
     'OnClick',

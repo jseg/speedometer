@@ -68,22 +68,57 @@ function ClockTab (listener) {
 ;
 function Distance () {
 
-    var positions = []
-
+    var prevPosition
     var distance = 0
 
     return {
         add: function (position) {
-            positions.push(position)
-            distance += 32435
+            if (prevPosition) {
+                distance += DistanceBetweenPositions(prevPosition, position)
+            }
+            prevPosition = position
         },
-        distance: function () {
+        get: function () {
             return distance
         },
         reset: function () {
             positions.splice(0)
         },
     }
+
+}
+;
+function DistanceBetweenPositions (position1, position2) {
+
+    function toRad (n) {
+       return n * Math.PI / 180
+    }
+
+    var coords1 = position1.coords,
+        coords2 = position2.coords
+
+    var lat1 = toRad(coords1.latitude),
+        lon1 = toRad(coords1.longitude)
+
+    var lat2 = toRad(coords2.latitude),
+        lon2 = toRad(coords2.longitude)
+
+    var earthRadius = 6371000
+
+    var dLat = lat2 - lat1,
+        dLon = lon2 - lon1
+
+    var sinDLat2 = Math.sin(dLat / 2),
+        sinDLon2 = Math.sin(dLon / 2)
+
+    var a = sinDLat2 * sinDLat2
+        + Math.cos(lat1) * Math.cos(lat2) * sinDLon2 * sinDLon2
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+    var d = earthRadius * c
+
+    return d
 
 }
 ;
@@ -107,7 +142,7 @@ function MainPanel () {
     }
 
     function updatePosition (position) {
-        if (started) distances.add(position)
+        if (started) distance.add(position)
         speedLabel.setSpeed(position.coords.speed)
     }
 
@@ -174,12 +209,12 @@ function MainPanel () {
     setInterval(function () {
         updatePosition({
             coords: {
-                latitude: Math.round() * 360,
-                longitude: Math.round() * 360,
+                latitude: 40 + Math.random() * 0.1,
+                longitude: 40 + Math.random() * 0.1,
                 altitude: -10 + Math.random() * 20,
-                acuracy: Math.random() * 20,
-                altitudeAcuracy: Math.random() * 10,
-                heading: Math.round() * 360,
+                accuracy: Math.random() * 20,
+                altitudeAccuracy: Math.random() * 10,
+                heading: Math.random() * 360,
                 speed: Math.random() * 300,
             },
             timestamp: Date.now(),
@@ -195,6 +230,9 @@ function MainPanel () {
 //*/
 
     update()
+
+    var requestWakeLock = navigator.requestWakeLock
+    if (requestWakeLock) requestWakeLock('screen')
 
     return {
         element: element,
@@ -390,19 +428,19 @@ function TextNode (text) {
     return document.createTextNode(text)
 }
 ;
-function TripDistancePanel (positions) {
+function TripDistancePanel (distance) {
 
     function update () {
 
-        var distance = positions.distance()
-        distance = Math.min(999999, distance)
+        var distanceValue = distance.get()
+        distanceValue = Math.min(999999, Math.floor(distanceValue))
 
-        var fractionalPart = String(distance % 1000)
+        var fractionalPart = String(distanceValue % 1000)
         if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
         else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
         fractionalPartNode.nodeValue = fractionalPart
 
-        integerPartNode.nodeValue = Math.floor(distance / 1000)
+        integerPartNode.nodeValue = Math.floor(distanceValue / 1000)
 
         var kilometresLength = integerPartNode.nodeValue.length
 
