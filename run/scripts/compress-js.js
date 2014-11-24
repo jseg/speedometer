@@ -17,6 +17,7 @@ var files = [
     'ResetButton',
     'SpeedLabel',
     'StartStopButton',
+    'StatusPanel',
     'Tabs',
     'TextNode',
     'TripDistancePanel',
