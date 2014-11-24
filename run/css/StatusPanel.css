@@ -1,0 +1,9 @@
+.StatusPanel {
+    height: 28px;
+    line-height: 28px;
+    background: #111;
+    color: #999;
+    margin: 2px;
+    text-align: left;
+    padding-left: 8px;
+}
