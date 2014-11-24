@@ -12,7 +12,7 @@ function MainPanel () {
     }
 
     function updatePosition (position) {
-        if (started) distances.add(position)
+        if (started) distance.add(position)
         speedLabel.setSpeed(position.coords.speed)
     }
 
@@ -79,12 +79,12 @@ function MainPanel () {
     setInterval(function () {
         updatePosition({
             coords: {
-                latitude: Math.round() * 360,
-                longitude: Math.round() * 360,
+                latitude: 40 + Math.random() * 0.1,
+                longitude: 40 + Math.random() * 0.1,
                 altitude: -10 + Math.random() * 20,
-                acuracy: Math.random() * 20,
-                altitudeAcuracy: Math.random() * 10,
-                heading: Math.round() * 360,
+                accuracy: Math.random() * 20,
+                altitudeAccuracy: Math.random() * 10,
+                heading: Math.random() * 360,
                 speed: Math.random() * 300,
             },
             timestamp: Date.now(),

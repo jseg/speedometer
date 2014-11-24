@@ -1,16 +1,16 @@
-function TripDistancePanel (positions) {
+function TripDistancePanel (distance) {
 
     function update () {
 
-        var distance = positions.distance()
-        distance = Math.min(999999, distance)
+        var distanceValue = distance.get()
+        distanceValue = Math.min(999999, Math.floor(distanceValue))
 
-        var fractionalPart = String(distance % 1000)
+        var fractionalPart = String(distanceValue % 1000)
         if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
         else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
         fractionalPartNode.nodeValue = fractionalPart
 
-        integerPartNode.nodeValue = Math.floor(distance / 1000)
+        integerPartNode.nodeValue = Math.floor(distanceValue / 1000)
 
         var kilometresLength = integerPartNode.nodeValue.length
 
