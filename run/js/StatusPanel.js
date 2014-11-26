@@ -6,10 +6,21 @@ function StatusPanel () {
     element.appendChild(TextNode('GPS: '))
     element.appendChild(node)
 
+    var classList = element.classList
+
+    var timeout
+
     return {
         element: element,
         setStatus: function (text) {
-            node.nodeValue = text
+            if (text != node.nodeValue) {
+                node.nodeValue = text
+                clearTimeout(timeout)
+                classList.add('highlight')
+                timeout = setTimeout(function () {
+                    classList.remove('highlight')
+                }, 100)
+            }
         },
     }
 

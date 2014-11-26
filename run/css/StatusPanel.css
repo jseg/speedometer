@@ -6,4 +6,9 @@
     margin: 2px;
     text-align: left;
     padding-left: 8px;
+    transition: color 1s linear 0.5s;
+}
+.StatusPanel.highlight {
+    color: #fff;
+    transition: none;
 }
