@@ -17,6 +17,9 @@ function Distance () {
             prevPosition = null
             distance = 0
         },
+        start: function () {
+            prevPosition = null
+        },
     }
 
 }

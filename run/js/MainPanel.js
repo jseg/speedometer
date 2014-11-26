@@ -69,6 +69,7 @@ function MainPanel () {
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
+        distance.start()
     }, function () {
         started = false
         tripTimePanel.stop()
