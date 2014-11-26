@@ -1,6 +1,6 @@
 function Distance () {
 
-    var prevPosition
+    var prevPosition = null
     var distance = 0
 
     return {
@@ -14,7 +14,8 @@ function Distance () {
             return distance
         },
         reset: function () {
-            positions.splice(0)
+            prevPosition = null
+            distance = 0
         },
     }
 
