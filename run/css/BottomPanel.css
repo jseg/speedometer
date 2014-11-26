@@ -2,6 +2,8 @@
     position: relative;
     background: #111;
     margin: 2px;
+    padding-right: 24px;
+    text-align: right;
 }
 
 .BottomPanel-content {

@@ -12,27 +12,13 @@ function TripDistancePanel (distance) {
 
         integerPartNode.nodeValue = Math.floor(distanceValue / 1000)
 
-        var kilometresLength = integerPartNode.nodeValue.length
-
-        var grey
-        if (kilometresLength == 3) grey = ''
-        else if (kilometresLength == 2) grey = '0'
-        else grey = '00'
-        greyNode.nodeValue = grey
-
     }
 
     var classPrefix = 'TripDistancePanel'
 
-    var greyNode = TextNode('00')
-
-    var greyElement = Div(classPrefix + '-grey')
-    greyElement.appendChild(greyNode)
-
     var integerPartNode = TextNode('0')
 
     var integerPartElement = Div(classPrefix + '-integerPart')
-    integerPartElement.appendChild(greyElement)
     integerPartElement.appendChild(integerPartNode)
 
     var fractionalPartNode = TextNode('000')

@@ -1,6 +1,8 @@
 .SpeedLabel {
+    text-align: right;
     margin: 2px;
     background: #111;
+    padding-right: 24px;
 }
 
 .SpeedLabel-label {
@@ -16,16 +18,9 @@
     position: relative;
     display: inline-block;
     vertical-align: top;
-    text-align: center;
     font-size: 110px;
     line-height: 140px;
     height: 140px;
-}
-
-.SpeedLabel-grey {
-    display: inline;
-    color: transparent;
-    font-weight: bold;
 }
 
 .SpeedLabel-integerPart {
