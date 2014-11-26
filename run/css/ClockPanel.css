@@ -11,7 +11,13 @@
     font-size: 15px;
     line-height: 30px;
     color: #999;
+    transition: color 0.5s linear;
 }
+.ClockPanel-label.highlight {
+    color: #fff;
+    transition: none;
+}
+
 
 .ClockPanel-hour {
     display: inline;

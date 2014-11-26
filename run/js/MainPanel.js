@@ -20,7 +20,7 @@ function MainPanel () {
 
         var accuracy = coords.accuracy
         if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
-        else if (accuracy <= 12) statusPanel.setStatus('SIGNAL OK')
+        else if (accuracy < 12) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
 
     }
@@ -41,12 +41,15 @@ function MainPanel () {
     var tabs = Tabs(function () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(tripTimePanel.element)
+        tripTimePanel.highlight()
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(tripDistancePanel.element)
+        tripDistancePanel.highlight()
     }, function () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(clockPanel.element)
+        clockPanel.highlight()
     })
 
     var tripTimePanel = TripTimePanel()

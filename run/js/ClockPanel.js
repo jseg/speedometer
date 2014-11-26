@@ -27,12 +27,27 @@ function ClockPanel () {
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('CLOCK'))
 
+    var labelClassList = labelElement.classList
+
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 
+    var classList = element.classList
+
+    var timeout
+
     return {
         element: element,
+        highlight: function () {
+            clearTimeout(timeout)
+            classList.add('highlight')
+            labelClassList.add('highlight')
+            timeout = setTimeout(function () {
+                classList.remove('highlight')
+                labelClassList.remove('highlight')
+            }, 200)
+        },
         update: function () {
             var date = new Date
             hourNode.nodeValue = TwoDigitPad(date.getHours())

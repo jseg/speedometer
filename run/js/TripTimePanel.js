@@ -27,9 +27,15 @@ function TripTimePanel () {
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('TRIP TIME'))
 
+    var labelClassList = labelElement.classList
+
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(contentElement)
+
+    var classList = element.classList
+
+    var timeout
 
     var tripTime = 0,
         startTime = null,
@@ -37,6 +43,15 @@ function TripTimePanel () {
 
     return {
         element: element,
+        highlight: function () {
+            clearTimeout(timeout)
+            classList.add('highlight')
+            labelClassList.add('highlight')
+            timeout = setTimeout(function () {
+                classList.remove('highlight')
+                labelClassList.remove('highlight')
+            }, 200)
+        },
         reset: function () {
             tripTime = 0
             if (startTime !== null) startTime = Date.now()

@@ -4,6 +4,11 @@
     margin: 2px;
     padding-right: 24px;
     text-align: right;
+    transition: background-color 0.5s linear;
+}
+.BottomPanel.highlight {
+    background-color: #333;
+    transition: none;
 }
 
 .BottomPanel-content {

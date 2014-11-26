@@ -19,7 +19,7 @@ function StatusPanel () {
                 classList.add('highlight')
                 timeout = setTimeout(function () {
                     classList.remove('highlight')
-                }, 100)
+                }, 200)
             }
         },
     }
