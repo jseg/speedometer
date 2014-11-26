@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    cursor: default;
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+*::-moz-focus-inner {
+    border: 0;
+}
+
+html, body {
+    font: normal 16px/18px Arial, sans-serif;
+    text-align: center;
+    color: #333;
+}
+
+body {
+    padding: 32px;
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: bold;
+    padding-top: 32px;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    padding-top: 32px;
+    padding-bottom: 8px;
+}
+
+a {
+    color: #04c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.button {
+    display: inline-block;
+    vertical-align: top;
+    color: #333;
+    text-decoration: none;
+    margin-top: 32px;
+    padding: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #ccc;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+    border: 2px solid #bbb;
+}
+.button:focus {
+    border-color: #26c;
+}
+.button:active {
+    border-color: #555;
+    background-color: #777;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+}
+
+#installButton {
+    margin-left: 8px;
+}
+
+#description {
+    max-width: 600px;
+    margin: auto;
+}
+
+#logoImage {
+    width: 128px;
+    height: 128px;
+}
