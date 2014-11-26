@@ -12,8 +12,17 @@ function MainPanel () {
     }
 
     function updatePosition (position) {
-        if (started) distances.add(position)
-        speedLabel.setSpeed(position.coords.speed)
+
+        if (started) distance.add(position)
+
+        var coords = position.coords
+        speedLabel.setSpeed(coords.speed)
+
+        var accuracy = coords.accuracy
+        if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
+        else if (accuracy <= 12) statusPanel.setStatus('SIGNAL OK')
+        else statusPanel.setStatus('SIGNAL WEAK')
+
     }
 
     var requestAnimationFrame = window.requestAnimationFrame,
@@ -65,12 +74,15 @@ function MainPanel () {
         tripTimePanel.stop()
     })
 
+    var statusPanel = StatusPanel()
+
     var contentElement = Div(classPrefix + '-content')
     contentElement.appendChild(speedLabel.element)
     contentElement.appendChild(panelElement)
     contentElement.appendChild(tabs.element)
     contentElement.appendChild(resetButton)
     contentElement.appendChild(startStopButton.element)
+    contentElement.appendChild(statusPanel.element)
 
     var element = Div(classPrefix)
     element.appendChild(contentElement)
@@ -79,12 +91,12 @@ function MainPanel () {
     setInterval(function () {
         updatePosition({
             coords: {
-                latitude: Math.round() * 360,
-                longitude: Math.round() * 360,
+                latitude: 40 + Math.random() * 0.1,
+                longitude: 40 + Math.random() * 0.1,
                 altitude: -10 + Math.random() * 20,
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
-                heading: Math.round() * 360,
+                heading: Math.random() * 360,
                 speed: Math.random() * 300,
             },
             timestamp: Date.now(),
@@ -93,7 +105,14 @@ function MainPanel () {
 */
 ///*
     navigator.geolocation.watchPosition(updatePosition, function (error) {
-        console.log('error', error)
+        var code = error.code
+        if (code == error.PERMISSION_DENIED) {
+            statusPanel.setStatus('PERMISSION DENIED')
+        } else if (code == error.POSITION_UNAVAILABLE) {
+            statusPanel.setStatus('POSITION UNAVAILABLE')
+        } else {
+            statusPanel.setStatus('TIMEOUT')
+        }
     }, {
         enableHighAccuracy: true,
     })
@@ -101,11 +120,13 @@ function MainPanel () {
 
     update()
 
+    if (navigator.requestWakeLock) navigator.requestWakeLock('screen')
+
     return {
         element: element,
         resize: function (width, height) {
             var scale = width / 320
-            if (scale * 370 > height) scale = height / 370
+            if (scale * 400 > height) scale = height / 400
             element.style.transform = 'scale(' + scale +  ')'
         },
     }

@@ -1,15 +1,16 @@
 function Distance () {
 
-    var positions = []
-
+    var prevPosition
     var distance = 0
 
     return {
         add: function (position) {
-            positions.push(position)
-            distance += 32435
+            if (prevPosition) {
+                distance += DistanceBetweenPositions(prevPosition, position)
+            }
+            prevPosition = position
         },
-        distance: function () {
+        get: function () {
             return distance
         },
         reset: function () {
