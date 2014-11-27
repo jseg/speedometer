@@ -15,8 +15,11 @@ function MainPanel () {
 
         if (started) distance.add(position)
 
-        var coords = position.coords
-        speedLabel.setSpeed(coords.speed)
+        var coords = position.coords,
+            speed = coords.speed
+
+        speedLabel.setSpeed(speed)
+        if (started) maxSpeedPanel.setSpeed(speed)
 
         var accuracy = coords.accuracy
         if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
@@ -50,6 +53,10 @@ function MainPanel () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(clockPanel.element)
         clockPanel.highlight()
+    }, function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(maxSpeedPanel.element)
+        maxSpeedPanel.highlight()
     })
 
     var tripTimePanel = TripTimePanel()
@@ -58,15 +65,18 @@ function MainPanel () {
 
     var clockPanel = ClockPanel()
 
+    var maxSpeedPanel = MaxSpeedPanel()
+
     var classPrefix = 'MainPanel'
 
     var panelElement = Div(classPrefix + '-panel')
     panelElement.appendChild(tripDistancePanel.element)
 
     var resetButton = ResetButton(function () {
+        distance.reset()
         tripTimePanel.reset()
         tripDistancePanel.reset()
-        distance.reset()
+        maxSpeedPanel.reset()
     })
 
     var startStopButton = StartStopButton(function () {

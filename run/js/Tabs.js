@@ -1,4 +1,5 @@
-function Tabs (tripTimeListener, tripDistanceListener, clockListener) {
+function Tabs (tripTimeListener,
+    tripDistanceListener, clockListener, maxSpeedListener) {
 
     var tripDistanceTab = TripDistanceTab(function () {
         tripTimeTab.deselect()
@@ -25,7 +26,7 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener) {
         tripDistanceTab.deselect()
         tripTimeTab.deselect()
         clockTab.deselect()
-        //maxSpeedListener()
+        maxSpeedListener()
     })
 
     var classPrefix = 'Tabs'
