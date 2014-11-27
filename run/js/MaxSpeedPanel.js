@@ -63,7 +63,8 @@ function MaxSpeedPanel () {
             setSpeed(0)
         },
         setSpeed: function (speed) {
-            if (isFinite(speed) && speed > maxSpeed) setSpeed(speed)
+            if (!isFinite(speed)) speed = 0
+            if (speed > maxSpeed) setSpeed(speed)
         },
     }
 
