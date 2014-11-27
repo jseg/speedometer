@@ -1,4 +1,4 @@
-function TripDistancePanel (distance) {
+function TripDistancePanel (distance, unit) {
 
     function update () {
 
@@ -27,8 +27,10 @@ function TripDistancePanel (distance) {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.distanceLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -60,6 +62,10 @@ function TripDistancePanel (distance) {
                 classList.remove('highlight')
                 labelClassList.remove('highlight')
             }, 200)
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.distanceLabel
         },
     }
 

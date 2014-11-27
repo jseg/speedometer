@@ -1,5 +1,12 @@
 function MainPanel () {
 
+    function setUnit (unit) {
+        speedLabel.setUnit(unit)
+        tripDistancePanel.setUnit(unit)
+        maxSpeedPanel.setUnit(unit)
+        averageSpeedPanel.setUnit(unit)
+    }
+
     function update () {
         requestAnimationFrame(function () {
             setTimeout(function () {
@@ -40,7 +47,10 @@ function MainPanel () {
 
     var distance = Distance()
 
-    var speedLabel = SpeedLabel()
+    var imperialUnit = ImperialUnit(),
+        metricUnit = MetricUnit()
+
+    var speedLabel = SpeedLabel(metricUnit)
 
     var tabs = Tabs(function () {
         panelElement.removeChild(panelElement.firstChild)
@@ -70,15 +80,21 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(distance)
+    var tripDistancePanel = TripDistancePanel(distance, metricUnit)
 
     var clockPanel = ClockPanel()
 
-    var maxSpeedPanel = MaxSpeedPanel()
+    var maxSpeedPanel = MaxSpeedPanel(metricUnit)
 
-    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel)
+    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel, metricUnit)
 
-    var settingsPanel = SettingsPanel()
+    var settingsPanel = SettingsPanel(function () {
+        setUnit(imperialUnit)
+    }, function () {
+        setUnit(metricUnit)
+    })
+
+    setUnit(metricUnit)
 
     var classPrefix = 'MainPanel'
 

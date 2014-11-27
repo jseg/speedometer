@@ -1,5 +1,5 @@
 (function () {
-function AverageSpeedPanel (distance, tripTimePanel) {
+function AverageSpeedPanel (distance, tripTimePanel, unit) {
 
     function update () {
 
@@ -30,8 +30,10 @@ function AverageSpeedPanel (distance, tripTimePanel) {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.speedLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM/H'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -63,6 +65,10 @@ function AverageSpeedPanel (distance, tripTimePanel) {
                 classList.remove('highlight')
                 labelClassList.remove('highlight')
             }, 200)
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.speedLabel
         },
     }
 
@@ -246,7 +252,21 @@ function Div (className) {
     return div
 }
 ;
+function ImperialUnit () {
+    return {
+        distanceLabel: 'M',
+        speedLabel: 'M/H',
+    }
+}
+;
 function MainPanel () {
+
+    function setUnit (unit) {
+        speedLabel.setUnit(unit)
+        tripDistancePanel.setUnit(unit)
+        maxSpeedPanel.setUnit(unit)
+        averageSpeedPanel.setUnit(unit)
+    }
 
     function update () {
         requestAnimationFrame(function () {
@@ -288,7 +308,10 @@ function MainPanel () {
 
     var distance = Distance()
 
-    var speedLabel = SpeedLabel()
+    var imperialUnit = ImperialUnit(),
+        metricUnit = MetricUnit()
+
+    var speedLabel = SpeedLabel(metricUnit)
 
     var tabs = Tabs(function () {
         panelElement.removeChild(panelElement.firstChild)
@@ -318,15 +341,21 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(distance)
+    var tripDistancePanel = TripDistancePanel(distance, metricUnit)
 
     var clockPanel = ClockPanel()
 
-    var maxSpeedPanel = MaxSpeedPanel()
+    var maxSpeedPanel = MaxSpeedPanel(metricUnit)
 
-    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel)
+    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel, metricUnit)
 
-    var settingsPanel = SettingsPanel()
+    var settingsPanel = SettingsPanel(function () {
+        setUnit(imperialUnit)
+    }, function () {
+        setUnit(metricUnit)
+    })
+
+    setUnit(metricUnit)
 
     var classPrefix = 'MainPanel'
 
@@ -409,7 +438,7 @@ function MainPanel () {
 
 }
 ;
-function MaxSpeedPanel () {
+function MaxSpeedPanel (unit) {
 
     function setSpeed (speed) {
 
@@ -436,8 +465,10 @@ function MaxSpeedPanel () {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.speedLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM/H'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -477,6 +508,10 @@ function MaxSpeedPanel () {
             if (!isFinite(speed)) speed = 0
             if (speed > maxSpeed) setSpeed(speed)
         },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.speedLabel
+        },
     }
 
 }
@@ -509,6 +544,13 @@ function MaxSpeedTab (listener) {
         },
     }
 
+}
+;
+function MetricUnit () {
+    return {
+        distanceLabel: 'KM',
+        speedLabel: 'KM/H',
+    }
 }
 ;
 function OnClick (element, listener) {
@@ -568,11 +610,37 @@ function ResetButton (clickListener) {
 
 }
 ;
-function SettingsPanel () {
+function SettingsPanel (imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
+    var imperialButton = Div(classPrefix + '-button Button')
+    imperialButton.appendChild(TextNode('IMPERIAL'))
+
+    var imperialClick = OnClick(imperialButton, function () {
+        metricButton.classList.remove('selected')
+        imperialButton.classList.add('selected')
+        imperialListener()
+    })
+    imperialClick.enable()
+
+    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button selected')
+    metricButton.appendChild(TextNode('METRIC'))
+
+    var metricClick = OnClick(metricButton, function () {
+        imperialButton.classList.remove('selected')
+        metricButton.classList.add('selected')
+        metricListener()
+    })
+    metricClick.enable()
+
+    var fieldLabelElement = Div(classPrefix + '-fieldLabel')
+    fieldLabelElement.appendChild(TextNode('UNITS:'))
+
     var contentElement = Div(classPrefix + ' BottomPanel-content')
+    contentElement.appendChild(fieldLabelElement)
+    contentElement.appendChild(imperialButton)
+    contentElement.appendChild(metricButton)
 
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SETTINGS'))
@@ -624,7 +692,7 @@ function SettingsTab (listener) {
 
 }
 ;
-function SpeedLabel () {
+function SpeedLabel (unit) {
 
     var classPrefix = 'SpeedLabel'
 
@@ -639,8 +707,10 @@ function SpeedLabel () {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.speedLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM/H'))
+    unitElement.appendChild(unitNode)
 
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SPEED'))
@@ -666,6 +736,10 @@ function SpeedLabel () {
             integerPartNode.nodeValue = Math.floor(speed)
             fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
 
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.speedLabel
         },
     }
 
@@ -806,7 +880,7 @@ function TextNode (text) {
     return document.createTextNode(text)
 }
 ;
-function TripDistancePanel (distance) {
+function TripDistancePanel (distance, unit) {
 
     function update () {
 
@@ -835,8 +909,10 @@ function TripDistancePanel (distance) {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.distanceLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -868,6 +944,10 @@ function TripDistancePanel (distance) {
                 classList.remove('highlight')
                 labelClassList.remove('highlight')
             }, 200)
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.distanceLabel
         },
     }
 

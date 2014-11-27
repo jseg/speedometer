@@ -1,4 +1,4 @@
-function MaxSpeedPanel () {
+function MaxSpeedPanel (unit) {
 
     function setSpeed (speed) {
 
@@ -25,8 +25,10 @@ function MaxSpeedPanel () {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.speedLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM/H'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -65,6 +67,10 @@ function MaxSpeedPanel () {
         setSpeed: function (speed) {
             if (!isFinite(speed)) speed = 0
             if (speed > maxSpeed) setSpeed(speed)
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.speedLabel
         },
     }
 

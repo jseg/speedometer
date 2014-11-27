@@ -1,4 +1,4 @@
-function AverageSpeedPanel (distance, tripTimePanel) {
+function AverageSpeedPanel (distance, tripTimePanel, unit) {
 
     function update () {
 
@@ -29,8 +29,10 @@ function AverageSpeedPanel (distance, tripTimePanel) {
     fractionalPartElement.appendChild(TextNode('.'))
     fractionalPartElement.appendChild(fractionalPartNode)
 
+    var unitNode = TextNode(unit.speedLabel)
+
     var unitElement = Div(classPrefix + '-unit')
-    unitElement.appendChild(TextNode('KM/H'))
+    unitElement.appendChild(unitNode)
 
     var contentElement = Div(classPrefix + ' BottomPanel-content')
     contentElement.appendChild(integerPartElement)
@@ -62,6 +64,10 @@ function AverageSpeedPanel (distance, tripTimePanel) {
                 classList.remove('highlight')
                 labelClassList.remove('highlight')
             }, 200)
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.speedLabel
         },
     }
 

@@ -1,4 +1,4 @@
-function SettingsPanel () {
+function SettingsPanel (imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
@@ -8,6 +8,7 @@ function SettingsPanel () {
     var imperialClick = OnClick(imperialButton, function () {
         metricButton.classList.remove('selected')
         imperialButton.classList.add('selected')
+        imperialListener()
     })
     imperialClick.enable()
 
@@ -17,6 +18,7 @@ function SettingsPanel () {
     var metricClick = OnClick(metricButton, function () {
         imperialButton.classList.remove('selected')
         metricButton.classList.add('selected')
+        metricListener()
     })
     metricClick.enable()
 
