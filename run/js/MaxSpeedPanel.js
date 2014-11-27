@@ -1,10 +1,14 @@
 function MaxSpeedPanel (unit) {
 
     function setSpeed (speed) {
-
         maxSpeed = speed
+        update()
+    }
 
-        speed = speed * 18 / 5
+    function update () {
+
+        speed = maxSpeed * 18 / 5
+        speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
 
         integerPartNode.nodeValue = String(Math.floor(speed))
@@ -71,6 +75,7 @@ function MaxSpeedPanel (unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
+            update()
         },
     }
 

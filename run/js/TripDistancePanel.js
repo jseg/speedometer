@@ -3,6 +3,7 @@ function TripDistancePanel (distance, unit) {
     function update () {
 
         var distanceValue = distance.get()
+        distanceValue = unit.fix(distanceValue)
         distanceValue = Math.min(999999, Math.floor(distanceValue))
 
         var fractionalPart = String(distanceValue % 1000)
@@ -66,6 +67,7 @@ function TripDistancePanel (distance, unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
+            update()
         },
     }
 

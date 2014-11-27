@@ -9,6 +9,7 @@ function AverageSpeedPanel (distance, tripTimePanel, unit) {
         if (tripTime == 0) speed = 0
         else speed = distanceValue / (tripTime / 1000)
         speed = speed * 18 / 5
+        speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
 
         integerPartNode.nodeValue = String(Math.floor(speed))
@@ -68,6 +69,7 @@ function AverageSpeedPanel (distance, tripTimePanel, unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
+            update()
         },
     }
 
