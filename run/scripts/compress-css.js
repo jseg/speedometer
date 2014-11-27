@@ -8,11 +8,13 @@ var fs = require('fs'),
 
 var files = [
     'Main',
+    'AverageSpeedPanel',
     'Button',
     'BottomPanel',
     'Tab',
     'ClockPanel',
     'ClockTab',
+    'MaxSpeedPanel',
     'ResetButton',
     'SpeedLabel',
     'StartStopButton',
