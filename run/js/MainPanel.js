@@ -6,6 +6,7 @@ function MainPanel () {
                 tripDistancePanel.update()
                 tripTimePanel.update()
                 clockPanel.update()
+                averageSpeedPanel.update()
                 update()
             }, 50)
         })
@@ -58,7 +59,9 @@ function MainPanel () {
         panelElement.appendChild(maxSpeedPanel.element)
         maxSpeedPanel.highlight()
     }, function () {
-        console.log('averageSpeedTab')
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(averageSpeedPanel.element)
+        averageSpeedPanel.highlight()
     })
 
     var tripTimePanel = TripTimePanel()
@@ -68,6 +71,8 @@ function MainPanel () {
     var clockPanel = ClockPanel()
 
     var maxSpeedPanel = MaxSpeedPanel()
+
+    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel)
 
     var classPrefix = 'MainPanel'
 
@@ -79,6 +84,7 @@ function MainPanel () {
         tripTimePanel.reset()
         tripDistancePanel.reset()
         maxSpeedPanel.reset()
+        averageSpeedPanel.reset()
     })
 
     var startStopButton = StartStopButton(function () {

@@ -43,6 +43,9 @@ function TripTimePanel () {
 
     return {
         element: element,
+        getTripTime: function () {
+            return tripTime
+        },
         highlight: function () {
             clearTimeout(timeout)
             classList.add('highlight')

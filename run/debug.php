@@ -4,6 +4,7 @@ include_once 'fns/echo_html.php';
 echo_html(
     '<html>',
     '<link rel="stylesheet" type="text/css" href="css/Main.css" />'
+    .'<link rel="stylesheet" type="text/css" href="css/AverageSpeedPanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Button.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/BottomPanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Tab.css" />'
@@ -18,7 +19,8 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/TripTimePanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Tabs.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/MainPanel.css" />',
-    '<script type="text/javascript" src="js/AverageSpeedTab.js"></script>'
+    '<script type="text/javascript" src="js/AverageSpeedPanel.js"></script>'
+    .'<script type="text/javascript" src="js/AverageSpeedTab.js"></script>'
     .'<script type="text/javascript" src="js/ClockPanel.js"></script>'
     .'<script type="text/javascript" src="js/ClockTab.js"></script>'
     .'<script type="text/javascript" src="js/Distance.js"></script>'
