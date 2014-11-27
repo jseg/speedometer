@@ -10,6 +10,7 @@ function AverageSpeedPanel (distance, tripTimePanel, unit) {
         if (tripTime == 0) speed = 0
         else speed = distanceValue / (tripTime / 1000)
         speed = speed * 18 / 5
+        speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
 
         integerPartNode.nodeValue = String(Math.floor(speed))
@@ -69,6 +70,7 @@ function AverageSpeedPanel (distance, tripTimePanel, unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
+            update()
         },
     }
 
@@ -256,6 +258,9 @@ function ImperialUnit () {
     return {
         distanceLabel: 'M',
         speedLabel: 'M/H',
+        fix: function (n) {
+            return n
+        },
     }
 }
 ;
@@ -392,22 +397,22 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
-/*
+///*
     setInterval(function () {
         updatePosition({
             coords: {
-                latitude: 40 + Math.random() * 0.1,
-                longitude: 40 + Math.random() * 0.1,
+                latitude: 40 + Math.random() * 0.001,
+                longitude: 40 + Math.random() * 0.001,
                 altitude: -10 + Math.random() * 20,
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
                 heading: Math.random() * 360,
-                speed: Math.random() * 300,
+                speed: Math.random() * 30,
             },
             timestamp: Date.now(),
         })
     }, 500)
-*/
+//*/
 ///*
     navigator.geolocation.watchPosition(updatePosition, function (error) {
         var code = error.code
@@ -441,10 +446,14 @@ function MainPanel () {
 function MaxSpeedPanel (unit) {
 
     function setSpeed (speed) {
-
         maxSpeed = speed
+        update()
+    }
 
-        speed = speed * 18 / 5
+    function update () {
+
+        speed = maxSpeed * 18 / 5
+        speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
 
         integerPartNode.nodeValue = String(Math.floor(speed))
@@ -511,6 +520,7 @@ function MaxSpeedPanel (unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
+            update()
         },
     }
 
@@ -550,6 +560,9 @@ function MetricUnit () {
     return {
         distanceLabel: 'KM',
         speedLabel: 'KM/H',
+        fix: function (n) {
+            return n * 1.609344
+        },
     }
 }
 ;
@@ -694,6 +707,17 @@ function SettingsTab (listener) {
 ;
 function SpeedLabel (unit) {
 
+    function update () {
+
+        speed = speedValue * 18 / 5
+        speed = unit.fix(speed)
+        speed = Math.min(999.99, speed)
+
+        integerPartNode.nodeValue = Math.floor(speed)
+        fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
+
+    }
+
     var classPrefix = 'SpeedLabel'
 
     var integerPartNode = TextNode('0')
@@ -724,22 +748,19 @@ function SpeedLabel (unit) {
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 
+    var speedValue = 0
+
     return {
         element: element,
         setSpeed: function (speed) {
-
             if (!isFinite(speed)) speed = 0
-
-            speed = speed * 18 / 5
-            speed = Math.min(999.99, speed)
-
-            integerPartNode.nodeValue = Math.floor(speed)
-            fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
-
+            speedValue = speed
+            update()
         },
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
+            update()
         },
     }
 
@@ -885,6 +906,7 @@ function TripDistancePanel (distance, unit) {
     function update () {
 
         var distanceValue = distance.get()
+        distanceValue = unit.fix(distanceValue)
         distanceValue = Math.min(999999, Math.floor(distanceValue))
 
         var fractionalPart = String(distanceValue % 1000)
@@ -948,6 +970,7 @@ function TripDistancePanel (distance, unit) {
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
+            update()
         },
     }
 
