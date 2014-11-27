@@ -22,4 +22,9 @@ echo json_encode([
         '128' => '/images/icons/128.png',
         '256' => '/images/icons/256.png',
     ],
+    'permissions' => [
+        'geolocation' => [
+            'description' => 'Required to detect the speed and the current location of the user.',
+        ],
+    ],
 ]);
