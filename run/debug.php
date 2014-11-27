@@ -23,6 +23,7 @@ echo_html(
     .'<script type="text/javascript" src="js/DistanceBetweenPositions.js"></script>'
     .'<script type="text/javascript" src="js/Div.js"></script>'
     .'<script type="text/javascript" src="js/MainPanel.js"></script>'
+    .'<script type="text/javascript" src="js/MaxSpeedTab.js"></script>'
     .'<script type="text/javascript" src="js/OnClick.js"></script>'
     .'<script type="text/javascript" src="js/ResetButton.js"></script>'
     .'<script type="text/javascript" src="js/SpeedLabel.js"></script>'

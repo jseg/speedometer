@@ -130,7 +130,7 @@ function MainPanel () {
         element: element,
         resize: function (width, height) {
             var scale = width / 320
-            if (scale * 400 > height) scale = height / 400
+            if (scale * 452 > height) scale = height / 452
             element.style.transform = 'scale(' + scale +  ')'
         },
     }
