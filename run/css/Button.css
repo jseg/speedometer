@@ -3,9 +3,14 @@
     background: #444;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold;
 }
 .Button.active {
     color: rgba(255, 255, 255, 0.5);
     background: #222;
+}
+.Button.selected {
+    background: #07f;
+}
+.Button.selected.active {
+    background: #05b;
 }

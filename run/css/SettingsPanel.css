@@ -1,7 +1,6 @@
 .SettingsPanel {
     font-size: 68px;
     line-height: 120px;
-    font-weight: bold;
 }
 
 .SettingsPanel-label {
@@ -16,4 +15,23 @@
 .SettingsPanel-label.highlight {
     color: #fff;
     transition: none;
+}
+
+.SettingsPanel-button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.SettingsPanel-metricButton {
+    margin-left: 2px;
+}
+
+.SettingsPanel-fieldLabel {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: 8px;
 }
