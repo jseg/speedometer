@@ -62,6 +62,10 @@ function MainPanel () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(averageSpeedPanel.element)
         averageSpeedPanel.highlight()
+    }, function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(settingsPanel.element)
+        settingsPanel.highlight()
     })
 
     var tripTimePanel = TripTimePanel()
@@ -73,6 +77,8 @@ function MainPanel () {
     var maxSpeedPanel = MaxSpeedPanel()
 
     var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel)
+
+    var settingsPanel = SettingsPanel()
 
     var classPrefix = 'MainPanel'
 

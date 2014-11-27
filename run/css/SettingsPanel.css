@@ -1,0 +1,19 @@
+.SettingsPanel {
+    font-size: 68px;
+    line-height: 120px;
+    font-weight: bold;
+}
+
+.SettingsPanel-label {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 15px;
+    line-height: 30px;
+    color: #999;
+    transition: color 0.5s linear;
+}
+.SettingsPanel-label.highlight {
+    color: #fff;
+    transition: none;
+}

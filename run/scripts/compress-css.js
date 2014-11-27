@@ -16,6 +16,8 @@ var files = [
     'ClockTab',
     'MaxSpeedPanel',
     'ResetButton',
+    'SettingsPanel',
+    'SettingsTab',
     'SpeedLabel',
     'StartStopButton',
     'StatusPanel',

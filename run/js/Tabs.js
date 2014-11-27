@@ -1,11 +1,12 @@
 function Tabs (tripTimeListener, tripDistanceListener,
-    clockListener, maxSpeedListener, averageSpeedListener) {
+    clockListener, maxSpeedListener, averageSpeedListener, settingsListener) {
 
     var tripDistanceTab = TripDistanceTab(function () {
         tripTimeTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         tripDistanceListener()
     })
 
@@ -14,6 +15,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         clockTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         tripTimeListener()
     })
 
@@ -22,6 +24,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         clockListener()
     })
 
@@ -30,6 +33,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         clockTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         maxSpeedListener()
     })
 
@@ -38,7 +42,17 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
+        settingsTab.deselect()
         averageSpeedListener()
+    })
+
+    var settingsTab = SettingsTab(function () {
+        tripDistanceTab.deselect()
+        tripTimeTab.deselect()
+        clockTab.deselect()
+        maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
+        settingsListener()
     })
 
     var classPrefix = 'Tabs'
@@ -51,6 +65,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
     var row2Element = Div(classPrefix + '-row2')
     row2Element.appendChild(maxSpeedTab.element)
     row2Element.appendChild(averageSpeedTab.element)
+    row2Element.appendChild(settingsTab.element)
 
     var element = Div(classPrefix)
     element.appendChild(row1Element)

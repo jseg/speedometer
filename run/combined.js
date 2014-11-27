@@ -310,6 +310,10 @@ function MainPanel () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(averageSpeedPanel.element)
         averageSpeedPanel.highlight()
+    }, function () {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(settingsPanel.element)
+        settingsPanel.highlight()
     })
 
     var tripTimePanel = TripTimePanel()
@@ -321,6 +325,8 @@ function MainPanel () {
     var maxSpeedPanel = MaxSpeedPanel()
 
     var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel)
+
+    var settingsPanel = SettingsPanel()
 
     var classPrefix = 'MainPanel'
 
@@ -357,7 +363,7 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
-///*
+/*
     setInterval(function () {
         updatePosition({
             coords: {
@@ -367,12 +373,12 @@ function MainPanel () {
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
                 heading: Math.random() * 360,
-                speed: NaN,//Math.random() * 300,
+                speed: Math.random() * 300,
             },
             timestamp: Date.now(),
         })
     }, 500)
-//*/
+*/
 ///*
     navigator.geolocation.watchPosition(updatePosition, function (error) {
         var code = error.code
@@ -562,6 +568,62 @@ function ResetButton (clickListener) {
 
 }
 ;
+function SettingsPanel () {
+
+    var classPrefix = 'SettingsPanel'
+
+    var contentElement = Div(classPrefix + ' BottomPanel-content')
+
+    var labelElement = Div(classPrefix + '-label')
+    labelElement.appendChild(TextNode('SETTINGS'))
+
+    var labelClassList = labelElement.classList
+
+    var element = Div('BottomPanel')
+    element.appendChild(labelElement)
+    element.appendChild(contentElement)
+
+    var classList = element.classList
+
+    var timeout
+
+    return {
+        element: element,
+        highlight: function () {
+            clearTimeout(timeout)
+            classList.add('highlight')
+            labelClassList.add('highlight')
+            timeout = setTimeout(function () {
+                classList.remove('highlight')
+                labelClassList.remove('highlight')
+            }, 200)
+        },
+    }
+
+}
+;
+function SettingsTab (listener) {
+
+    var element = Div('Tab SettingsTab Button')
+    element.appendChild(TextNode('SETTINGS'))
+
+    var classList = element.classList
+
+    var click = OnClick(element, function () {
+        listener()
+        classList.add('selected')
+    })
+    click.enable()
+
+    return {
+        element: element,
+        deselect: function () {
+            classList.remove('selected')
+        },
+    }
+
+}
+;
 function SpeedLabel () {
 
     var classPrefix = 'SpeedLabel'
@@ -664,13 +726,14 @@ function StatusPanel () {
 }
 ;
 function Tabs (tripTimeListener, tripDistanceListener,
-    clockListener, maxSpeedListener, averageSpeedListener) {
+    clockListener, maxSpeedListener, averageSpeedListener, settingsListener) {
 
     var tripDistanceTab = TripDistanceTab(function () {
         tripTimeTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         tripDistanceListener()
     })
 
@@ -679,6 +742,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         clockTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         tripTimeListener()
     })
 
@@ -687,6 +751,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         clockListener()
     })
 
@@ -695,6 +760,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         clockTab.deselect()
         averageSpeedTab.deselect()
+        settingsTab.deselect()
         maxSpeedListener()
     })
 
@@ -703,7 +769,17 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
+        settingsTab.deselect()
         averageSpeedListener()
+    })
+
+    var settingsTab = SettingsTab(function () {
+        tripDistanceTab.deselect()
+        tripTimeTab.deselect()
+        clockTab.deselect()
+        maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
+        settingsListener()
     })
 
     var classPrefix = 'Tabs'
@@ -716,6 +792,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
     var row2Element = Div(classPrefix + '-row2')
     row2Element.appendChild(maxSpeedTab.element)
     row2Element.appendChild(averageSpeedTab.element)
+    row2Element.appendChild(settingsTab.element)
 
     var element = Div(classPrefix)
     element.appendChild(row1Element)

@@ -19,6 +19,8 @@ var files = [
     'MaxSpeedTab',
     'OnClick',
     'ResetButton',
+    'SettingsPanel',
+    'SettingsTab',
     'SpeedLabel',
     'StartStopButton',
     'StatusPanel',
