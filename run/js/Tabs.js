@@ -1,10 +1,11 @@
-function Tabs (tripTimeListener,
-    tripDistanceListener, clockListener, maxSpeedListener) {
+function Tabs (tripTimeListener, tripDistanceListener,
+    clockListener, maxSpeedListener, averageSpeedListener) {
 
     var tripDistanceTab = TripDistanceTab(function () {
         tripTimeTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
         tripDistanceListener()
     })
 
@@ -12,6 +13,7 @@ function Tabs (tripTimeListener,
         tripDistanceTab.deselect()
         clockTab.deselect()
         maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
         tripTimeListener()
     })
 
@@ -19,6 +21,7 @@ function Tabs (tripTimeListener,
         tripDistanceTab.deselect()
         tripTimeTab.deselect()
         maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
         clockListener()
     })
 
@@ -26,7 +29,16 @@ function Tabs (tripTimeListener,
         tripDistanceTab.deselect()
         tripTimeTab.deselect()
         clockTab.deselect()
+        averageSpeedTab.deselect()
         maxSpeedListener()
+    })
+
+    var averageSpeedTab = AverageSpeedTab(function () {
+        tripDistanceTab.deselect()
+        tripTimeTab.deselect()
+        clockTab.deselect()
+        maxSpeedTab.deselect()
+        averageSpeedListener()
     })
 
     var classPrefix = 'Tabs'
@@ -38,6 +50,7 @@ function Tabs (tripTimeListener,
 
     var row2Element = Div(classPrefix + '-row2')
     row2Element.appendChild(maxSpeedTab.element)
+    row2Element.appendChild(averageSpeedTab.element)
 
     var element = Div(classPrefix)
     element.appendChild(row1Element)

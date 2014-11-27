@@ -57,6 +57,8 @@ function MainPanel () {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(maxSpeedPanel.element)
         maxSpeedPanel.highlight()
+    }, function () {
+        console.log('averageSpeedTab')
     })
 
     var tripTimePanel = TripTimePanel()

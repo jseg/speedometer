@@ -18,7 +18,8 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/TripTimePanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Tabs.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/MainPanel.css" />',
-    '<script type="text/javascript" src="js/ClockPanel.js"></script>'
+    '<script type="text/javascript" src="js/AverageSpeedTab.js"></script>'
+    .'<script type="text/javascript" src="js/ClockPanel.js"></script>'
     .'<script type="text/javascript" src="js/ClockTab.js"></script>'
     .'<script type="text/javascript" src="js/Distance.js"></script>'
     .'<script type="text/javascript" src="js/DistanceBetweenPositions.js"></script>'
