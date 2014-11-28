@@ -42,11 +42,6 @@ function SpeedLabel (unit) {
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SPEED'))
 
-    var contentElement = Div(classPrefix + '-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
     var arrowNode = TextNode('\u2195')
 
     var arrowElement = Div(classPrefix + '-arrow')
@@ -55,7 +50,9 @@ function SpeedLabel (unit) {
     var element = Div(classPrefix)
     element.appendChild(labelElement)
     element.appendChild(arrowElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var speed = 0,
         previousSpeed = 0

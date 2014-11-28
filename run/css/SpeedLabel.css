@@ -7,10 +7,10 @@
 
 .SpeedLabel-label {
     position: absolute;
-    top: 0px;
+    top: 8px;
     left: 8px;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 20px;
     color: #999;
 }
 
@@ -23,18 +23,11 @@
     height: 140px;
 }
 
-.SpeedLabel-content {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 100px;
-    line-height: 140px;
-    height: 140px;
-}
-
 .SpeedLabel-integerPart {
     display: inline;
     font-weight: bold;
+    font-size: 100px;
+    line-height: 140px;
 }
 
 .SpeedLabel-fractionalPart {
@@ -46,8 +39,8 @@
 
 .SpeedLabel-unit {
     position: absolute;
-    top: 29px;
-    right: 0;
+    top: 34px;
+    right: 24px;
     font-size: 20px;
     line-height: 20px;
     color: #999;
