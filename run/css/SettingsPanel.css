@@ -18,20 +18,22 @@
 }
 
 .SettingsPanel-button {
-    display: inline-block;
-    vertical-align: middle;
+    position: absolute;
+    right: 0;
+    bottom: 24px;
     width: 100px;
     height: 50px;
     line-height: 50px;
 }
 
-.SettingsPanel-metricButton {
-    margin-left: 2px;
+.SettingsPanel-imperialButton {
+    right: 102px;
 }
 
 .SettingsPanel-fieldLabel {
-    display: inline-block;
-    vertical-align: middle;
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
     font-size: 16px;
-    margin-right: 8px;
+    line-height: 50px;
 }

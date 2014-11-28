@@ -2,7 +2,7 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
-    var imperialButton = Div(classPrefix + '-button Button')
+    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(TextNode('IMPERIAL'))
 
     var imperialClick = OnClick(imperialButton, function () {
