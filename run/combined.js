@@ -35,19 +35,16 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('AVERAGE SPEED'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var classList = element.classList
 
@@ -111,13 +108,7 @@ function ClockPanel () {
 
     var hourNode = TextNode('00')
 
-    var hourElement = Div(classPrefix + '-hour')
-    hourElement.appendChild(hourNode)
-
     var minuteNode = TextNode('00')
-
-    var minuteElement = Div(classPrefix + '-minute')
-    minuteElement.appendChild(minuteNode)
 
     var secondNode = TextNode('00')
 
@@ -125,18 +116,18 @@ function ClockPanel () {
     secondElement.appendChild(TextNode(':'))
     secondElement.appendChild(secondNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(hourElement)
+    var contentElement = Div(classPrefix + '-content BottomPanel-content')
+    contentElement.appendChild(hourNode)
     contentElement.appendChild(TextNode(':'))
-    contentElement.appendChild(minuteElement)
+    contentElement.appendChild(minuteNode)
     contentElement.appendChild(secondElement)
 
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('CLOCK'))
 
     var labelClassList = labelElement.classList
 
-    var element = Div('BottomPanel')
+    var element = Div(classPrefix + ' BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 
@@ -458,19 +449,16 @@ function MaxSpeedPanel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('MAX SPEED'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var classList = element.classList
 
@@ -629,7 +617,7 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
-    var imperialButton = Div(classPrefix + '-button Button')
+    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(TextNode('IMPERIAL'))
 
     var imperialClick = OnClick(imperialButton, function () {
@@ -655,19 +643,16 @@ function SettingsPanel (settings, imperialListener, metricListener) {
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(fieldLabelElement)
-    contentElement.appendChild(imperialButton)
-    contentElement.appendChild(metricButton)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('SETTINGS'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(fieldLabelElement)
+    element.appendChild(imperialButton)
+    element.appendChild(metricButton)
 
     var classList = element.classList
 
@@ -754,11 +739,6 @@ function SpeedLabel (unit) {
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SPEED'))
 
-    var contentElement = Div(classPrefix + '-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
     var arrowNode = TextNode('\u2195')
 
     var arrowElement = Div(classPrefix + '-arrow')
@@ -767,7 +747,9 @@ function SpeedLabel (unit) {
     var element = Div(classPrefix)
     element.appendChild(labelElement)
     element.appendChild(arrowElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var speed = 0,
         previousSpeed = 0
@@ -1008,19 +990,16 @@ function TripDistancePanel (tripDistance, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('TRIP DISTANCE'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var classList = element.classList
 
@@ -1085,13 +1064,7 @@ function TripTimePanel () {
 
     var hourNode = TextNode('00')
 
-    var hourElement = Div(classPrefix + '-hour')
-    hourElement.appendChild(hourNode)
-
     var minuteNode = TextNode('00')
-
-    var minuteElement = Div(classPrefix + '-minute')
-    minuteElement.appendChild(minuteNode)
 
     var secondNode = TextNode('00')
 
@@ -1099,18 +1072,18 @@ function TripTimePanel () {
     secondElement.appendChild(TextNode(':'))
     secondElement.appendChild(secondNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(hourElement)
-    contentElement.appendChild(TextNode(':'))
-    contentElement.appendChild(minuteElement)
-    contentElement.appendChild(secondElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('TRIP TIME'))
 
     var labelClassList = labelElement.classList
 
-    var element = Div('BottomPanel')
+    var contentElement = Div(classPrefix + '-content')
+    contentElement.appendChild(hourNode)
+    contentElement.appendChild(TextNode(':'))
+    contentElement.appendChild(minuteNode)
+    contentElement.appendChild(secondElement)
+
+    var element = Div(classPrefix + ' BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 

@@ -4,13 +4,7 @@ function TripTimePanel () {
 
     var hourNode = TextNode('00')
 
-    var hourElement = Div(classPrefix + '-hour')
-    hourElement.appendChild(hourNode)
-
     var minuteNode = TextNode('00')
-
-    var minuteElement = Div(classPrefix + '-minute')
-    minuteElement.appendChild(minuteNode)
 
     var secondNode = TextNode('00')
 
@@ -18,18 +12,18 @@ function TripTimePanel () {
     secondElement.appendChild(TextNode(':'))
     secondElement.appendChild(secondNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(hourElement)
-    contentElement.appendChild(TextNode(':'))
-    contentElement.appendChild(minuteElement)
-    contentElement.appendChild(secondElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('TRIP TIME'))
 
     var labelClassList = labelElement.classList
 
-    var element = Div('BottomPanel')
+    var contentElement = Div(classPrefix + '-content')
+    contentElement.appendChild(hourNode)
+    contentElement.appendChild(TextNode(':'))
+    contentElement.appendChild(minuteNode)
+    contentElement.appendChild(secondElement)
+
+    var element = Div(classPrefix + ' BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 

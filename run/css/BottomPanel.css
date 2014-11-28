@@ -3,6 +3,7 @@
     background: #111;
     margin: 2px;
     padding-right: 24px;
+    height: 120px;
     text-align: right;
     transition: background-color 0.5s linear;
 }
@@ -11,7 +12,16 @@
     transition: none;
 }
 
-.BottomPanel-content {
-    position: relative;
-    height: 120px;
+.BottomPanel-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 15px;
+    line-height: 15px;
+    color: #999;
+    transition: color 0.5s linear;
+}
+.BottomPanel-label.highlight {
+    color: #fff;
+    transition: none;
 }

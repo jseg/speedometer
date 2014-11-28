@@ -1,30 +1,11 @@
 .TripTimePanel {
     font-size: 68px;
     line-height: 120px;
+}
+
+.TripTimePanel-content {
+    display: inline;
     font-weight: bold;
-}
-
-.TripTimePanel-label {
-    position: absolute;
-    top: 0px;
-    left: 8px;
-    font-size: 15px;
-    line-height: 30px;
-    color: #999;
-    transition: color 0.5s linear;
-}
-.TripTimePanel-label.highlight {
-    color: #fff;
-    transition: none;
-}
-
-
-.TripTimePanel-hour {
-    display: inline;
-}
-
-.TripTimePanel-minute {
-    display: inline;
 }
 
 .TripTimePanel-second {

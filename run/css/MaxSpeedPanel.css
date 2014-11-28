@@ -1,27 +1,8 @@
-.MaxSpeedPanel {
-    font-size: 68px;
-    line-height: 120px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.MaxSpeedPanel-label {
-    position: absolute;
-    top: 0px;
-    left: 8px;
-    font-size: 15px;
-    line-height: 30px;
-    color: #999;
-    transition: color 0.5s linear;
-}
-.MaxSpeedPanel-label.highlight {
-    color: #fff;
-    transition: none;
-}
-
 .MaxSpeedPanel-integerPart {
     display: inline;
     font-weight: bold;
+    font-size: 68px;
+    line-height: 120px;
 }
 
 .MaxSpeedPanel-fractionalPart {
@@ -34,7 +15,7 @@
 .MaxSpeedPanel-unit {
     position: absolute;
     top: 31px;
-    right: 0px;
+    right: 24px;
     font-size: 14px;
     line-height: 20px;
     color: #999;

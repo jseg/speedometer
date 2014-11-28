@@ -1,25 +1,5 @@
-.SettingsPanel {
-    font-size: 68px;
-    line-height: 120px;
-}
-
-.SettingsPanel-label {
-    position: absolute;
-    top: 0px;
-    left: 8px;
-    font-size: 15px;
-    line-height: 30px;
-    color: #999;
-    transition: color 0.5s linear;
-}
-.SettingsPanel-label.highlight {
-    color: #fff;
-    transition: none;
-}
-
 .SettingsPanel-button {
     position: absolute;
-    right: 0;
     bottom: 24px;
     width: 100px;
     height: 50px;
@@ -27,7 +7,11 @@
 }
 
 .SettingsPanel-imperialButton {
-    right: 102px;
+    right: 126px;
+}
+
+.SettingsPanel-metricButton {
+    right: 24px;
 }
 
 .SettingsPanel-fieldLabel {

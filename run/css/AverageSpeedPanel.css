@@ -1,27 +1,8 @@
-.AverageSpeedPanel {
-    font-size: 68px;
-    line-height: 120px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.AverageSpeedPanel-label {
-    position: absolute;
-    top: 0px;
-    left: 8px;
-    font-size: 15px;
-    line-height: 30px;
-    color: #999;
-    transition: color 0.5s linear;
-}
-.AverageSpeedPanel-label.highlight {
-    color: #fff;
-    transition: none;
-}
-
 .AverageSpeedPanel-integerPart {
     display: inline;
     font-weight: bold;
+    font-size: 68px;
+    line-height: 120px;
 }
 
 .AverageSpeedPanel-fractionalPart {
@@ -34,7 +15,7 @@
 .AverageSpeedPanel-unit {
     position: absolute;
     top: 31px;
-    right: 0px;
+    right: 24px;
     font-size: 14px;
     line-height: 20px;
     color: #999;

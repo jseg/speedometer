@@ -1,30 +1,11 @@
 .ClockPanel {
     font-size: 68px;
     line-height: 120px;
+}
+
+.ClockPanel-content {
+    display: inline;
     font-weight: bold;
-}
-
-.ClockPanel-label {
-    position: absolute;
-    top: 0px;
-    left: 8px;
-    font-size: 15px;
-    line-height: 30px;
-    color: #999;
-    transition: color 0.5s linear;
-}
-.ClockPanel-label.highlight {
-    color: #fff;
-    transition: none;
-}
-
-
-.ClockPanel-hour {
-    display: inline;
-}
-
-.ClockPanel-minute {
-    display: inline;
 }
 
 .ClockPanel-second {

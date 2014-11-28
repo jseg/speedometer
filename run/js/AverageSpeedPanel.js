@@ -34,19 +34,16 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(integerPartElement)
-    contentElement.appendChild(fractionalPartElement)
-    contentElement.appendChild(unitElement)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('AVERAGE SPEED'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
 
     var classList = element.classList
 

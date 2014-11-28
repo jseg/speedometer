@@ -28,19 +28,16 @@ function SettingsPanel (settings, imperialListener, metricListener) {
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))
 
-    var contentElement = Div(classPrefix + ' BottomPanel-content')
-    contentElement.appendChild(fieldLabelElement)
-    contentElement.appendChild(imperialButton)
-    contentElement.appendChild(metricButton)
-
-    var labelElement = Div(classPrefix + '-label')
+    var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('SETTINGS'))
 
     var labelClassList = labelElement.classList
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(contentElement)
+    element.appendChild(fieldLabelElement)
+    element.appendChild(imperialButton)
+    element.appendChild(metricButton)
 
     var classList = element.classList
 
