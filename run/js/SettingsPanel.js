@@ -1,4 +1,4 @@
-function SettingsPanel (imperialListener, metricListener) {
+function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
@@ -12,7 +12,7 @@ function SettingsPanel (imperialListener, metricListener) {
     })
     imperialClick.enable()
 
-    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button selected')
+    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
     metricButton.appendChild(TextNode('METRIC'))
 
     var metricClick = OnClick(metricButton, function () {
@@ -21,6 +21,9 @@ function SettingsPanel (imperialListener, metricListener) {
         metricListener()
     })
     metricClick.enable()
+
+    if (settings.unit == 'imperial') imperialButton.classList.add('selected')
+    else metricButton.classList.add('selected')
 
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))

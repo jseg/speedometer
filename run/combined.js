@@ -229,6 +229,7 @@ function Div (className) {
 ;
 function ImperialUnit () {
     return {
+        key: 'imperial',
         distanceLabel: 'M',
         speedLabel: 'M/H',
         fix: function (n) {
@@ -244,6 +245,8 @@ function MainPanel () {
         tripDistancePanel.setUnit(unit)
         maxSpeedPanel.setUnit(unit)
         averageSpeedPanel.setUnit(unit)
+        settings.unit = unit.key
+        settings.save()
     }
 
     function update () {
@@ -327,13 +330,16 @@ function MainPanel () {
 
     var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
 
-    var settingsPanel = SettingsPanel(function () {
+    var settings = Settings()
+
+    var settingsPanel = SettingsPanel(settings, function () {
         setUnit(imperialUnit)
     }, function () {
         setUnit(metricUnit)
     })
 
-    setUnit(metricUnit)
+    if (settings.unit == 'imperial') setUnit(imperialUnit)
+    else setUnit(metricUnit)
 
     var classPrefix = 'MainPanel'
 
@@ -531,6 +537,7 @@ function MaxSpeedTab (listener) {
 ;
 function MetricUnit () {
     return {
+        key: 'metric',
         distanceLabel: 'KM',
         speedLabel: 'KM/H',
         fix: function (n) {
@@ -596,7 +603,29 @@ function ResetButton (clickListener) {
 
 }
 ;
-function SettingsPanel (imperialListener, metricListener) {
+function Settings () {
+
+    var unit
+    try {
+        unit = localStorage.unit
+    } catch (e) {
+    }
+
+    var that = {
+        unit: unit,
+        save: function () {
+            try {
+                localStorage.unit = that.unit
+            } catch (e) {
+            }
+        },
+    }
+
+    return that
+
+}
+;
+function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
@@ -610,7 +639,7 @@ function SettingsPanel (imperialListener, metricListener) {
     })
     imperialClick.enable()
 
-    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button selected')
+    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
     metricButton.appendChild(TextNode('METRIC'))
 
     var metricClick = OnClick(metricButton, function () {
@@ -619,6 +648,9 @@ function SettingsPanel (imperialListener, metricListener) {
         metricListener()
     })
     metricClick.enable()
+
+    if (settings.unit == 'imperial') imperialButton.classList.add('selected')
+    else metricButton.classList.add('selected')
 
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))

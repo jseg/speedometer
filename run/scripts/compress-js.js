@@ -20,6 +20,7 @@ var files = [
     'MetricUnit',
     'OnClick',
     'ResetButton',
+    'Settings',
     'SettingsPanel',
     'SettingsTab',
     'SpeedLabel',

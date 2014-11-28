@@ -34,6 +34,7 @@ echo_html(
     .'<script type="text/javascript" src="js/MetricUnit.js"></script>'
     .'<script type="text/javascript" src="js/OnClick.js"></script>'
     .'<script type="text/javascript" src="js/ResetButton.js"></script>'
+    .'<script type="text/javascript" src="js/Settings.js"></script>'
     .'<script type="text/javascript" src="js/SettingsPanel.js"></script>'
     .'<script type="text/javascript" src="js/SettingsTab.js"></script>'
     .'<script type="text/javascript" src="js/SpeedLabel.js"></script>'

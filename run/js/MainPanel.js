@@ -5,6 +5,8 @@ function MainPanel () {
         tripDistancePanel.setUnit(unit)
         maxSpeedPanel.setUnit(unit)
         averageSpeedPanel.setUnit(unit)
+        settings.unit = unit.key
+        settings.save()
     }
 
     function update () {
@@ -88,13 +90,16 @@ function MainPanel () {
 
     var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
 
-    var settingsPanel = SettingsPanel(function () {
+    var settings = Settings()
+
+    var settingsPanel = SettingsPanel(settings, function () {
         setUnit(imperialUnit)
     }, function () {
         setUnit(metricUnit)
     })
 
-    setUnit(metricUnit)
+    if (settings.unit == 'imperial') setUnit(imperialUnit)
+    else setUnit(metricUnit)
 
     var classPrefix = 'MainPanel'
 
