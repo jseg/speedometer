@@ -16,7 +16,7 @@ function MaxSpeedPanel (unit) {
 
     }
 
-    var classPrefix = 'MaxSpeedPanel'
+    var classPrefix = 'SpeedPanel'
 
     var integerPartNode = TextNode('0')
 

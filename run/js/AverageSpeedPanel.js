@@ -16,7 +16,7 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     }
 
-    var classPrefix = 'AverageSpeedPanel'
+    var classPrefix = 'SpeedPanel'
 
     var integerPartNode = TextNode('0')
 

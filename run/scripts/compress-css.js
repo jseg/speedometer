@@ -8,13 +8,12 @@ var fs = require('fs'),
 
 var files = [
     'Main',
-    'AverageSpeedPanel',
+    'SpeedPanel',
     'Button',
     'BottomPanel',
     'Tab',
     'ClockPanel',
     'ClockTab',
-    'MaxSpeedPanel',
     'ResetButton',
     'SettingsPanel',
     'SettingsTab',
@@ -22,7 +21,6 @@ var files = [
     'StartStopButton',
     'StatusPanel',
     'TripDistancePanel',
-    'TripTimePanel',
     'Tabs',
     'MainPanel',
 ]

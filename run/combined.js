@@ -17,7 +17,7 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     }
 
-    var classPrefix = 'AverageSpeedPanel'
+    var classPrefix = 'SpeedPanel'
 
     var integerPartNode = TextNode('0')
 
@@ -431,7 +431,7 @@ function MaxSpeedPanel (unit) {
 
     }
 
-    var classPrefix = 'MaxSpeedPanel'
+    var classPrefix = 'SpeedPanel'
 
     var integerPartNode = TextNode('0')
 
@@ -1060,7 +1060,7 @@ function TripDistanceTab (listener) {
 ;
 function TripTimePanel () {
 
-    var classPrefix = 'TripTimePanel'
+    var classPrefix = 'ClockPanel'
 
     var hourNode = TextNode('00')
 

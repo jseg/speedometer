@@ -1,6 +1,6 @@
 function TripTimePanel () {
 
-    var classPrefix = 'TripTimePanel'
+    var classPrefix = 'ClockPanel'
 
     var hourNode = TextNode('00')
 
