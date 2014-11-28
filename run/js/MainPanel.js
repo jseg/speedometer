@@ -135,13 +135,13 @@ function MainPanel () {
     setInterval(function () {
         updatePosition({
             coords: {
-                latitude: 40 + Math.random() * 0.1,
-                longitude: 40 + Math.random() * 0.1,
+                latitude: 40 + Math.random() * 0.001,
+                longitude: 40 + Math.random() * 0.001,
                 altitude: -10 + Math.random() * 20,
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
                 heading: Math.random() * 360,
-                speed: Math.random() * 300,
+                speed: Math.random() * 30,
             },
             timestamp: Date.now(),
         })
