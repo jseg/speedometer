@@ -21,7 +21,7 @@ function MainPanel () {
 
     function updatePosition (position) {
 
-        if (started) distance.add(position)
+        if (started) tripDistance.add(position)
 
         var coords = position.coords,
             speed = coords.speed
@@ -45,7 +45,7 @@ function MainPanel () {
 
     var started = false
 
-    var distance = Distance()
+    var tripDistance = TripDistance()
 
     var imperialUnit = ImperialUnit(),
         metricUnit = MetricUnit()
@@ -80,13 +80,13 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(distance, metricUnit)
+    var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
 
     var clockPanel = ClockPanel()
 
     var maxSpeedPanel = MaxSpeedPanel(metricUnit)
 
-    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel, metricUnit)
+    var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
 
     var settingsPanel = SettingsPanel(function () {
         setUnit(imperialUnit)
@@ -102,7 +102,7 @@ function MainPanel () {
     panelElement.appendChild(tripDistancePanel.element)
 
     var resetButton = ResetButton(function () {
-        distance.reset()
+        tripDistance.reset()
         tripTimePanel.reset()
         tripDistancePanel.reset()
         maxSpeedPanel.reset()
@@ -112,7 +112,7 @@ function MainPanel () {
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
-        distance.start()
+        tripDistance.start()
     }, function () {
         started = false
         tripTimePanel.stop()

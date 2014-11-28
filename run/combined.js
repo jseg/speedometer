@@ -1,14 +1,13 @@
 (function () {
-function AverageSpeedPanel (distance, tripTimePanel, unit) {
+function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     function update () {
 
-        var distanceValue = distance.get()
         var tripTime = tripTimePanel.getTripTime()
 
         var speed
         if (tripTime == 0) speed = 0
-        else speed = distanceValue / (tripTime / 1000)
+        else speed = tripDistance.get() / (tripTime / 1000)
         speed = speed * 18 / 5
         speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
@@ -188,32 +187,6 @@ function ClockTab (listener) {
 
 }
 ;
-function Distance () {
-
-    var prevPosition = null
-    var distance = 0
-
-    return {
-        add: function (position) {
-            if (prevPosition) {
-                distance += DistanceBetweenPositions(prevPosition, position)
-            }
-            prevPosition = position
-        },
-        get: function () {
-            return distance
-        },
-        reset: function () {
-            prevPosition = null
-            distance = 0
-        },
-        start: function () {
-            prevPosition = null
-        },
-    }
-
-}
-;
 function DistanceBetweenPositions (position1, position2) {
 
     function toRad (n) {
@@ -287,7 +260,7 @@ function MainPanel () {
 
     function updatePosition (position) {
 
-        if (started) distance.add(position)
+        if (started) tripDistance.add(position)
 
         var coords = position.coords,
             speed = coords.speed
@@ -311,7 +284,7 @@ function MainPanel () {
 
     var started = false
 
-    var distance = Distance()
+    var tripDistance = TripDistance()
 
     var imperialUnit = ImperialUnit(),
         metricUnit = MetricUnit()
@@ -346,13 +319,13 @@ function MainPanel () {
 
     var tripTimePanel = TripTimePanel()
 
-    var tripDistancePanel = TripDistancePanel(distance, metricUnit)
+    var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
 
     var clockPanel = ClockPanel()
 
     var maxSpeedPanel = MaxSpeedPanel(metricUnit)
 
-    var averageSpeedPanel = AverageSpeedPanel(distance, tripTimePanel, metricUnit)
+    var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
 
     var settingsPanel = SettingsPanel(function () {
         setUnit(imperialUnit)
@@ -368,7 +341,7 @@ function MainPanel () {
     panelElement.appendChild(tripDistancePanel.element)
 
     var resetButton = ResetButton(function () {
-        distance.reset()
+        tripDistance.reset()
         tripTimePanel.reset()
         tripDistancePanel.reset()
         maxSpeedPanel.reset()
@@ -378,7 +351,7 @@ function MainPanel () {
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
-        distance.start()
+        tripDistance.start()
     }, function () {
         started = false
         tripTimePanel.stop()
@@ -709,12 +682,11 @@ function SpeedLabel (unit) {
 
     function update () {
 
-        speed = speedValue * 18 / 5
-        speed = unit.fix(speed)
-        speed = Math.min(999.99, speed)
+        var visualSpeed = unit.fix(speed * 18 / 5)
+        visualSpeed = Math.min(999.99, visualSpeed)
 
-        integerPartNode.nodeValue = Math.floor(speed)
-        fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
+        integerPartNode.nodeValue = Math.floor(visualSpeed)
+        fractionalPartNode.nodeValue = Math.floor(visualSpeed % 1 * 10)
 
     }
 
@@ -748,13 +720,13 @@ function SpeedLabel (unit) {
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 
-    var speedValue = 0
+    var speed = 0
 
     return {
         element: element,
-        setSpeed: function (speed) {
-            if (!isFinite(speed)) speed = 0
-            speedValue = speed
+        setSpeed: function (_speed) {
+            if (!isFinite(_speed)) _speed = 0
+            speed = _speed
             update()
         },
         setUnit: function (_unit) {
@@ -901,20 +873,46 @@ function TextNode (text) {
     return document.createTextNode(text)
 }
 ;
-function TripDistancePanel (distance, unit) {
+function TripDistance () {
+
+    var prevPosition = null
+    var value = 0
+
+    return {
+        add: function (position) {
+            if (prevPosition) {
+                value += DistanceBetweenPositions(prevPosition, position)
+            }
+            prevPosition = position
+        },
+        get: function () {
+            return value
+        },
+        reset: function () {
+            prevPosition = null
+            value = 0
+        },
+        start: function () {
+            prevPosition = null
+        },
+    }
+
+}
+;
+function TripDistancePanel (tripDistance, unit) {
 
     function update () {
 
-        var distanceValue = distance.get()
-        distanceValue = unit.fix(distanceValue)
-        distanceValue = Math.min(999999, Math.floor(distanceValue))
+        var distance = tripDistance.get()
+        distance = unit.fix(distance)
+        distance = Math.min(999999, Math.floor(distance))
 
-        var fractionalPart = String(distanceValue % 1000)
+        var fractionalPart = String(distance % 1000)
         if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
         else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
         fractionalPartNode.nodeValue = fractionalPart
 
-        integerPartNode.nodeValue = Math.floor(distanceValue / 1000)
+        integerPartNode.nodeValue = Math.floor(distance / 1000)
 
     }
 

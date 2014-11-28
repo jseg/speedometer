@@ -1,21 +1,21 @@
-function Distance () {
+function TripDistance () {
 
     var prevPosition = null
-    var distance = 0
+    var value = 0
 
     return {
         add: function (position) {
             if (prevPosition) {
-                distance += DistanceBetweenPositions(prevPosition, position)
+                value += DistanceBetweenPositions(prevPosition, position)
             }
             prevPosition = position
         },
         get: function () {
-            return distance
+            return value
         },
         reset: function () {
             prevPosition = null
-            distance = 0
+            value = 0
         },
         start: function () {
             prevPosition = null

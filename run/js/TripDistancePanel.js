@@ -1,17 +1,17 @@
-function TripDistancePanel (distance, unit) {
+function TripDistancePanel (tripDistance, unit) {
 
     function update () {
 
-        var distanceValue = distance.get()
-        distanceValue = unit.fix(distanceValue)
-        distanceValue = Math.min(999999, Math.floor(distanceValue))
+        var distance = tripDistance.get()
+        distance = unit.fix(distance)
+        distance = Math.min(999999, Math.floor(distance))
 
-        var fractionalPart = String(distanceValue % 1000)
+        var fractionalPart = String(distance % 1000)
         if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
         else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
         fractionalPartNode.nodeValue = fractionalPart
 
-        integerPartNode.nodeValue = Math.floor(distanceValue / 1000)
+        integerPartNode.nodeValue = Math.floor(distance / 1000)
 
     }
 

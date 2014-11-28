@@ -1,13 +1,12 @@
-function AverageSpeedPanel (distance, tripTimePanel, unit) {
+function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     function update () {
 
-        var distanceValue = distance.get()
         var tripTime = tripTimePanel.getTripTime()
 
         var speed
         if (tripTime == 0) speed = 0
-        else speed = distanceValue / (tripTime / 1000)
+        else speed = tripDistance.get() / (tripTime / 1000)
         speed = speed * 18 / 5
         speed = unit.fix(speed)
         speed = Math.min(999.99, speed)
