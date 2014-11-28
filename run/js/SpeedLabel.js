@@ -2,12 +2,11 @@ function SpeedLabel (unit) {
 
     function update () {
 
-        speed = speedValue * 18 / 5
-        speed = unit.fix(speed)
-        speed = Math.min(999.99, speed)
+        var visualSpeed = unit.fix(speed * 18 / 5)
+        visualSpeed = Math.min(999.99, visualSpeed)
 
-        integerPartNode.nodeValue = Math.floor(speed)
-        fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
+        integerPartNode.nodeValue = Math.floor(visualSpeed)
+        fractionalPartNode.nodeValue = Math.floor(visualSpeed % 1 * 10)
 
     }
 
@@ -41,13 +40,13 @@ function SpeedLabel (unit) {
     element.appendChild(labelElement)
     element.appendChild(contentElement)
 
-    var speedValue = 0
+    var speed = 0
 
     return {
         element: element,
-        setSpeed: function (speed) {
-            if (!isFinite(speed)) speed = 0
-            speedValue = speed
+        setSpeed: function (_speed) {
+            if (!isFinite(_speed)) _speed = 0
+            speed = _speed
             update()
         },
         setUnit: function (_unit) {
