@@ -1,6 +1,6 @@
 function StatusPanel () {
 
-    var node = TextNode('INITIALIZING')
+    var node = TextNode('ACQUIRING')
 
     var element = Div('StatusPanel')
     element.appendChild(TextNode('GPS: '))
