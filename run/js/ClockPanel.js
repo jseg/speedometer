@@ -31,15 +31,17 @@ function ClockPanel () {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         update: function () {

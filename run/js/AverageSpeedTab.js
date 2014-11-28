@@ -10,19 +10,19 @@ function AverageSpeedTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 

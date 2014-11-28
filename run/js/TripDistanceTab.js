@@ -10,20 +10,20 @@ function TripDistanceTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
+
+    var selectedClass = 'selected'
 
     var classList = element.classList
-    classList.add('selected')
-
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    classList.add(selectedClass)
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 

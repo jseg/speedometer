@@ -2,8 +2,7 @@ function TripDistancePanel (tripDistance, unit) {
 
     function update () {
 
-        var distance = tripDistance.get()
-        distance = unit.fix(distance)
+        var distance = unit.fix(tripDistance.get())
         distance = Math.min(999999, Math.floor(distance))
 
         var fractionalPart = String(distance % 1000)
@@ -48,17 +47,19 @@ function TripDistancePanel (tripDistance, unit) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         setUnit: function (_unit) {

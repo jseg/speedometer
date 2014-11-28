@@ -8,11 +8,10 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
         var speed
         if (tripTime == 0) speed = 0
         else speed = tripDistance.get() / (tripTime / 1000)
-        speed = speed * 18 / 5
-        speed = unit.fix(speed)
+        speed = unit.fix(speed * 18 / 5)
         speed = Math.min(999.99, speed)
 
-        integerPartNode.nodeValue = String(Math.floor(speed))
+        integerPartNode.nodeValue = Math.floor(speed)
         fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
 
     }
@@ -50,17 +49,19 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         setUnit: function (_unit) {
@@ -84,19 +85,19 @@ function AverageSpeedTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 
@@ -135,15 +136,17 @@ function ClockPanel () {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         update: function () {
@@ -160,19 +163,19 @@ function ClockTab (listener) {
 
     var element = Div('Tab ClockTab Button')
     element.appendChild(TextNode('CLOCK'))
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 
@@ -422,11 +425,10 @@ function MaxSpeedPanel (unit) {
 
     function update () {
 
-        speed = maxSpeed * 18 / 5
-        speed = unit.fix(speed)
+        var speed = unit.fix(maxSpeed * 18 / 5)
         speed = Math.min(999.99, speed)
 
-        integerPartNode.nodeValue = String(Math.floor(speed))
+        integerPartNode.nodeValue = Math.floor(speed)
         fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
 
     }
@@ -466,15 +468,17 @@ function MaxSpeedPanel (unit) {
 
     var maxSpeed = 0
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         reset: function () {
@@ -505,19 +509,19 @@ function MaxSpeedTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 
@@ -547,35 +551,23 @@ function OnClick (element, listener) {
         }, 100)
     }
 
-    function mouseDown (e) {
-        if (e.button !== 0) return
-        e.preventDefault()
-        if (touched) touched = false
-        else click()
-    }
-
-    function touchStart (e) {
-        e.preventDefault()
-        touched = true
-        click()
-    }
-
     var timeout
 
     var classList = element.classList
 
     var touched = false
 
-    return {
-        disable: function () {
-            element.removeEventListener('touchstart', touchStart)
-            element.removeEventListener('mousedown', mouseDown)
-        },
-        enable: function () {
-            element.addEventListener('mousedown', mouseDown)
-            element.addEventListener('touchstart', touchStart)
-        },
-    }
+    element.addEventListener('mousedown', function (e) {
+        if (e.button !== 0) return
+        e.preventDefault()
+        if (touched) touched = false
+        else click()
+    })
+    element.addEventListener('touchstart', function (e) {
+        e.preventDefault()
+        touched = true
+        click()
+    })
 
 }
 ;
@@ -584,8 +576,7 @@ function ResetButton (clickListener) {
     var element = Div('ResetButton Button')
     element.appendChild(TextNode('RESET'))
 
-    var click = OnClick(element, clickListener)
-    click.enable()
+    OnClick(element, clickListener)
 
     return element
 
@@ -617,28 +608,26 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
+    var selectedClass = 'selected'
+
     var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(TextNode('IMPERIAL'))
-
-    var imperialClick = OnClick(imperialButton, function () {
-        metricButton.classList.remove('selected')
-        imperialButton.classList.add('selected')
+    OnClick(imperialButton, function () {
+        metricButton.classList.remove(selectedClass)
+        imperialButton.classList.add(selectedClass)
         imperialListener()
     })
-    imperialClick.enable()
 
     var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
     metricButton.appendChild(TextNode('METRIC'))
-
-    var metricClick = OnClick(metricButton, function () {
-        imperialButton.classList.remove('selected')
-        metricButton.classList.add('selected')
+    OnClick(metricButton, function () {
+        imperialButton.classList.remove(selectedClass)
+        metricButton.classList.add(selectedClass)
         metricListener()
     })
-    metricClick.enable()
 
-    if (settings.unit == 'imperial') imperialButton.classList.add('selected')
-    else metricButton.classList.add('selected')
+    if (settings.unit == 'imperial') imperialButton.classList.add(selectedClass)
+    else metricButton.classList.add(selectedClass)
 
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))
@@ -658,15 +647,17 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
     }
@@ -677,19 +668,19 @@ function SettingsTab (listener) {
 
     var element = Div('Tab SettingsTab Button')
     element.appendChild(TextNode('SETTINGS'))
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 
@@ -802,8 +793,7 @@ function StartStopButton (startListener, stopListener) {
 
     var element = Div('StartStopButton Button')
     element.appendChild(node)
-
-    var click = OnClick(element, function () {
+    OnClick(element, function () {
         if (started) {
             started = false
             node.nodeValue = 'START'
@@ -814,7 +804,6 @@ function StartStopButton (startListener, stopListener) {
             startListener()
         }
     })
-    click.enable()
 
     return { element: element }
 
@@ -822,7 +811,7 @@ function StartStopButton (startListener, stopListener) {
 ;
 function StatusPanel () {
 
-    var node = TextNode('INITIALIZING')
+    var node = TextNode('ACQUIRING')
 
     var element = Div('StatusPanel')
     element.appendChild(TextNode('GPS: '))
@@ -832,15 +821,17 @@ function StatusPanel () {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         setStatus: function (text) {
             if (text != node.nodeValue) {
                 node.nodeValue = text
                 clearTimeout(timeout)
-                classList.add('highlight')
+                classList.add(highlightClass)
                 timeout = setTimeout(function () {
-                    classList.remove('highlight')
+                    classList.remove(highlightClass)
                 }, 200)
             }
         },
@@ -959,8 +950,7 @@ function TripDistancePanel (tripDistance, unit) {
 
     function update () {
 
-        var distance = tripDistance.get()
-        distance = unit.fix(distance)
+        var distance = unit.fix(tripDistance.get())
         distance = Math.min(999999, Math.floor(distance))
 
         var fractionalPart = String(distance % 1000)
@@ -1005,17 +995,19 @@ function TripDistancePanel (tripDistance, unit) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         setUnit: function (_unit) {
@@ -1039,20 +1031,20 @@ function TripDistanceTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
+
+    var selectedClass = 'selected'
 
     var classList = element.classList
-    classList.add('selected')
-
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    classList.add(selectedClass)
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 
@@ -1095,6 +1087,8 @@ function TripTimePanel () {
         startTime = null,
         maxTripTime = 1000 * 60 * 60 * 100 - 1000
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         getTripTime: function () {
@@ -1102,11 +1096,11 @@ function TripTimePanel () {
         },
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         reset: function () {
@@ -1156,19 +1150,19 @@ function TripTimeTab (listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 

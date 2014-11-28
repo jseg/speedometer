@@ -35,6 +35,8 @@ function TripTimePanel () {
         startTime = null,
         maxTripTime = 1000 * 60 * 60 * 100 - 1000
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         getTripTime: function () {
@@ -42,11 +44,11 @@ function TripTimePanel () {
         },
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         reset: function () {

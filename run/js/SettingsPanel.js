@@ -2,28 +2,26 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
+    var selectedClass = 'selected'
+
     var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(TextNode('IMPERIAL'))
-
-    var imperialClick = OnClick(imperialButton, function () {
-        metricButton.classList.remove('selected')
-        imperialButton.classList.add('selected')
+    OnClick(imperialButton, function () {
+        metricButton.classList.remove(selectedClass)
+        imperialButton.classList.add(selectedClass)
         imperialListener()
     })
-    imperialClick.enable()
 
     var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
     metricButton.appendChild(TextNode('METRIC'))
-
-    var metricClick = OnClick(metricButton, function () {
-        imperialButton.classList.remove('selected')
-        metricButton.classList.add('selected')
+    OnClick(metricButton, function () {
+        imperialButton.classList.remove(selectedClass)
+        metricButton.classList.add(selectedClass)
         metricListener()
     })
-    metricClick.enable()
 
-    if (settings.unit == 'imperial') imperialButton.classList.add('selected')
-    else metricButton.classList.add('selected')
+    if (settings.unit == 'imperial') imperialButton.classList.add(selectedClass)
+    else metricButton.classList.add(selectedClass)
 
     var fieldLabelElement = Div(classPrefix + '-fieldLabel')
     fieldLabelElement.appendChild(TextNode('UNITS:'))
@@ -43,15 +41,17 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
     }

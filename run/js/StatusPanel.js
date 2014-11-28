@@ -10,15 +10,17 @@ function StatusPanel () {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         setStatus: function (text) {
             if (text != node.nodeValue) {
                 node.nodeValue = text
                 clearTimeout(timeout)
-                classList.add('highlight')
+                classList.add(highlightClass)
                 timeout = setTimeout(function () {
-                    classList.remove('highlight')
+                    classList.remove(highlightClass)
                 }, 200)
             }
         },

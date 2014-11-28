@@ -11,34 +11,22 @@ function OnClick (element, listener) {
         }, 100)
     }
 
-    function mouseDown (e) {
-        if (e.button !== 0) return
-        e.preventDefault()
-        if (touched) touched = false
-        else click()
-    }
-
-    function touchStart (e) {
-        e.preventDefault()
-        touched = true
-        click()
-    }
-
     var timeout
 
     var classList = element.classList
 
     var touched = false
 
-    return {
-        disable: function () {
-            element.removeEventListener('touchstart', touchStart)
-            element.removeEventListener('mousedown', mouseDown)
-        },
-        enable: function () {
-            element.addEventListener('mousedown', mouseDown)
-            element.addEventListener('touchstart', touchStart)
-        },
-    }
+    element.addEventListener('mousedown', function (e) {
+        if (e.button !== 0) return
+        e.preventDefault()
+        if (touched) touched = false
+        else click()
+    })
+    element.addEventListener('touchstart', function (e) {
+        e.preventDefault()
+        touched = true
+        click()
+    })
 
 }

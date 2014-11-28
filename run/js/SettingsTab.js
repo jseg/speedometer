@@ -2,19 +2,19 @@ function SettingsTab (listener) {
 
     var element = Div('Tab SettingsTab Button')
     element.appendChild(TextNode('SETTINGS'))
+    OnClick(element, function () {
+        listener()
+        classList.add(selectedClass)
+    })
 
     var classList = element.classList
 
-    var click = OnClick(element, function () {
-        listener()
-        classList.add('selected')
-    })
-    click.enable()
+    var selectedClass = 'selected'
 
     return {
         element: element,
         deselect: function () {
-            classList.remove('selected')
+            classList.remove(selectedClass)
         },
     }
 

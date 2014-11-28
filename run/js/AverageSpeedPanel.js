@@ -7,11 +7,10 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
         var speed
         if (tripTime == 0) speed = 0
         else speed = tripDistance.get() / (tripTime / 1000)
-        speed = speed * 18 / 5
-        speed = unit.fix(speed)
+        speed = unit.fix(speed * 18 / 5)
         speed = Math.min(999.99, speed)
 
-        integerPartNode.nodeValue = String(Math.floor(speed))
+        integerPartNode.nodeValue = Math.floor(speed)
         fractionalPartNode.nodeValue = Math.floor(speed % 1 * 10)
 
     }
@@ -49,17 +48,19 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     var timeout
 
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)
-            classList.add('highlight')
-            labelClassList.add('highlight')
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove('highlight')
-                labelClassList.remove('highlight')
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
             }, 200)
         },
         setUnit: function (_unit) {
