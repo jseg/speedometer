@@ -11,7 +11,6 @@ echo json_encode([
     'description' => 'A GPS speedometer and tracker.',
     'launch_path' => '/run/',
     'appcache_path' => '/run/cache-manifest/',
-    'fullscreen' => 'true',
     'developer' => [
         'name' => 'Qliavi Team',
         'url' => 'http://qliavi.com/',
