@@ -71,13 +71,13 @@ function SpeedLabel (unit) {
 
             if (_speed > previousSpeed) {
                 increasing = true
-                clearTimeout(decreasingTimeout)
+                clearTimeout(increasingTimeout)
                 increasingTimeout = setTimeout(function () {
                     increasing = false
                 }, 3000)
             } else if (_speed < previousSpeed) {
                 decreasing = true
-                clearTimeout(increasingTimeout)
+                clearTimeout(decreasingTimeout)
                 decreasingTimeout = setTimeout(function () {
                     decreasing = false
                 }, 3000)
