@@ -63,19 +63,21 @@ function SpeedLabel (unit) {
     var decreasingTimeout,
         increasingTimeout
 
+    var ignoreDifference = 0.02
+
     return {
         element: element,
         setSpeed: function (_speed) {
 
             if (!isFinite(_speed)) _speed = 0
 
-            if (_speed > previousSpeed) {
+            if (_speed > previousSpeed + ignoreDifference) {
                 increasing = true
                 clearTimeout(increasingTimeout)
                 increasingTimeout = setTimeout(function () {
                     increasing = false
                 }, 3000)
-            } else if (_speed < previousSpeed) {
+            } else if (_speed < previousSpeed - ignoreDifference) {
                 decreasing = true
                 clearTimeout(decreasingTimeout)
                 decreasingTimeout = setTimeout(function () {
