@@ -164,6 +164,8 @@ function MainPanel () {
         }
     }, {
         enableHighAccuracy: true,
+        maximumAge: 60 * 1000,
+        timeout: 60 * 1000,
     })
 //*/
 
