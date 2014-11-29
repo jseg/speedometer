@@ -167,7 +167,7 @@ function MainPanel () {
         } else if (code == error.POSITION_UNAVAILABLE) {
             statusPanel.setStatus('POSITION UNAVAILABLE')
         } else {
-            statusPanel.setStatus('TIMEOUT')
+            statusPanel.setStatus('TIMEOUT, RETRYING')
         }
     }, {
         enableHighAccuracy: true,
