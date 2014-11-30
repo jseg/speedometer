@@ -2,10 +2,10 @@
     position: absolute;
     top: 0;
     right: 0;
+    bottom: 0;
     left: 0;
     background: #111;
     padding-right: 24px;
-    height: 120px;
     text-align: right;
     transition: background-color 0.5s linear;
 }

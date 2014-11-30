@@ -16,7 +16,19 @@
 
 .MainPanel-panel {
     position: absolute;
-    top: 144px;
-    right: 2px;
+    top: 158px;
     left: 2px;
+    height: 130px;
+}
+
+@media (orientation: portrait) {
+    .MainPanel-panel {
+        width: 316px;
+    }
+}
+
+@media (orientation: landscape) {
+    .MainPanel-panel {
+        width: 284px;
+    }
 }

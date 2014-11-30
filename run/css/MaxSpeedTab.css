@@ -1,4 +1,15 @@
 .MaxSpeedTab {
     top: 52px;
-    left: 0;
+}
+
+@media (orientation: portrait) {
+    .MaxSpeedTab {
+        left: 0;
+    }
+}
+
+@media (orientation: landscape) {
+    .MaxSpeedTab {
+        left: 96px;
+    }
 }

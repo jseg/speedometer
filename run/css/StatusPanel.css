@@ -1,7 +1,6 @@
 .StatusPanel {
     position: absolute;
-    top: 422px;
-    right: 2px;
+    top: 290px;
     left: 2px;
     height: 28px;
     line-height: 28px;
@@ -15,4 +14,16 @@
     color: #fff;
     background-color: #333;
     transition: none;
+}
+
+@media (orientation: portrait) {
+    .StatusPanel {
+        width: 316px;
+    }
+}
+
+@media (orientation: landscape) {
+    .StatusPanel {
+        width: 284px;
+    }
 }

@@ -1,5 +1,17 @@
 .SettingsTab {
-    top: 52px;
-    left: 212px;
     line-height: 50px;
+}
+
+@media (orientation: portrait) {
+    .SettingsTab {
+        top: 52px;
+        left: 212px;
+    }
+}
+
+@media (orientation: landscape) {
+    .SettingsTab {
+        top: 104px;
+        left: 96px;
+    }
 }

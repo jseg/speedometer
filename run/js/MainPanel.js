@@ -125,20 +125,13 @@ function MainPanel () {
 
     var statusPanel = StatusPanel()
 
-    var width = 320,
-        height = 452
-
     var contentElement = Div(classPrefix + '-content')
-    contentElement.style.width = width + 'px'
-    contentElement.style.height = height + 'px'
-    contentElement.style.top = -height / 2 + 'px'
-    contentElement.style.left = -width / 2 + 'px'
     contentElement.appendChild(speedLabel.element)
     contentElement.appendChild(panelElement)
+    contentElement.appendChild(statusPanel.element)
     contentElement.appendChild(tabs.element)
     contentElement.appendChild(resetButton)
     contentElement.appendChild(startStopButton.element)
-    contentElement.appendChild(statusPanel.element)
 
     var element = Div(classPrefix)
     element.appendChild(contentElement)
@@ -183,9 +176,26 @@ function MainPanel () {
     return {
         element: element,
         resize: function (windowWidth, windowHeight) {
+
+            var width = 320,
+                height = 480
+
+            if (windowWidth > windowHeight) {
+                var t = width
+                width = height
+                height = t
+            }
+
+            contentElement.style.width = width + 'px'
+            contentElement.style.height = height + 'px'
+            contentElement.style.top = -height / 2 + 'px'
+            contentElement.style.left = -width / 2 + 'px'
+
             var scale = windowWidth / width
             if (scale * height > windowHeight) scale = windowHeight / height
+
             element.style.transform = 'scale(' + scale +  ')'
+
         },
     }
 

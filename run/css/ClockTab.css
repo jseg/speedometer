@@ -1,5 +1,17 @@
 .ClockTab {
-    top: 0;
-    left: 212px;
     line-height: 50px;
+}
+
+@media (orientation: portrait) {
+    .ClockTab {
+        top: 0;
+        left: 212px;
+    }
+}
+
+@media (orientation: landscape) {
+    .ClockTab {
+        top: 52px;
+        left: 0;
+    }
 }

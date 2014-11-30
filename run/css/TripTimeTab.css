@@ -1,4 +1,15 @@
 .TripTimeTab {
     top: 0;
-    left: 106px;
+}
+
+@media (orientation: portrait) {
+    .TripTimeTab {
+        left: 106px;
+    }
+}
+
+@media (orientation: landscape) {
+    .TripTimeTab {
+        left: 96px;
+    }
 }

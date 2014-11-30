@@ -1,7 +1,6 @@
 .SpeedLabel {
     position: absolute;
     top: 2px;
-    right: 2px;
     left: 2px;
     text-align: right;
     background: #111;
@@ -21,30 +20,64 @@
     position: absolute;
     top: 0;
     left: 24px;
-    font-size: 50px;
-    line-height: 140px;
-    height: 140px;
+    line-height: 154px;
+    height: 154px;
+    font-weight: bold;
 }
 
 .SpeedLabel-integerPart {
     display: inline;
     font-weight: bold;
-    font-size: 100px;
-    line-height: 140px;
+    line-height: 154px;
 }
 
 .SpeedLabel-fractionalPart {
     display: inline;
     font-weight: bold;
-    font-size: 50px;
-    line-height: 50px;
 }
 
 .SpeedLabel-unit {
     position: absolute;
-    top: 34px;
     right: 24px;
     font-size: 20px;
     line-height: 20px;
     color: #999;
+}
+
+@media (orientation: portrait) {
+    .SpeedLabel {
+        width: 316px;
+    }
+    .SpeedLabel-arrow {
+        font-size: 50px;
+    }
+    .SpeedLabel-integerPart {
+        font-size: 100px;
+    }
+    .SpeedLabel-fractionalPart {
+        font-size: 50px;
+        line-height: 50px;
+    }
+    .SpeedLabel-unit {
+        top: 39px;
+    }
+}
+
+@media (orientation: landscape) {
+    .SpeedLabel {
+        width: 284px;
+    }
+    .SpeedLabel-arrow {
+        font-size: 43px;
+    }
+    .SpeedLabel-integerPart {
+        font-size: 86px;
+    }
+    .SpeedLabel-fractionalPart {
+        font-size: 43px;
+        line-height: 43px;
+    }
+    .SpeedLabel-unit {
+        top: 44px;
+    }
 }

@@ -1,8 +1,22 @@
 .StartStopButton {
     position: absolute;
-    top: 370px;
-    right: 2px;
-    line-height: 50px;
-    width: 210px;
     font-size: 28px;
+}
+
+@media (orientation: portrait) {
+    .StartStopButton {
+        top: 424px;
+        left: 108px;
+        width: 210px;
+        line-height: 54px;
+    }
+}
+
+@media (orientation: landscape) {
+    .StartStopButton {
+        top: 214px;
+        left: 288px;
+        width: 190px;
+        line-height: 104px;
+    }
 }
