@@ -13,3 +13,10 @@
 .MainPanel-content {
     position: absolute;
 }
+
+.MainPanel-panel {
+    position: absolute;
+    top: 144px;
+    right: 2px;
+    left: 2px;
+}

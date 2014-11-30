@@ -1,7 +1,7 @@
 .Tabs {
-    text-align: left;
-}
-
-.Tabs-row2 {
-    margin-top: 2px;
+    position: absolute;
+    top: 266px;
+    right: 2px;
+    left: 2px;
+    height: 102px;
 }

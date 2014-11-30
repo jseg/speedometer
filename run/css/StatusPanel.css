@@ -1,9 +1,12 @@
 .StatusPanel {
+    position: absolute;
+    top: 422px;
+    right: 2px;
+    left: 2px;
     height: 28px;
     line-height: 28px;
     background: #111;
     color: #999;
-    margin: 2px;
     text-align: left;
     padding-left: 8px;
     transition: color 0.5s linear, background-color 0.5s linear;

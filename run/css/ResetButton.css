@@ -1,7 +1,7 @@
 .ResetButton {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 2px;
+    position: absolute;
+    top: 370px;
+    left: 2px;
     line-height: 50px;
     width: 104px;
     font-size: 22px;

@@ -1,9 +1,7 @@
 .Tab {
-    display: inline-block;
-    vertical-align: top;
+    position: absolute;
     width: 104px;
     height: 50px;
-    margin-left: 2px;
 }
 
 .Tab-aligner {

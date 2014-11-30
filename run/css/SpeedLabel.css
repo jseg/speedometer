@@ -1,6 +1,9 @@
 .SpeedLabel {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    left: 2px;
     text-align: right;
-    margin: 2px;
     background: #111;
     padding-right: 24px;
 }

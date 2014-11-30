@@ -1,7 +1,9 @@
 .BottomPanel {
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     background: #111;
-    margin: 2px;
     padding-right: 24px;
     height: 120px;
     text-align: right;

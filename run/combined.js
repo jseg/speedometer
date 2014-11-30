@@ -909,19 +909,13 @@ function Tabs (tripTimeListener, tripDistanceListener,
 
     var classPrefix = 'Tabs'
 
-    var row1Element = Div(classPrefix + '-row1')
-    row1Element.appendChild(tripDistanceTab.element)
-    row1Element.appendChild(tripTimeTab.element)
-    row1Element.appendChild(clockTab.element)
-
-    var row2Element = Div(classPrefix + '-row2')
-    row2Element.appendChild(maxSpeedTab.element)
-    row2Element.appendChild(averageSpeedTab.element)
-    row2Element.appendChild(settingsTab.element)
-
     var element = Div(classPrefix)
-    element.appendChild(row1Element)
-    element.appendChild(row2Element)
+    element.appendChild(tripDistanceTab.element)
+    element.appendChild(tripTimeTab.element)
+    element.appendChild(clockTab.element)
+    element.appendChild(maxSpeedTab.element)
+    element.appendChild(averageSpeedTab.element)
+    element.appendChild(settingsTab.element)
 
     return { element: element }
 
