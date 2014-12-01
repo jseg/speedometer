@@ -51,7 +51,6 @@ function TripDistancePanel (tripDistance, unit) {
 
     return {
         element: element,
-        reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)

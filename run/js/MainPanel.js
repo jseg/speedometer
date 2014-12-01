@@ -18,7 +18,6 @@ function MainPanel () {
     function update () {
         requestAnimationFrame(function () {
             setTimeout(function () {
-                tripDistancePanel.update()
                 tripTimePanel.update()
                 clockPanel.update()
                 averageSpeedPanel.update()
@@ -29,7 +28,10 @@ function MainPanel () {
 
     function updatePosition (position) {
 
-        if (started) tripDistance.add(position)
+        if (started) {
+            tripDistance.add(position)
+            tripDistancePanel.update()
+        }
 
         var coords = position.coords,
             speed = coords.speed
@@ -102,8 +104,8 @@ function MainPanel () {
 
     var resetButton = ResetButton(function () {
         tripDistance.reset()
+        tripDistancePanel.update()
         tripTimePanel.reset()
-        tripDistancePanel.reset()
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
     })
