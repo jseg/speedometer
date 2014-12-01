@@ -162,8 +162,8 @@ function MainPanel () {
         setSpeed(0)
     }, {
         enableHighAccuracy: true,
-        maximumAge: 60 * 1000,
-        timeout: 60 * 1000,
+        maximumAge: 30 * 1000,
+        timeout: 30 * 1000,
     })
 //*/
 
