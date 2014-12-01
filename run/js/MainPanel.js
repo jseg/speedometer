@@ -16,13 +16,12 @@ function MainPanel () {
     }
 
     function update () {
+        var time = Date.now()
         requestAnimationFrame(function () {
-            setTimeout(function () {
-                tripTimePanel.update()
-                clockPanel.update()
-                averageSpeedPanel.update()
-                update()
-            }, 50)
+            tripTimePanel.update()
+            clockPanel.update()
+            averageSpeedPanel.update()
+            setTimeout(update, Math.max(0, time + 1000 - Date.now()))
         })
     }
 
