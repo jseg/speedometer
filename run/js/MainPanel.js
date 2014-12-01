@@ -7,6 +7,7 @@ function MainPanel () {
     }
 
     function setSpeed (speed) {
+        speed *= 0.9
         speedLabel.setSpeed(speed)
         if (started) maxSpeedPanel.setSpeed(speed)
     }

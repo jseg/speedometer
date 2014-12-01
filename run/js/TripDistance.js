@@ -6,7 +6,7 @@ function TripDistance () {
     return {
         add: function (position) {
             if (prevPosition) {
-                value += DistanceBetweenPositions(prevPosition, position)
+                value += DistanceBetweenPositions(prevPosition, position) * 0.9
             }
             prevPosition = position
         },
