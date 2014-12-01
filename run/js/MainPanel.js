@@ -6,6 +6,11 @@ function MainPanel () {
         panel.highlight()
     }
 
+    function setSpeed (speed) {
+        speedLabel.setSpeed(speed)
+        if (started) maxSpeedPanel.setSpeed(speed)
+    }
+
     function setUnit (unit) {
         speedLabel.setUnit(unit)
         tripDistancePanel.setUnit(unit)
@@ -32,11 +37,8 @@ function MainPanel () {
             tripDistancePanel.update()
         }
 
-        var coords = position.coords,
-            speed = coords.speed
-
-        speedLabel.setSpeed(speed)
-        if (started) maxSpeedPanel.setSpeed(speed)
+        var coords = position.coords
+        setSpeed(coords.speed)
 
         var accuracy = coords.accuracy
         if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
@@ -157,6 +159,7 @@ function MainPanel () {
         } else {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
+        setSpeed(0)
     }, {
         enableHighAccuracy: true,
         maximumAge: 60 * 1000,
