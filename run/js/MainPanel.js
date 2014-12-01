@@ -1,5 +1,11 @@
 function MainPanel () {
 
+    function showPanel (panel) {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(panel.element)
+        panel.highlight()
+    }
+
     function setUnit (unit) {
         speedLabel.setUnit(unit)
         tripDistancePanel.setUnit(unit)
@@ -55,29 +61,17 @@ function MainPanel () {
     var speedLabel = SpeedLabel(metricUnit)
 
     var tabs = Tabs(function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripTimePanel.element)
-        tripTimePanel.highlight()
+        showPanel(tripTimePanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripDistancePanel.element)
-        tripDistancePanel.highlight()
+        showPanel(tripDistancePanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(clockPanel.element)
-        clockPanel.highlight()
+        showPanel(clockPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(maxSpeedPanel.element)
-        maxSpeedPanel.highlight()
+        showPanel(maxSpeedPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(averageSpeedPanel.element)
-        averageSpeedPanel.highlight()
+        showPanel(averageSpeedPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(settingsPanel.element)
-        settingsPanel.highlight()
+        showPanel(settingsPanel)
     })
 
     var tripTimePanel = TripTimePanel()
