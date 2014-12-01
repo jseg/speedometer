@@ -234,6 +234,17 @@ function ImperialUnit () {
 ;
 function MainPanel () {
 
+    function showPanel (panel) {
+        panelElement.removeChild(panelElement.firstChild)
+        panelElement.appendChild(panel.element)
+        panel.highlight()
+    }
+
+    function setSpeed (speed) {
+        speedLabel.setSpeed(speed)
+        if (started) maxSpeedPanel.setSpeed(speed)
+    }
+
     function setUnit (unit) {
         speedLabel.setUnit(unit)
         tripDistancePanel.setUnit(unit)
@@ -244,26 +255,24 @@ function MainPanel () {
     }
 
     function update () {
+        var time = Date.now()
         requestAnimationFrame(function () {
-            setTimeout(function () {
-                tripDistancePanel.update()
-                tripTimePanel.update()
-                clockPanel.update()
-                averageSpeedPanel.update()
-                update()
-            }, 50)
+            tripTimePanel.update()
+            clockPanel.update()
+            averageSpeedPanel.update()
+            setTimeout(update, Math.max(0, time + 1000 - Date.now()))
         })
     }
 
     function updatePosition (position) {
 
-        if (started) tripDistance.add(position)
+        if (started) {
+            tripDistance.add(position)
+            tripDistancePanel.update()
+        }
 
-        var coords = position.coords,
-            speed = coords.speed
-
-        speedLabel.setSpeed(speed)
-        if (started) maxSpeedPanel.setSpeed(speed)
+        var coords = position.coords
+        setSpeed(coords.speed)
 
         var accuracy = coords.accuracy
         if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
@@ -289,29 +298,17 @@ function MainPanel () {
     var speedLabel = SpeedLabel(metricUnit)
 
     var tabs = Tabs(function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripTimePanel.element)
-        tripTimePanel.highlight()
+        showPanel(tripTimePanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(tripDistancePanel.element)
-        tripDistancePanel.highlight()
+        showPanel(tripDistancePanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(clockPanel.element)
-        clockPanel.highlight()
+        showPanel(clockPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(maxSpeedPanel.element)
-        maxSpeedPanel.highlight()
+        showPanel(maxSpeedPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(averageSpeedPanel.element)
-        averageSpeedPanel.highlight()
+        showPanel(averageSpeedPanel)
     }, function () {
-        panelElement.removeChild(panelElement.firstChild)
-        panelElement.appendChild(settingsPanel.element)
-        settingsPanel.highlight()
+        showPanel(settingsPanel)
     })
 
     var tripTimePanel = TripTimePanel()
@@ -342,8 +339,8 @@ function MainPanel () {
 
     var resetButton = ResetButton(function () {
         tripDistance.reset()
+        tripDistancePanel.update()
         tripTimePanel.reset()
-        tripDistancePanel.reset()
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
     })
@@ -396,6 +393,7 @@ function MainPanel () {
         } else {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
+        setSpeed(0)
     }, {
         enableHighAccuracy: true,
         maximumAge: 60 * 1000,
@@ -1014,7 +1012,6 @@ function TripDistancePanel (tripDistance, unit) {
 
     return {
         element: element,
-        reset: update,
         update: update,
         highlight: function () {
             clearTimeout(timeout)
