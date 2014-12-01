@@ -1,13 +1,8 @@
 .SettingsPanel-button {
     position: absolute;
     bottom: 24px;
-    width: 100px;
     height: 50px;
     line-height: 50px;
-}
-
-.SettingsPanel-imperialButton {
-    right: 126px;
 }
 
 .SettingsPanel-metricButton {
@@ -16,8 +11,33 @@
 
 .SettingsPanel-fieldLabel {
     position: absolute;
-    left: 24px;
     bottom: 24px;
     font-size: 16px;
     line-height: 50px;
+}
+
+@media (orientation: portrait) {
+    .SettingsPanel-metricButton {
+        width: 80px;
+    }
+    .SettingsPanel-imperialButton {
+        right: 106px;
+        width: 100px;
+    }
+    .SettingsPanel-fieldLabel {
+        right: 208px;
+    }
+}
+
+@media (orientation: landscape) {
+    .SettingsPanel-metricButton {
+        width: 75px;
+    }
+    .SettingsPanel-imperialButton {
+        right: 101px;
+        width: 95px;
+    }
+    .SettingsPanel-fieldLabel {
+        right: 198px;
+    }
 }
