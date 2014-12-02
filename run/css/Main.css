@@ -21,4 +21,5 @@ html, body {
     cursor: default;
     font: normal 14px/18px FreeMono, monospace;
     white-space: nowrap;
+    overflow: hidden;
 }
