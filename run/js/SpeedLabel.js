@@ -57,13 +57,15 @@ function SpeedLabel (unit) {
     var speed = 0,
         previousSpeed = 0
 
-    var decreasing = 0,
-        increasing = 0
+    var decreasing = false,
+        increasing = false
 
     var decreasingTimeout,
         increasingTimeout
 
     var ignoreDifference = 0.02
+
+    var previousSpeeds = []
 
     return {
         element: element,
@@ -71,22 +73,33 @@ function SpeedLabel (unit) {
 
             if (!isFinite(_speed)) _speed = 0
 
-            if (_speed > previousSpeed + ignoreDifference) {
+            previousSpeeds.push(_speed)
+            if (previousSpeeds.length > 3) previousSpeeds.shift()
+
+            var averageSpeed = 0
+            previousSpeeds.forEach(function (previousSpeed) {
+                averageSpeed += previousSpeed
+            })
+            averageSpeed /= previousSpeeds.length
+
+            if (averageSpeed > previousSpeed + ignoreDifference) {
                 increasing = true
                 clearTimeout(increasingTimeout)
                 increasingTimeout = setTimeout(function () {
                     increasing = false
-                }, 3000)
-            } else if (_speed < previousSpeed - ignoreDifference) {
+                    update()
+                }, 2500)
+            } else if (averageSpeed < previousSpeed - ignoreDifference) {
                 decreasing = true
                 clearTimeout(decreasingTimeout)
                 decreasingTimeout = setTimeout(function () {
                     decreasing = false
-                }, 3000)
+                    update()
+                }, 2500)
             }
 
             previousSpeed = speed
-            speed = _speed
+            speed = averageSpeed
             update()
 
         },
