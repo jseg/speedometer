@@ -23,7 +23,8 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/TripTimeTab.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Tabs.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/MainPanel.css" />',
-    '<script type="text/javascript" src="js/AverageSpeedPanel.js"></script>'
+    '<script type="text/javascript" src="js/AveragePosition.js"></script>'
+    .'<script type="text/javascript" src="js/AverageSpeedPanel.js"></script>'
     .'<script type="text/javascript" src="js/AverageSpeedTab.js"></script>'
     .'<script type="text/javascript" src="js/ClockPanel.js"></script>'
     .'<script type="text/javascript" src="js/ClockTab.js"></script>'

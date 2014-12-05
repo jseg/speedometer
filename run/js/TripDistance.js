@@ -1,24 +1,5 @@
 function TripDistance () {
 
-    function getAveragePosition () {
-
-        var averageCoords = {
-            latitude: 0,
-            longitude: 0,
-        }
-        prevPositions.forEach(function (prevPosition) {
-            averageCoords.latitude += prevPosition.coords.latitude
-            averageCoords.longitude += prevPosition.coords.longitude
-        })
-        averageCoords.latitude /= prevPositions.length
-        averageCoords.longitude /= prevPositions.length
-
-        return {
-            coords: averageCoords,
-        }
-
-    }
-
     var value = 0
     var prevPositions = []
 
@@ -26,13 +7,13 @@ function TripDistance () {
         add: function (newPosition) {
 
             var prevPosition
-            if (prevPositions.length) prevPosition = getAveragePosition()
+            if (prevPositions.length) prevPosition = AveragePosition(prevPositions)
 
             prevPositions.push(newPosition)
             if (prevPositions.length > 3) prevPositions.shift()
 
             if (prevPosition) {
-                var position = getAveragePosition()
+                var position = AveragePosition(prevPositions)
                 value += DistanceBetweenPositions(prevPosition, position)
             }
 

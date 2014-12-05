@@ -7,6 +7,7 @@ var fs = require('fs')
 var uglifyJs = require('uglify-js')
 
 var files = [
+    'AveragePosition',
     'AverageSpeedPanel',
     'AverageSpeedTab',
     'ClockPanel',
