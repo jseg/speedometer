@@ -292,8 +292,8 @@ function MainPanel () {
         setSpeed(coords.speed)
 
         var accuracy = coords.accuracy
-        if (accuracy < 6) statusPanel.setStatus('SIGNAL GOOD')
-        else if (accuracy < 12) statusPanel.setStatus('SIGNAL OK')
+        if (accuracy < 8) statusPanel.setStatus('SIGNAL GOOD')
+        else if (accuracy < 16) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
 
     }
