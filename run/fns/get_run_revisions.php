@@ -2,7 +2,7 @@
 
 function get_run_revisions () {
     return [
-        'compressed.css' => 9,
-        'compressed.js' => 18,
+        'compressed.css' => 10,
+        'compressed.js' => 19,
     ];
 }

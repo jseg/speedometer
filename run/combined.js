@@ -91,33 +91,7 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 }
 ;
 function AverageSpeedTab (listener) {
-
-    var classPrefix = 'AverageSpeedTab'
-
-    var contentElement = Div(classPrefix + '-content Tab-content')
-    contentElement.appendChild(TextNode('AVERAGE'))
-    contentElement.appendChild(document.createElement('br'))
-    contentElement.appendChild(TextNode('SPEED'))
-
-    var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
-    element.appendChild(contentElement)
-    OnClick(element, function () {
-        listener()
-        classList.add(selectedClass)
-    })
-
-    var classList = element.classList
-
-    var selectedClass = 'selected'
-
-    return {
-        element: element,
-        deselect: function () {
-            classList.remove(selectedClass)
-        },
-    }
-
+    return TwoLineTab('AVERAGE', 'SPEED', 'AverageSpeedTab', listener)
 }
 ;
 function ClockPanel () {
@@ -530,33 +504,7 @@ function MaxSpeedPanel (unit) {
 }
 ;
 function MaxSpeedTab (listener) {
-
-    var classPrefix = 'MaxSpeedTab'
-
-    var contentElement = Div(classPrefix + '-content Tab-content')
-    contentElement.appendChild(TextNode('MAX'))
-    contentElement.appendChild(document.createElement('br'))
-    contentElement.appendChild(TextNode('SPEED'))
-
-    var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
-    element.appendChild(contentElement)
-    OnClick(element, function () {
-        listener()
-        classList.add(selectedClass)
-    })
-
-    var classList = element.classList
-
-    var selectedClass = 'selected'
-
-    return {
-        element: element,
-        deselect: function () {
-            classList.remove(selectedClass)
-        },
-    }
-
+    return TwoLineTab('MAX', 'SPEED', 'MaxSpeedTab', listener)
 }
 ;
 function MetricUnit () {
@@ -858,11 +806,16 @@ function StartStopButton (startListener, stopListener) {
 ;
 function StatusPanel () {
 
-    var node = TextNode('ACQUIRING')
+    var classPrefix = 'StatusPanel'
 
-    var element = Div('StatusPanel')
-    element.appendChild(TextNode('GPS: '))
-    element.appendChild(node)
+    var valueNode = TextNode('ACQUIRING')
+
+    var valueElement = Div(classPrefix + '-value')
+    valueElement.appendChild(valueNode)
+
+    var element = Div(classPrefix)
+    element.appendChild(TextNode('GPS'))
+    element.appendChild(valueElement)
 
     var classList = element.classList
 
@@ -872,9 +825,9 @@ function StatusPanel () {
 
     return {
         element: element,
-        setStatus: function (text) {
-            if (text != node.nodeValue) {
-                node.nodeValue = text
+        setStatus: function (value) {
+            if (value != valueNode.nodeValue) {
+                valueNode.nodeValue = value
                 clearTimeout(timeout)
                 classList.add(highlightClass)
                 timeout = setTimeout(function () {
@@ -1068,34 +1021,9 @@ function TripDistancePanel (tripDistance, unit) {
 }
 ;
 function TripDistanceTab (listener) {
-
-    var classPrefix = 'TripDistanceTab'
-
-    var contentElement = Div(classPrefix + '-content Tab-content')
-    contentElement.appendChild(TextNode('TRIP'))
-    contentElement.appendChild(document.createElement('br'))
-    contentElement.appendChild(TextNode('DISTANCE'))
-
-    var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
-    element.appendChild(contentElement)
-    OnClick(element, function () {
-        listener()
-        classList.add(selectedClass)
-    })
-
-    var selectedClass = 'selected'
-
-    var classList = element.classList
-    classList.add(selectedClass)
-
-    return {
-        element: element,
-        deselect: function () {
-            classList.remove(selectedClass)
-        },
-    }
-
+    var tab = TwoLineTab('TRIP', 'DISTANCE', 'TripDistanceTab', listener)
+    tab.select()
+    return tab
 }
 ;
 function TripTimePanel () {
@@ -1187,20 +1115,34 @@ function TripTimePanel () {
 }
 ;
 function TripTimeTab (listener) {
+    return TwoLineTab('TRIP', 'TIME', 'TripTimeTab', listener)
+}
+;
+function TwoDigitPad (n) {
+    n = String(n)
+    if (n.length == 1) n = '0' + n
+    return n
+}
+;
+function TwoLineTab (line1, line2, className, listener) {
 
-    var classPrefix = 'TripTimeTab'
+    function select () {
+        classList.add(selectedClass)
+    }
+
+    var classPrefix = 'TwoLineTab ' + className
 
     var contentElement = Div(classPrefix + '-content Tab-content')
-    contentElement.appendChild(TextNode('TRIP'))
+    contentElement.appendChild(TextNode(line1))
     contentElement.appendChild(document.createElement('br'))
-    contentElement.appendChild(TextNode('TIME'))
+    contentElement.appendChild(TextNode(line2))
 
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
     element.appendChild(contentElement)
     OnClick(element, function () {
         listener()
-        classList.add(selectedClass)
+        select()
     })
 
     var classList = element.classList
@@ -1209,17 +1151,12 @@ function TripTimeTab (listener) {
 
     return {
         element: element,
+        select: select,
         deselect: function () {
             classList.remove(selectedClass)
         },
     }
 
-}
-;
-function TwoDigitPad (n) {
-    n = String(n)
-    if (n.length == 1) n = '0' + n
-    return n
 }
 ;
 (function () {

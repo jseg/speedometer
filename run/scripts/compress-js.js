@@ -35,6 +35,7 @@ var files = [
     'TripTimePanel',
     'TripTimeTab',
     'TwoDigitPad',
+    'TwoLineTab',
     'Main',
 ]
 
