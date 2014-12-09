@@ -1,10 +1,15 @@
 function StatusPanel () {
 
-    var node = TextNode('ACQUIRING')
+    var classPrefix = 'StatusPanel'
 
-    var element = Div('StatusPanel')
-    element.appendChild(TextNode('GPS: '))
-    element.appendChild(node)
+    var valueNode = TextNode('ACQUIRING')
+
+    var valueElement = Div(classPrefix + '-value')
+    valueElement.appendChild(valueNode)
+
+    var element = Div(classPrefix)
+    element.appendChild(TextNode('GPS'))
+    element.appendChild(valueElement)
 
     var classList = element.classList
 
@@ -14,9 +19,9 @@ function StatusPanel () {
 
     return {
         element: element,
-        setStatus: function (text) {
-            if (text != node.nodeValue) {
-                node.nodeValue = text
+        setStatus: function (value) {
+            if (value != valueNode.nodeValue) {
+                valueNode.nodeValue = value
                 clearTimeout(timeout)
                 classList.add(highlightClass)
                 timeout = setTimeout(function () {
