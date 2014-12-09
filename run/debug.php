@@ -45,6 +45,7 @@ echo_html(
     .'<script type="text/javascript" src="js/StatusPanel.js"></script>'
     .'<script type="text/javascript" src="js/Tabs.js"></script>'
     .'<script type="text/javascript" src="js/TextNode.js"></script>'
+    .'<script type="text/javascript" src="js/TwoLineTab.js"></script>'
     .'<script type="text/javascript" src="js/TripDistance.js"></script>'
     .'<script type="text/javascript" src="js/TripDistancePanel.js"></script>'
     .'<script type="text/javascript" src="js/TripDistanceTab.js"></script>'
