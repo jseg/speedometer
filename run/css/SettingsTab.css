@@ -1,7 +1,3 @@
-.SettingsTab {
-    line-height: 50px;
-}
-
 @media (orientation: portrait) {
     .SettingsTab {
         top: 52px;

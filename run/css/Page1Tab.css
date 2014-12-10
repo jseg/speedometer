@@ -1,7 +1,3 @@
-.Page1Tab {
-    line-height: 50px;
-}
-
 @media (orientation: portrait) {
     .Page1Tab {
         top: 0;
