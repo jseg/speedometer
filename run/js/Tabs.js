@@ -56,9 +56,24 @@ function Tabs (tripTimeListener, tripDistanceListener,
     })
 
     var page1Tab = Page1Tab(function () {
+        page2Tab.deselect()
+        element.removeChild(settingsTab.element)
+        element.removeChild(clockTab.element)
+        element.appendChild(tripDistanceTab.element)
+        element.appendChild(tripTimeTab.element)
+        element.appendChild(maxSpeedTab.element)
+        element.appendChild(averageSpeedTab.element)
     })
+    page1Tab.select()
 
     var page2Tab = Page2Tab(function () {
+        page1Tab.deselect()
+        element.removeChild(tripDistanceTab.element)
+        element.removeChild(tripTimeTab.element)
+        element.removeChild(maxSpeedTab.element)
+        element.removeChild(averageSpeedTab.element)
+        element.appendChild(settingsTab.element)
+        element.appendChild(clockTab.element)
     })
 
     var classPrefix = 'Tabs'
@@ -66,9 +81,9 @@ function Tabs (tripTimeListener, tripDistanceListener,
     var element = Div(classPrefix)
     element.appendChild(tripDistanceTab.element)
     element.appendChild(tripTimeTab.element)
-    element.appendChild(page1Tab.element)
     element.appendChild(maxSpeedTab.element)
     element.appendChild(averageSpeedTab.element)
+    element.appendChild(page1Tab.element)
     element.appendChild(page2Tab.element)
 
     return { element: element }

@@ -1,15 +1,20 @@
 function OneLineTab (line, className, listener) {
 
     function select () {
+        selected = true
         classList.add(selectedClass)
     }
 
     var element = Div(className + ' OneLineTab Tab Button')
     element.appendChild(TextNode(line))
     OnClick(element, function () {
-        listener()
-        select()
+        if (!selected) {
+            select()
+            listener()
+        }
     })
+
+    var selected = false
 
     var classList = element.classList
 
@@ -19,6 +24,7 @@ function OneLineTab (line, className, listener) {
         element: element,
         select: select,
         deselect: function () {
+            selected = false
             classList.remove(selectedClass)
         },
     }
