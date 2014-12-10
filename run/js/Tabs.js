@@ -55,15 +55,21 @@ function Tabs (tripTimeListener, tripDistanceListener,
         settingsListener()
     })
 
+    var page1Tab = Page1Tab(function () {
+    })
+
+    var page2Tab = Page2Tab(function () {
+    })
+
     var classPrefix = 'Tabs'
 
     var element = Div(classPrefix)
     element.appendChild(tripDistanceTab.element)
     element.appendChild(tripTimeTab.element)
-    element.appendChild(clockTab.element)
+    element.appendChild(page1Tab.element)
     element.appendChild(maxSpeedTab.element)
     element.appendChild(averageSpeedTab.element)
-    element.appendChild(settingsTab.element)
+    element.appendChild(page2Tab.element)
 
     return { element: element }
 

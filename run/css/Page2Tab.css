@@ -1,0 +1,17 @@
+.Page2Tab {
+    line-height: 50px;
+}
+
+@media (orientation: portrait) {
+    .Page2Tab {
+        top: 52px;
+        left: 212px;
+    }
+}
+
+@media (orientation: landscape) {
+    .Page2Tab {
+        top: 104px;
+        left: 96px;
+    }
+}
