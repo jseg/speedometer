@@ -16,6 +16,7 @@ function MainPanel () {
         tripDistancePanel.setUnit(unit)
         maxSpeedPanel.setUnit(unit)
         averageSpeedPanel.setUnit(unit)
+        altitudePanel.setUnit(unit)
         settings.unit = unit.key
         settings.save()
     }
@@ -75,11 +76,15 @@ function MainPanel () {
         showPanel(averageSpeedPanel)
     }, function () {
         showPanel(settingsPanel)
+    }, function () {
+        showPanel(altitudePanel)
     })
 
     var tripTimePanel = TripTimePanel()
 
     var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
+
+    var altitudePanel = AltitudePanel(metricUnit)
 
     var clockPanel = ClockPanel()
 
