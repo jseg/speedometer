@@ -1,19 +1,22 @@
 function AltitudePanel (unit) {
 
     function update () {
+        if (isFinite(altitude)) {
 
-/*
-        var altitude = unit.fix(0)
-        altitude = Math.min(999999, Math.floor(altitude))
+            var visualAltitude = unit.fix(altitude)
+            visualAltitude = Math.min(999999, Math.floor(visualAltitude))
 
-        var fractionalPart = String(altitude % 1000)
-        if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
-        else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
-        fractionalPartNode.nodeValue = fractionalPart
+            var fractionalPart = String(visualAltitude % 1000)
+            if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
+            else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
+            fractionalPartNode.nodeValue = fractionalPart
 
-        integerPartNode.nodeValue = Math.floor(altitude / 1000)
-*/
+            integerPartNode.nodeValue = Math.floor(visualAltitude / 1000)
 
+        } else {
+            fractionalPartNode.nodeValue = '\xb7\xb7\xb7'
+            integerPartNode.nodeValue = '\xb7'
+        }
     }
 
     var classPrefix = 'AltitudePanel'
@@ -47,8 +50,9 @@ function AltitudePanel (unit) {
 
     var classList = element.classList
 
-    var timeout
+    var altitude
 
+    var timeout
     var highlightClass = 'highlight'
 
     return {
@@ -62,6 +66,10 @@ function AltitudePanel (unit) {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
+        },
+        setAltitude: function (_altitude) {
+            altitude = _altitude
+            update()
         },
         setUnit: function (_unit) {
             unit = _unit

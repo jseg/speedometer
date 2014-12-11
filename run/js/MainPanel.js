@@ -46,6 +46,8 @@ function MainPanel () {
         else if (accuracy < 16) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
 
+        altitudePanel.setAltitude(coords.altitude)
+
     }
 
     var requestAnimationFrame = window.requestAnimationFrame,
