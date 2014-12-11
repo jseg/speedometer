@@ -1,6 +1,11 @@
 function Tabs (tripTimeListener, tripDistanceListener, clockListener,
     maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener) {
 
+    function showTab (tab) {
+        element.appendChild(tab.element)
+        tab.highlight()
+    }
+
     var tripDistanceTab = TripDistanceTab(function () {
         tripTimeTab.deselect()
         clockTab.deselect()
@@ -66,10 +71,10 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
         element.removeChild(altitudeTab.element)
         element.removeChild(settingsTab.element)
         element.removeChild(clockTab.element)
-        element.appendChild(tripDistanceTab.element)
-        element.appendChild(tripTimeTab.element)
-        element.appendChild(maxSpeedTab.element)
-        element.appendChild(averageSpeedTab.element)
+        showTab(tripDistanceTab)
+        showTab(tripTimeTab)
+        showTab(maxSpeedTab)
+        showTab(averageSpeedTab)
     })
     page1Tab.select()
 
@@ -79,9 +84,9 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
         element.removeChild(tripTimeTab.element)
         element.removeChild(maxSpeedTab.element)
         element.removeChild(averageSpeedTab.element)
-        element.appendChild(altitudeTab.element)
-        element.appendChild(settingsTab.element)
-        element.appendChild(clockTab.element)
+        showTab(altitudeTab)
+        showTab(settingsTab)
+        showTab(clockTab)
     })
 
     var altitudeTab = AltitudeTab(function () {

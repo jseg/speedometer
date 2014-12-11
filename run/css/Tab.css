@@ -1,6 +1,12 @@
 .Tab {
     position: absolute;
     height: 50px;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+.Tab.highlight {
+    opacity: 0;
+    transition: none;
 }
 
 .Tab-aligner {

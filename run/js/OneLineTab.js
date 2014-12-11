@@ -20,12 +20,22 @@ function OneLineTab (line, className, listener) {
 
     var selectedClass = 'selected'
 
+    var timeout
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         select: select,
         deselect: function () {
             selected = false
             classList.remove(selectedClass)
+        },
+        highlight: function () {
+            clearTimeout(timeout)
+            classList.add(highlightClass)
+            timeout = setTimeout(function () {
+                classList.remove(highlightClass)
+            }, 200)
         },
     }
 

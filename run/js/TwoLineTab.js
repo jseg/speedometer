@@ -23,11 +23,21 @@ function TwoLineTab (line1, line2, className, listener) {
 
     var selectedClass = 'selected'
 
+    var timeout
+    var highlightClass = 'highlight'
+
     return {
         element: element,
         select: select,
         deselect: function () {
             classList.remove(selectedClass)
+        },
+        highlight: function () {
+            clearTimeout(timeout)
+            classList.add(highlightClass)
+            timeout = setTimeout(function () {
+                classList.remove(highlightClass)
+            }, 200)
         },
     }
 
