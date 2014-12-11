@@ -7,6 +7,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
         settingsTab.deselect()
+        elevationTab.deselect()
         tripDistanceListener()
     })
 
@@ -16,6 +17,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
         settingsTab.deselect()
+        elevationTab.deselect()
         tripTimeListener()
     })
 
@@ -25,6 +27,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
         settingsTab.deselect()
+        elevationTab.deselect()
         clockListener()
     })
 
@@ -34,6 +37,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         clockTab.deselect()
         averageSpeedTab.deselect()
         settingsTab.deselect()
+        elevationTab.deselect()
         maxSpeedListener()
     })
 
@@ -43,6 +47,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         clockTab.deselect()
         maxSpeedTab.deselect()
         settingsTab.deselect()
+        elevationTab.deselect()
         averageSpeedListener()
     })
 
@@ -52,11 +57,13 @@ function Tabs (tripTimeListener, tripDistanceListener,
         clockTab.deselect()
         maxSpeedTab.deselect()
         averageSpeedTab.deselect()
+        elevationTab.deselect()
         settingsListener()
     })
 
     var page1Tab = Page1Tab(function () {
         page2Tab.deselect()
+        element.removeChild(elevationTab.element)
         element.removeChild(settingsTab.element)
         element.removeChild(clockTab.element)
         element.appendChild(tripDistanceTab.element)
@@ -72,8 +79,18 @@ function Tabs (tripTimeListener, tripDistanceListener,
         element.removeChild(tripTimeTab.element)
         element.removeChild(maxSpeedTab.element)
         element.removeChild(averageSpeedTab.element)
+        element.appendChild(elevationTab.element)
         element.appendChild(settingsTab.element)
         element.appendChild(clockTab.element)
+    })
+
+    var elevationTab = ElevationTab(function () {
+        tripDistanceTab.deselect()
+        tripTimeTab.deselect()
+        clockTab.deselect()
+        maxSpeedTab.deselect()
+        averageSpeedTab.deselect()
+        settingsTab.deselect()
     })
 
     var classPrefix = 'Tabs'
