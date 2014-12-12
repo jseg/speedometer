@@ -1,7 +1,9 @@
 function TwoLineTab (line1, line2, className, listener) {
 
     function select () {
+        selected = true
         classList.add(selectedClass)
+        highlightClassList.add(selectedClass)
     }
 
     var classPrefix = 'TwoLineTab ' + className
@@ -20,11 +22,14 @@ function TwoLineTab (line1, line2, className, listener) {
     var element = Div(classPrefix + ' Tab Button')
     element.appendChild(highlightElement)
     OnClick(element, function () {
-        listener()
+        var wasSelected = selected
         select()
+        listener(wasSelected)
     })
 
     var classList = element.classList
+
+    var selected = false
 
     var selectedClass = 'selected'
 
@@ -35,7 +40,9 @@ function TwoLineTab (line1, line2, className, listener) {
         element: element,
         select: select,
         deselect: function () {
+            selected = false
             classList.remove(selectedClass)
+            highlightClassList.remove(selectedClass)
         },
         highlight: function () {
             highlightClassList.add(highlightClass)
