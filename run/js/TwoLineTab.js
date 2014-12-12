@@ -11,9 +11,14 @@ function TwoLineTab (line1, line2, className, listener) {
     contentElement.appendChild(document.createElement('br'))
     contentElement.appendChild(TextNode(line2))
 
+    var highlightElement = Div('Tab-highlight')
+    highlightElement.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
+    highlightElement.appendChild(contentElement)
+
+    var highlightClassList = highlightElement.classList
+
     var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
-    element.appendChild(contentElement)
+    element.appendChild(highlightElement)
     OnClick(element, function () {
         listener()
         select()
@@ -34,9 +39,9 @@ function TwoLineTab (line1, line2, className, listener) {
         },
         highlight: function () {
             clearTimeout(timeout)
-            classList.add(highlightClass)
+            highlightClassList.add(highlightClass)
             timeout = setTimeout(function () {
-                classList.remove(highlightClass)
+                highlightClassList.remove(highlightClass)
             }, 200)
         },
     }
