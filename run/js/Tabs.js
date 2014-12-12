@@ -1,11 +1,6 @@
 function Tabs (tripTimeListener, tripDistanceListener, clockListener,
     maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener) {
 
-    function showTab (tab) {
-        element.appendChild(tab.element)
-        tab.highlight()
-    }
-
     var page = 1
 
     var tripDistanceTab = TripDistanceTab(function () {
@@ -113,11 +108,15 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
             element.removeChild(altitudeTab.element)
             element.removeChild(settingsTab.element)
             element.removeChild(clockTab.element)
-            showTab(tripDistanceTab)
-            showTab(tripTimeTab)
-            showTab(maxSpeedTab)
-            showTab(averageSpeedTab)
+            element.appendChild(tripDistanceTab.element)
+            element.appendChild(tripTimeTab.element)
+            element.appendChild(maxSpeedTab.element)
+            element.appendChild(averageSpeedTab.element)
         }
+        tripDistanceTab.highlight()
+        tripTimeTab.highlight()
+        maxSpeedTab.highlight()
+        averageSpeedTab.highlight()
     })
 
     var page2Tab = Page2Tab(function () {
@@ -128,10 +127,13 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
             element.removeChild(tripTimeTab.element)
             element.removeChild(maxSpeedTab.element)
             element.removeChild(averageSpeedTab.element)
-            showTab(altitudeTab)
-            showTab(settingsTab)
-            showTab(clockTab)
+            element.appendChild(altitudeTab.element)
+            element.appendChild(settingsTab.element)
+            element.appendChild(clockTab.element)
         }
+        altitudeTab.highlight()
+        settingsTab.highlight()
+        clockTab.highlight()
     })
 
     var classPrefix = 'Tabs'
