@@ -1,0 +1,15 @@
+.HeadingTab {
+    top: 0;
+}
+
+@media (orientation: portrait) {
+    .HeadingTab {
+        left: 106px;
+    }
+}
+
+@media (orientation: landscape) {
+    .HeadingTab {
+        left: 96px;
+    }
+}

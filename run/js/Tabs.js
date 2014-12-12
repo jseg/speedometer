@@ -1,104 +1,54 @@
-function Tabs (tripTimeListener, tripDistanceListener, clockListener,
-    maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener) {
+function Tabs (tripTimeListener, tripDistanceListener,
+    clockListener, maxSpeedListener, averageSpeedListener,
+    settingsListener, altitudeListener, headingListener) {
+
+    function select (tab) {
+        tabs.forEach(function (itemTab) {
+            if (tab != itemTab) itemTab.deselect()
+        })
+        tab.select()
+    }
 
     var page = 1
 
     var tripDistanceTab = TripDistanceTab(function () {
-
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-        altitudeTab.deselect()
-
-        tripDistanceTab.select()
+        select(tripDistanceTab)
         tripDistanceListener()
-
     })
 
     var tripTimeTab = TripTimeTab(function () {
-
-        tripDistanceTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-        altitudeTab.deselect()
-
-        tripTimeTab.select()
+        select(tripTimeTab)
         tripTimeListener()
-
-    })
-
-    var clockTab = ClockTab(function () {
-
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-        altitudeTab.deselect()
-
-        clockTab.select()
-        clockListener()
-
     })
 
     var maxSpeedTab = MaxSpeedTab(function () {
-
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-        altitudeTab.deselect()
-
-        maxSpeedTab.select()
+        select(maxSpeedTab)
         maxSpeedListener()
-
     })
 
     var averageSpeedTab = AverageSpeedTab(function () {
-
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        settingsTab.deselect()
-        altitudeTab.deselect()
-
-        averageSpeedTab.select()
+        select(averageSpeedTab)
         averageSpeedListener()
-
-    })
-
-    var settingsTab = SettingsTab(function () {
-
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        altitudeTab.deselect()
-
-        settingsTab.select()
-        settingsListener()
-
     })
 
     var altitudeTab = AltitudeTab(function () {
-
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-
-        altitudeTab.select()
+        select(altitudeTab)
         altitudeListener()
+    })
 
+    var headingTab = HeadingTab(function () {
+        select(headingTab)
+        headingListener()
+    })
+
+    var clockTab = ClockTab(function () {
+        select(clockTab)
+        clockListener()
+    })
+
+    var settingsTab = SettingsTab(function () {
+        select(settingsTab)
+        settingsListener()
     })
 
     var page1Tab = Page1Tab(function () {
@@ -106,6 +56,7 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
             page = 1
             page2Tab.deselect()
             element.removeChild(altitudeTab.element)
+            element.removeChild(headingTab.element)
             element.removeChild(settingsTab.element)
             element.removeChild(clockTab.element)
             element.appendChild(tripDistanceTab.element)
@@ -128,13 +79,18 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
             element.removeChild(maxSpeedTab.element)
             element.removeChild(averageSpeedTab.element)
             element.appendChild(altitudeTab.element)
+            element.appendChild(headingTab.element)
             element.appendChild(settingsTab.element)
             element.appendChild(clockTab.element)
         }
         altitudeTab.highlight()
+        headingTab.highlight()
         settingsTab.highlight()
         clockTab.highlight()
     })
+
+    var tabs = [tripDistanceTab, tripTimeTab, maxSpeedTab,
+        averageSpeedTab, altitudeTab, headingTab, clockTab, settingsTab]
 
     var classPrefix = 'Tabs'
 

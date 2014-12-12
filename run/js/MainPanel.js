@@ -80,6 +80,7 @@ function MainPanel () {
         showPanel(settingsPanel)
     }, function () {
         showPanel(altitudePanel)
+    }, function () {
     })
 
     var tripTimePanel = TripTimePanel()
