@@ -52,6 +52,8 @@ function AltitudePanel (unit) {
 
     var altitude
 
+    var previousAltitudes = []
+
     var highlightTimeout,
         highlightClass = 'highlight'
 
@@ -68,8 +70,21 @@ function AltitudePanel (unit) {
             }, 200)
         },
         setAltitude: function (_altitude) {
-            altitude = _altitude
+
+            if (!isFinite(_altitude)) _altitude = 0
+
+            previousAltitudes.push(_altitude)
+            if (previousAltitudes.length > 3) previousAltitudes.shift()
+
+            var averageAltitude = 0
+            previousAltitudes.forEach(function (previousAltitude) {
+                averageAltitude += previousAltitude
+            })
+            averageAltitude /= previousAltitudes.length
+
+            altitude = averageAltitude
             update()
+
         },
         setUnit: function (_unit) {
             unit = _unit
