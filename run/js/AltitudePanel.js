@@ -1,7 +1,11 @@
 function AltitudePanel (unit) {
 
     function update () {
-        if (isFinite(altitude)) {
+        var integerPart, fractionalPart
+        if (altitude === null) {
+            fractionalPart = '\xb7\xb7\xb7'
+            integerPart = '\xb7'
+        } else {
 
             var visualAltitude = unit.fix(altitude)
             visualAltitude = Math.min(999999, Math.floor(visualAltitude))
@@ -9,14 +13,12 @@ function AltitudePanel (unit) {
             var fractionalPart = String(visualAltitude % 1000)
             if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
             else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
-            fractionalPartNode.nodeValue = fractionalPart
 
-            integerPartNode.nodeValue = Math.floor(visualAltitude / 1000)
+            integerPart = Math.floor(visualAltitude / 1000)
 
-        } else {
-            fractionalPartNode.nodeValue = '\xb7\xb7\xb7'
-            integerPartNode.nodeValue = '\xb7'
         }
+        integerPartNode.nodeValue = integerPart
+        fractionalPartNode.nodeValue = fractionalPart
     }
 
     var classPrefix = 'AltitudePanel'
@@ -50,7 +52,7 @@ function AltitudePanel (unit) {
 
     var classList = element.classList
 
-    var altitude
+    var altitude = null
 
     var previousAltitudes = []
 
@@ -70,21 +72,24 @@ function AltitudePanel (unit) {
             }, 200)
         },
         setAltitude: function (_altitude) {
+            if (typeof _altitude == 'number' && isFinite(_altitude)) {
 
-            if (!isFinite(_altitude)) _altitude = 0
+                previousAltitudes.push(_altitude)
+                if (previousAltitudes.length > 3) previousAltitudes.shift()
 
-            previousAltitudes.push(_altitude)
-            if (previousAltitudes.length > 3) previousAltitudes.shift()
+                var averageAltitude = 0
+                previousAltitudes.forEach(function (previousAltitude) {
+                    averageAltitude += previousAltitude
+                })
+                averageAltitude /= previousAltitudes.length
 
-            var averageAltitude = 0
-            previousAltitudes.forEach(function (previousAltitude) {
-                averageAltitude += previousAltitude
-            })
-            averageAltitude /= previousAltitudes.length
+                altitude = averageAltitude
 
-            altitude = averageAltitude
+            } else {
+                altitude = null
+                previousAltitudes.splice(0)
+            }
             update()
-
         },
         setUnit: function (_unit) {
             unit = _unit
