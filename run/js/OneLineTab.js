@@ -1,11 +1,5 @@
 function OneLineTab (line, className, listener) {
 
-    function select () {
-        selected = true
-        classList.add(selectedClass)
-        highlightClassList.add(selectedClass)
-    }
-
     var highlightElement = Div('Tab-highlight')
     highlightElement.appendChild(TextNode(line))
 
@@ -13,11 +7,7 @@ function OneLineTab (line, className, listener) {
 
     var element = Div(className + ' OneLineTab Tab Button')
     element.appendChild(highlightElement)
-    OnClick(element, function () {
-        var wasSelected = selected
-        select()
-        listener(wasSelected)
-    })
+    OnClick(element, listener)
 
     var classList = element.classList
 
@@ -30,7 +20,6 @@ function OneLineTab (line, className, listener) {
 
     return {
         element: element,
-        select: select,
         deselect: function () {
             selected = false
             classList.remove(selectedClass)
@@ -42,6 +31,11 @@ function OneLineTab (line, className, listener) {
             highlightTimeout = setTimeout(function () {
                 highlightClassList.remove(highlightClass)
             }, 200)
+        },
+        select: function () {
+            selected = true
+            classList.add(selectedClass)
+            highlightClassList.add(selectedClass)
         },
     }
 
