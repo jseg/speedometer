@@ -46,19 +46,18 @@ function MaxSpeedPanel (unit) {
 
     var classList = element.classList
 
-    var timeout
-
     var maxSpeed = 0
 
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)

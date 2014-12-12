@@ -52,17 +52,17 @@ function AltitudePanel (unit) {
 
     var altitude
 
-    var timeout
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         update: update,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)

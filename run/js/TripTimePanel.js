@@ -29,13 +29,12 @@ function TripTimePanel () {
 
     var classList = element.classList
 
-    var timeout
-
     var tripTime = 0,
         startTime = null,
         maxTripTime = 1000 * 60 * 60 * 100 - 1000
 
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
@@ -43,10 +42,10 @@ function TripTimePanel () {
             return tripTime
         },
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
