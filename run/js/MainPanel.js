@@ -166,7 +166,7 @@ function MainPanel () {
         } else {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
-        setSpeed(0)
+        setSpeed(null)
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,
