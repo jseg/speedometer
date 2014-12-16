@@ -1,5 +1,23 @@
 function HeadingPanel () {
 
+    function update () {
+        var value
+        if (heading === null) value = '\xb7'
+        else value = Math.round(heading)
+        valueNode.nodeValue = value
+    }
+
+    var classPrefix = 'HeadingPanel'
+
+    var unitElement = Div(classPrefix + '-unit')
+    unitElement.appendChild(TextNode('\xb0'))
+
+    var valueNode = TextNode('\xb7')
+
+    var valueElement = Div(classPrefix + '-value')
+    valueElement.appendChild(valueNode)
+    valueElement.appendChild(unitElement)
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('HEADING'))
 
@@ -7,11 +25,16 @@ function HeadingPanel () {
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
+    element.appendChild(valueElement)
 
     var classList = element.classList
 
     var highlightTimeout,
         highlightClass = 'highlight'
+
+    var heading = null
+
+    var previousHeadings = []
 
     return {
         element: element,
@@ -23,6 +46,26 @@ function HeadingPanel () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
+        },
+        setHeading: function (_heading) {
+            if (typeof _heading == 'number' && isFinite(_heading)) {
+
+                previousHeadings.push(_heading)
+                if (previousHeadings.length > 3) previousHeadings.shift()
+
+                var averageHeading = 0
+                previousHeadings.forEach(function (previousHeading) {
+                    averageHeading += previousHeading
+                })
+                averageHeading /= previousHeadings.length
+
+                heading = averageHeading
+
+            } else {
+                heading = null
+                previousHeadings.splice(0)
+            }
+            update()
         },
     }
 

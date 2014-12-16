@@ -47,6 +47,7 @@ function MainPanel () {
         else statusPanel.setStatus('SIGNAL WEAK')
 
         altitudePanel.setAltitude(coords.altitude)
+        headingPanel.setHeading(coords.heading)
 
     }
 

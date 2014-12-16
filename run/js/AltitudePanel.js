@@ -61,7 +61,6 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
-        update: update,
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

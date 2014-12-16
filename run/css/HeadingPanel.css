@@ -1,2 +1,22 @@
-.HeadingPanel {
+.HeadingPanel-value {
+    font-weight: bold;
+    line-height: 130px;
+}
+
+.HeadingPanel-unit {
+    display: inline;
+    font-weight: normal;
+    color: #999;
+}
+
+@media (orientation: portrait) {
+    .HeadingPanel-value {
+        font-size: 68px;
+    }
+}
+
+@media (orientation: landscape) {
+    .HeadingPanel-value {
+        font-size: 58px;
+    }
 }
