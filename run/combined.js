@@ -1,4 +1,109 @@
 (function () {
+function AltitudePanel (unit) {
+
+    function update () {
+        var integerPart, fractionalPart
+        if (altitude === null) {
+            fractionalPart = '\xb7\xb7\xb7'
+            integerPart = '\xb7'
+        } else {
+
+            var visualAltitude = unit.fix(altitude)
+            visualAltitude = Math.min(999999, Math.floor(visualAltitude))
+
+            var fractionalPart = String(visualAltitude % 1000)
+            if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
+            else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
+
+            integerPart = Math.floor(visualAltitude / 1000)
+
+        }
+        integerPartNode.nodeValue = integerPart
+        fractionalPartNode.nodeValue = fractionalPart
+    }
+
+    var classPrefix = 'AltitudePanel'
+
+    var integerPartNode = TextNode('0')
+
+    var integerPartElement = Div(classPrefix + '-integerPart')
+    integerPartElement.appendChild(integerPartNode)
+
+    var fractionalPartNode = TextNode('000')
+
+    var fractionalPartElement = Div(classPrefix + '-fractionalPart')
+    fractionalPartElement.appendChild(TextNode('.'))
+    fractionalPartElement.appendChild(fractionalPartNode)
+
+    var unitNode = TextNode(unit.distanceLabel)
+
+    var unitElement = Div(classPrefix + '-unit')
+    unitElement.appendChild(unitNode)
+
+    var labelElement = Div('BottomPanel-label')
+    labelElement.appendChild(TextNode('ALTITUDE'))
+
+    var labelClassList = labelElement.classList
+
+    var element = Div('BottomPanel')
+    element.appendChild(labelElement)
+    element.appendChild(integerPartElement)
+    element.appendChild(fractionalPartElement)
+    element.appendChild(unitElement)
+
+    var classList = element.classList
+
+    var altitude = null
+
+    var previousAltitudes = []
+
+    var highlightTimeout,
+        highlightClass = 'highlight'
+
+    return {
+        element: element,
+        highlight: function () {
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
+            }, 200)
+        },
+        setAltitude: function (_altitude) {
+            if (typeof _altitude == 'number' && isFinite(_altitude)) {
+
+                previousAltitudes.push(_altitude)
+                if (previousAltitudes.length > 3) previousAltitudes.shift()
+
+                var averageAltitude = 0
+                previousAltitudes.forEach(function (previousAltitude) {
+                    averageAltitude += previousAltitude
+                })
+                averageAltitude /= previousAltitudes.length
+
+                altitude = averageAltitude
+
+            } else {
+                altitude = null
+                previousAltitudes.splice(0)
+            }
+            update()
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            unitNode.nodeValue = unit.distanceLabel
+            update()
+        },
+    }
+
+}
+;
+function AltitudeTab (listener) {
+    return OneLineTab('ALTITUDE', 'AltitudeTab', listener)
+}
+;
 function AveragePosition (positions) {
 
     var averageCoords = {
@@ -64,19 +169,18 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
     var classList = element.classList
 
-    var timeout
-
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         reset: update,
         update: update,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -125,17 +229,16 @@ function ClockPanel () {
 
     var classList = element.classList
 
-    var timeout
-
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -151,25 +254,7 @@ function ClockPanel () {
 }
 ;
 function ClockTab (listener) {
-
-    var element = Div('Tab ClockTab Button')
-    element.appendChild(TextNode('CLOCK'))
-    OnClick(element, function () {
-        listener()
-        classList.add(selectedClass)
-    })
-
-    var classList = element.classList
-
-    var selectedClass = 'selected'
-
-    return {
-        element: element,
-        deselect: function () {
-            classList.remove(selectedClass)
-        },
-    }
-
+    return OneLineTab('CLOCK', 'ClockTab', listener)
 }
 ;
 function DistanceBetweenPositions (position1, position2) {
@@ -212,11 +297,88 @@ function Div (className) {
     return div
 }
 ;
+function HeadingPanel () {
+
+    function update () {
+        var value
+        if (heading === null) value = '\xb7'
+        else value = Math.round(heading)
+        valueNode.nodeValue = value
+    }
+
+    var classPrefix = 'HeadingPanel'
+
+    var unitElement = Div(classPrefix + '-unit')
+    unitElement.appendChild(TextNode('\xb0'))
+
+    var valueNode = TextNode('\xb7')
+
+    var valueElement = Div(classPrefix + '-value')
+    valueElement.appendChild(valueNode)
+    valueElement.appendChild(unitElement)
+
+    var labelElement = Div('BottomPanel-label')
+    labelElement.appendChild(TextNode('HEADING'))
+
+    var labelClassList = labelElement.classList
+
+    var element = Div('BottomPanel')
+    element.appendChild(labelElement)
+    element.appendChild(valueElement)
+
+    var classList = element.classList
+
+    var highlightTimeout,
+        highlightClass = 'highlight'
+
+    var heading = null
+
+    var previousHeadings = []
+
+    return {
+        element: element,
+        highlight: function () {
+            classList.add(highlightClass)
+            labelClassList.add(highlightClass)
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
+                classList.remove(highlightClass)
+                labelClassList.remove(highlightClass)
+            }, 200)
+        },
+        setHeading: function (_heading) {
+            if (typeof _heading == 'number' && isFinite(_heading)) {
+
+                previousHeadings.push(_heading)
+                if (previousHeadings.length > 3) previousHeadings.shift()
+
+                var averageHeading = 0
+                previousHeadings.forEach(function (previousHeading) {
+                    averageHeading += previousHeading
+                })
+                averageHeading /= previousHeadings.length
+
+                heading = averageHeading
+
+            } else {
+                heading = null
+                previousHeadings.splice(0)
+            }
+            update()
+        },
+    }
+
+}
+;
+function HeadingTab (listener) {
+    return OneLineTab('HEADING', 'HeadingTab', listener)
+}
+;
 function ImperialUnit () {
     return {
         key: 'imperial',
-        distanceLabel: 'M',
-        speedLabel: 'M/H',
+        distanceLabel: 'MI',
+        speedLabel: 'MI/H',
         fix: function (n) {
             return n
         },
@@ -241,6 +403,7 @@ function MainPanel () {
         tripDistancePanel.setUnit(unit)
         maxSpeedPanel.setUnit(unit)
         averageSpeedPanel.setUnit(unit)
+        altitudePanel.setUnit(unit)
         settings.unit = unit.key
         settings.save()
     }
@@ -269,6 +432,9 @@ function MainPanel () {
         if (accuracy < 8) statusPanel.setStatus('SIGNAL GOOD')
         else if (accuracy < 16) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
+
+        altitudePanel.setAltitude(coords.altitude)
+        headingPanel.setHeading(coords.heading)
 
     }
 
@@ -300,11 +466,19 @@ function MainPanel () {
         showPanel(averageSpeedPanel)
     }, function () {
         showPanel(settingsPanel)
+    }, function () {
+        showPanel(altitudePanel)
+    }, function () {
+        showPanel(headingPanel)
     })
 
     var tripTimePanel = TripTimePanel()
 
     var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
+
+    var altitudePanel = AltitudePanel(metricUnit)
+
+    var headingPanel = HeadingPanel()
 
     var clockPanel = ClockPanel()
 
@@ -384,7 +558,7 @@ function MainPanel () {
         } else {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
-        setSpeed(0)
+        setSpeed(null)
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,
@@ -470,19 +644,18 @@ function MaxSpeedPanel (unit) {
 
     var classList = element.classList
 
-    var timeout
-
     var maxSpeed = 0
 
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -549,6 +722,57 @@ function OnClick (element, listener) {
         click()
     })
 
+}
+;
+function OneLineTab (line, className, listener) {
+
+    var highlightElement = Div('Tab-highlight')
+    highlightElement.appendChild(TextNode(line))
+
+    var highlightClassList = highlightElement.classList
+
+    var element = Div(className + ' OneLineTab Tab Button')
+    element.appendChild(highlightElement)
+    OnClick(element, listener)
+
+    var classList = element.classList
+
+    var selected = false
+
+    var selectedClass = 'selected'
+
+    var highlightTimeout,
+        highlightClass = 'highlight'
+
+    return {
+        element: element,
+        deselect: function () {
+            selected = false
+            classList.remove(selectedClass)
+            highlightClassList.remove(selectedClass)
+        },
+        highlight: function () {
+            highlightClassList.add(highlightClass)
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
+                highlightClassList.remove(highlightClass)
+            }, 200)
+        },
+        select: function () {
+            selected = true
+            classList.add(selectedClass)
+            highlightClassList.add(selectedClass)
+        },
+    }
+
+}
+;
+function Page1Tab (listener) {
+    return OneLineTab('PAGE 1', 'Page1Tab', listener)
+}
+;
+function Page2Tab (listener) {
+    return OneLineTab('PAGE 2', 'Page2Tab', listener)
 }
 ;
 function ResetButton (clickListener) {
@@ -625,17 +849,16 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var classList = element.classList
 
-    var timeout
-
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -645,58 +868,48 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 }
 ;
 function SettingsTab (listener) {
-
-    var element = Div('Tab SettingsTab Button')
-    element.appendChild(TextNode('SETTINGS'))
-    OnClick(element, function () {
-        listener()
-        classList.add(selectedClass)
-    })
-
-    var classList = element.classList
-
-    var selectedClass = 'selected'
-
-    return {
-        element: element,
-        deselect: function () {
-            classList.remove(selectedClass)
-        },
-    }
-
+    return OneLineTab('SETTINGS', 'SettingsTab', listener)
 }
 ;
 function SpeedLabel (unit) {
 
     function update () {
-
-        var visualSpeed = unit.fix(speed * 18 / 5)
-        visualSpeed = Math.min(999.99, visualSpeed)
-
-        integerPartNode.nodeValue = Math.floor(visualSpeed)
-        fractionalPartNode.nodeValue = Math.floor(visualSpeed % 1 * 10)
-
-        var arrow = ''
-        if (increasing) {
-            if (decreasing) arrow = ''
-            else arrow = '\u2191'
-        } else if (decreasing) {
-            arrow = '\u2193'
-        } else {
+        var integerPart, fractionalPart, arrow
+        if (speed === null) {
             arrow = ''
-        }
-        arrowNode.nodeValue = arrow
+            integerPart = '\xb7'
+            fractionalPart = '\xb7'
+        } else {
 
+            var visualSpeed = unit.fix(speed * 18 / 5)
+            visualSpeed = Math.min(999.99, visualSpeed)
+
+            integerPart = Math.floor(visualSpeed)
+            fractionalPart = Math.floor(visualSpeed % 1 * 10)
+
+            if (increasing) {
+                if (decreasing) arrow = ''
+                else arrow = '\u2191'
+            } else if (decreasing) {
+                arrow = '\u2193'
+            } else {
+                arrow = ''
+            }
+
+        }
+        integerPartNode.nodeValue = integerPart
+        fractionalPartNode.nodeValue = fractionalPart
+        arrowNode.nodeValue = arrow
     }
 
     var classPrefix = 'SpeedLabel'
 
-    var integerPartNode = TextNode('0')
+    var integerPartNode = TextNode('\xb7')
 
     var integerPartElement = Div(classPrefix + '-integerPart')
     integerPartElement.appendChild(integerPartNode)
 
-    var fractionalPartNode = TextNode('0')
+    var fractionalPartNode = TextNode('\xb7')
 
     var fractionalPartElement = Div(classPrefix + '-fractionalPart')
     fractionalPartElement.appendChild(TextNode('.'))
@@ -722,8 +935,8 @@ function SpeedLabel (unit) {
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
 
-    var speed = 0,
-        previousSpeed = 0
+    var speed = null,
+        previousSpeed = null
 
     var decreasing = false,
         increasing = false
@@ -738,38 +951,47 @@ function SpeedLabel (unit) {
     return {
         element: element,
         setSpeed: function (_speed) {
+            if (typeof _speed == 'number' && isFinite(_speed)) {
 
-            if (!isFinite(_speed)) _speed = 0
+                previousSpeeds.push(_speed)
+                if (previousSpeeds.length > 3) previousSpeeds.shift()
 
-            previousSpeeds.push(_speed)
-            if (previousSpeeds.length > 3) previousSpeeds.shift()
+                var averageSpeed = 0
+                previousSpeeds.forEach(function (previousSpeed) {
+                    averageSpeed += previousSpeed
+                })
+                averageSpeed /= previousSpeeds.length
 
-            var averageSpeed = 0
-            previousSpeeds.forEach(function (previousSpeed) {
-                averageSpeed += previousSpeed
-            })
-            averageSpeed /= previousSpeeds.length
+                if (previousSpeed !== null) {
+                    if (averageSpeed > previousSpeed + ignoreDifference) {
+                        increasing = true
+                        clearTimeout(increasingTimeout)
+                        increasingTimeout = setTimeout(function () {
+                            increasing = false
+                            update()
+                        }, 2500)
+                    } else if (averageSpeed < previousSpeed - ignoreDifference) {
+                        decreasing = true
+                        clearTimeout(decreasingTimeout)
+                        decreasingTimeout = setTimeout(function () {
+                            decreasing = false
+                            update()
+                        }, 2500)
+                    }
+                }
 
-            if (averageSpeed > previousSpeed + ignoreDifference) {
-                increasing = true
-                clearTimeout(increasingTimeout)
-                increasingTimeout = setTimeout(function () {
-                    increasing = false
-                    update()
-                }, 2500)
-            } else if (averageSpeed < previousSpeed - ignoreDifference) {
-                decreasing = true
+                previousSpeed = speed
+                speed = averageSpeed
+
+            } else {
+                speed = null
+                previousSpeed = null
+                previousSpeeds.splice(0)
+                decreasing = increasing = false
                 clearTimeout(decreasingTimeout)
-                decreasingTimeout = setTimeout(function () {
-                    decreasing = false
-                    update()
-                }, 2500)
+                clearTimeout(increasingTimeout)
             }
-
-            previousSpeed = speed
-            speed = averageSpeed
             update()
-
         },
         setUnit: function (_unit) {
             unit = _unit
@@ -819,18 +1041,17 @@ function StatusPanel () {
 
     var classList = element.classList
 
-    var timeout
-
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         setStatus: function (value) {
             if (value != valueNode.nodeValue) {
                 valueNode.nodeValue = value
-                clearTimeout(timeout)
                 classList.add(highlightClass)
-                timeout = setTimeout(function () {
+                clearTimeout(highlightTimeout)
+                highlightTimeout = setTimeout(function () {
                     classList.remove(highlightClass)
                 }, 200)
             }
@@ -840,71 +1061,108 @@ function StatusPanel () {
 }
 ;
 function Tabs (tripTimeListener, tripDistanceListener,
-    clockListener, maxSpeedListener, averageSpeedListener, settingsListener) {
+    clockListener, maxSpeedListener, averageSpeedListener,
+    settingsListener, altitudeListener, headingListener) {
+
+    function select (tab) {
+        tabs.forEach(function (itemTab) {
+            if (tab != itemTab) itemTab.deselect()
+        })
+        tab.select()
+    }
+
+    var page = 1
 
     var tripDistanceTab = TripDistanceTab(function () {
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
+        select(tripDistanceTab)
         tripDistanceListener()
     })
 
     var tripTimeTab = TripTimeTab(function () {
-        tripDistanceTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
+        select(tripTimeTab)
         tripTimeListener()
     })
 
-    var clockTab = ClockTab(function () {
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
-        clockListener()
-    })
-
     var maxSpeedTab = MaxSpeedTab(function () {
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        averageSpeedTab.deselect()
-        settingsTab.deselect()
+        select(maxSpeedTab)
         maxSpeedListener()
     })
 
     var averageSpeedTab = AverageSpeedTab(function () {
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        settingsTab.deselect()
+        select(averageSpeedTab)
         averageSpeedListener()
     })
 
+    var altitudeTab = AltitudeTab(function () {
+        select(altitudeTab)
+        altitudeListener()
+    })
+
+    var headingTab = HeadingTab(function () {
+        select(headingTab)
+        headingListener()
+    })
+
+    var clockTab = ClockTab(function () {
+        select(clockTab)
+        clockListener()
+    })
+
     var settingsTab = SettingsTab(function () {
-        tripDistanceTab.deselect()
-        tripTimeTab.deselect()
-        clockTab.deselect()
-        maxSpeedTab.deselect()
-        averageSpeedTab.deselect()
+        select(settingsTab)
         settingsListener()
     })
+
+    var page1Tab = Page1Tab(function () {
+        if (page != 1) {
+            page = 1
+            page2Tab.deselect()
+            element.removeChild(altitudeTab.element)
+            element.removeChild(headingTab.element)
+            element.removeChild(settingsTab.element)
+            element.removeChild(clockTab.element)
+            element.appendChild(tripDistanceTab.element)
+            element.appendChild(tripTimeTab.element)
+            element.appendChild(maxSpeedTab.element)
+            element.appendChild(averageSpeedTab.element)
+        }
+        tripDistanceTab.highlight()
+        tripTimeTab.highlight()
+        maxSpeedTab.highlight()
+        averageSpeedTab.highlight()
+    })
+
+    var page2Tab = Page2Tab(function () {
+        if (page != 2) {
+            page = 2
+            page1Tab.deselect()
+            element.removeChild(tripDistanceTab.element)
+            element.removeChild(tripTimeTab.element)
+            element.removeChild(maxSpeedTab.element)
+            element.removeChild(averageSpeedTab.element)
+            element.appendChild(altitudeTab.element)
+            element.appendChild(headingTab.element)
+            element.appendChild(settingsTab.element)
+            element.appendChild(clockTab.element)
+        }
+        altitudeTab.highlight()
+        headingTab.highlight()
+        settingsTab.highlight()
+        clockTab.highlight()
+    })
+
+    var tabs = [tripDistanceTab, tripTimeTab, maxSpeedTab,
+        averageSpeedTab, altitudeTab, headingTab, clockTab, settingsTab]
 
     var classPrefix = 'Tabs'
 
     var element = Div(classPrefix)
     element.appendChild(tripDistanceTab.element)
     element.appendChild(tripTimeTab.element)
-    element.appendChild(clockTab.element)
     element.appendChild(maxSpeedTab.element)
     element.appendChild(averageSpeedTab.element)
-    element.appendChild(settingsTab.element)
+    element.appendChild(page1Tab.element)
+    element.appendChild(page2Tab.element)
 
     return { element: element }
 
@@ -995,18 +1253,17 @@ function TripDistancePanel (tripDistance, unit) {
 
     var classList = element.classList
 
-    var timeout
-
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
         update: update,
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -1057,13 +1314,12 @@ function TripTimePanel () {
 
     var classList = element.classList
 
-    var timeout
-
     var tripTime = 0,
         startTime = null,
         maxTripTime = 1000 * 60 * 60 * 100 - 1000
 
-    var highlightClass = 'highlight'
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
@@ -1071,10 +1327,10 @@ function TripTimePanel () {
             return tripTime
         },
         highlight: function () {
-            clearTimeout(timeout)
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
-            timeout = setTimeout(function () {
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
@@ -1126,10 +1382,6 @@ function TwoDigitPad (n) {
 ;
 function TwoLineTab (line1, line2, className, listener) {
 
-    function select () {
-        classList.add(selectedClass)
-    }
-
     var classPrefix = 'TwoLineTab ' + className
 
     var contentElement = Div(classPrefix + '-content Tab-content')
@@ -1137,23 +1389,43 @@ function TwoLineTab (line1, line2, className, listener) {
     contentElement.appendChild(document.createElement('br'))
     contentElement.appendChild(TextNode(line2))
 
+    var highlightElement = Div('Tab-highlight')
+    highlightElement.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
+    highlightElement.appendChild(contentElement)
+
+    var highlightClassList = highlightElement.classList
+
     var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(Div(classPrefix + '-aligner Tab-aligner'))
-    element.appendChild(contentElement)
-    OnClick(element, function () {
-        listener()
-        select()
-    })
+    element.appendChild(highlightElement)
+    OnClick(element, listener)
 
     var classList = element.classList
 
+    var selected = false
+
     var selectedClass = 'selected'
+
+    var highlightTimeout,
+        highlightClass = 'highlight'
 
     return {
         element: element,
-        select: select,
         deselect: function () {
+            selected = false
             classList.remove(selectedClass)
+            highlightClassList.remove(selectedClass)
+        },
+        highlight: function () {
+            highlightClassList.add(highlightClass)
+            clearTimeout(highlightTimeout)
+            highlightTimeout = setTimeout(function () {
+                highlightClassList.remove(highlightClass)
+            }, 200)
+        },
+        select: function () {
+            selected = true
+            classList.add(selectedClass)
+            highlightClassList.add(selectedClass)
         },
     }
 

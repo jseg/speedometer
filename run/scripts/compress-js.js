@@ -7,6 +7,8 @@ var fs = require('fs')
 var uglifyJs = require('uglify-js')
 
 var files = [
+    'AltitudePanel',
+    'AltitudeTab',
     'AveragePosition',
     'AverageSpeedPanel',
     'AverageSpeedTab',
@@ -14,12 +16,17 @@ var files = [
     'ClockTab',
     'DistanceBetweenPositions',
     'Div',
+    'HeadingPanel',
+    'HeadingTab',
     'ImperialUnit',
     'MainPanel',
     'MaxSpeedPanel',
     'MaxSpeedTab',
     'MetricUnit',
     'OnClick',
+    'OneLineTab',
+    'Page1Tab',
+    'Page2Tab',
     'ResetButton',
     'Settings',
     'SettingsPanel',
