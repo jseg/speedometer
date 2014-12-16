@@ -81,6 +81,7 @@ function MainPanel () {
     }, function () {
         showPanel(altitudePanel)
     }, function () {
+        showPanel(headingPanel)
     })
 
     var tripTimePanel = TripTimePanel()
@@ -88,6 +89,8 @@ function MainPanel () {
     var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
 
     var altitudePanel = AltitudePanel(metricUnit)
+
+    var headingPanel = HeadingPanel()
 
     var clockPanel = ClockPanel()
 
