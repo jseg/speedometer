@@ -203,6 +203,7 @@ function MainPanel () {
             if (scale * height > windowHeight) scale = windowHeight / height
 
             element.style.transform = 'scale(' + scale +  ')'
+            headingPanel.resize(scale)
 
         },
     }

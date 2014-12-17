@@ -23,9 +23,12 @@ function HeadingPanel () {
 
     var labelClassList = labelElement.classList
 
+    var compassPanel = CompassPanel()
+
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(valueElement)
+    element.appendChild(compassPanel.element)
 
     var classList = element.classList
 
@@ -36,8 +39,11 @@ function HeadingPanel () {
 
     var previousHeadings = []
 
+    var size, halfSize
+
     return {
         element: element,
+        resize: compassPanel.resize,
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
@@ -65,6 +71,7 @@ function HeadingPanel () {
                 heading = null
                 previousHeadings.splice(0)
             }
+            compassPanel.setHeading(heading)
             update()
         },
     }
