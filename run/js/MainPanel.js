@@ -161,6 +161,7 @@ function MainPanel () {
         })
     }, 500)
 */
+    window.updatePosition = updatePosition
 ///*
     navigator.geolocation.watchPosition(updatePosition, function (error) {
         var code = error.code

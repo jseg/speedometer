@@ -1,10 +1,20 @@
 .CompassPanel {
     position: absolute;
     top: 0;
-    right: 0;
-    left: 0;
     bottom: 0;
-    width: 100px;
-    height: 100px;
+    width: 104px;
+    height: 104px;
     margin: auto;
+}
+
+@media (orientation: portrait) {
+    .CompassPanel {
+        left: 86px;
+    }
+}
+
+@media (orientation: landscape) {
+    .CompassPanel {
+        left: 76px;
+    }
 }
