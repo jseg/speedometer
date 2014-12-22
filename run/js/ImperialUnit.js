@@ -4,7 +4,7 @@ function ImperialUnit () {
         distanceLabel: 'MI',
         speedLabel: 'MI/H',
         fix: function (n) {
-            return n
+            return n * 1.609344
         },
     }
 }
