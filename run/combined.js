@@ -269,7 +269,7 @@ function CompassPanel () {
         c.clearRect(0, 0, size, size)
         c.save()
         c.translate(halfSize, halfSize)
-        c.rotate(angle)
+        c.rotate(-angle)
 
         if (heading !== null) {
 
@@ -279,7 +279,7 @@ function CompassPanel () {
             c.beginPath()
             c.moveTo(0, 0)
             c.rotate(-Math.PI / 2)
-            c.arc(0, 0, halfSize - lineWidth, -angle, 0)
+            c.arc(0, 0, halfSize - lineWidth, 0, angle)
             c.closePath()
             c.fillStyle = '#444'
             c.fill()
@@ -316,7 +316,7 @@ function CompassPanel () {
             c.font = 'bold ' + size * 0.25 + 'px FreeMono, monospace'
             c.textAlign = 'center'
             c.textBaseline = 'top'
-            c.fillStyle = 'red'
+            c.fillStyle = '#f00'
             c.fillText('N', 0, radius)
             c.fillStyle = '#999'
             c.rotate(Math.PI / 2)
@@ -547,6 +547,7 @@ function MainPanel () {
 
         setAltitude(coords.altitude)
         setHeading(coords.heading)
+        statusPanel.hideError()
 
     }
 
@@ -676,6 +677,7 @@ function MainPanel () {
         setSpeed(null)
         setAltitude(null)
         setHeading(null)
+        statusPanel.showError()
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,
@@ -1146,6 +1148,14 @@ function StartStopButton (startListener, stopListener) {
 ;
 function StatusPanel () {
 
+    function highlight () {
+        classList.add(highlightClass)
+        clearTimeout(highlightTimeout)
+        highlightTimeout = setTimeout(function () {
+            classList.remove(highlightClass)
+        }, 200)
+    }
+
     var classPrefix = 'StatusPanel'
 
     var valueNode = TextNode('ACQUIRING')
@@ -1153,25 +1163,37 @@ function StatusPanel () {
     var valueElement = Div(classPrefix + '-value')
     valueElement.appendChild(valueNode)
 
+    var valueClassList = valueElement.classList
+
     var element = Div(classPrefix)
     element.appendChild(TextNode('GPS'))
     element.appendChild(valueElement)
 
     var classList = element.classList
 
+    var error = false,
+        errorClass = 'error'
+
     var highlightTimeout,
         highlightClass = 'highlight'
 
     return {
         element: element,
+        hideError: function () {
+            if (error) {
+                error =false
+                valueClassList.remove(errorClass)
+                highlight()
+            }
+        },
         setStatus: function (value) {
-            if (value != valueNode.nodeValue) {
-                valueNode.nodeValue = value
-                classList.add(highlightClass)
-                clearTimeout(highlightTimeout)
-                highlightTimeout = setTimeout(function () {
-                    classList.remove(highlightClass)
-                }, 200)
+            valueNode.nodeValue = value
+        },
+        showError: function () {
+            if (!error) {
+                error = true
+                valueClassList.add(errorClass)
+                highlight()
             }
         },
     }
