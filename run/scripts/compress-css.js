@@ -17,6 +17,7 @@ var files = [
     'AverageSpeedTab',
     'ClockPanel',
     'ClockTab',
+    'CompassPanel',
     'HeadingPanel',
     'HeadingTab',
     'MaxSpeedTab',
