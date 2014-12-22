@@ -46,8 +46,8 @@ function MainPanel () {
         else if (accuracy < 16) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
 
-        altitudePanel.setAltitude(coords.altitude)
-        headingPanel.setHeading(coords.heading)
+        setAltitude(coords.altitude)
+        setHeading(coords.heading)
 
     }
 
@@ -145,6 +145,9 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
+    var setAltitude = altitudePanel.setAltitude,
+        setHeading = headingPanel.setHeading
+
 /*
     setInterval(function () {
         updatePosition({
@@ -172,6 +175,8 @@ function MainPanel () {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
         setSpeed(null)
+        setAltitude(null)
+        setHeading(null)
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,
