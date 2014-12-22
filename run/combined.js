@@ -300,7 +300,7 @@ function CompassPanel () {
                 c.lineTo(0, halfSize * 0.95)
                 c.strokeStyle = '#999'
             } else {
-                c.lineWidth = size * 0.02
+                c.lineWidth = size * 0.03
                 c.moveTo(0, halfSize * 0.98)
                 c.lineTo(0, halfSize * 0.92)
                 c.strokeStyle = '#fff'
@@ -313,7 +313,7 @@ function CompassPanel () {
         if (heading !== null) {
             var radius = -halfSize * 0.92
             c.save()
-            c.font = 'bold ' + size * 0.22 + 'px FreeMono, monospace'
+            c.font = 'bold ' + size * 0.25 + 'px FreeMono, monospace'
             c.textAlign = 'center'
             c.textBaseline = 'top'
             c.fillStyle = 'red'
@@ -343,7 +343,7 @@ function CompassPanel () {
     return {
         element: canvas,
         resize: function (scale) {
-            size = 104 * scale * devicePixelRatio
+            size = 116 * scale * devicePixelRatio
             halfSize = size / 2
             canvas.width = canvas.height = size
             render()
