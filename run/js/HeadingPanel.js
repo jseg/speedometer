@@ -40,8 +40,6 @@ function HeadingPanel () {
 
     var previousHeadings = []
 
-    var size, halfSize
-
     return {
         element: element,
         resize: compassPanel.resize,

@@ -7,7 +7,7 @@ header('Content-Type: application/x-web-app-manifest+json');
 
 echo json_encode([
     'name' => 'Speedometer',
-    'version' => '1.1',
+    'version' => '2.0',
     'description' => 'A GPS speedometer and tracker.',
     'launch_path' => '/run/',
     'appcache_path' => '/run/cache-manifest/',
