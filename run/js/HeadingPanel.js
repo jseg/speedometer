@@ -35,7 +35,8 @@ function HeadingPanel () {
     var highlightTimeout,
         highlightClass = 'highlight'
 
-    var heading = null
+    var heading = null,
+        previousRawHeading = null
 
     var previousHeadings = []
 
@@ -56,6 +57,12 @@ function HeadingPanel () {
         setHeading: function (_heading) {
             if (typeof _heading == 'number' && isFinite(_heading)) {
 
+                if (previousRawHeading != null) {
+                    if (_heading - previousRawHeading > 180) _heading -= 360
+                    else if (_heading - previousRawHeading < -180) _heading += 360
+                }
+                previousRawHeading = _heading
+
                 previousHeadings.push(_heading)
                 if (previousHeadings.length > 3) previousHeadings.shift()
 
@@ -65,10 +72,11 @@ function HeadingPanel () {
                 })
                 averageHeading /= previousHeadings.length
 
-                heading = averageHeading
+                heading = (averageHeading % 360 + 360) % 360
 
             } else {
                 heading = null
+                previousRawHeading = null
                 previousHeadings.splice(0)
             }
             compassPanel.setHeading(heading)
