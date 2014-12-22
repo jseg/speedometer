@@ -48,6 +48,7 @@ function MainPanel () {
 
         setAltitude(coords.altitude)
         setHeading(coords.heading)
+        statusPanel.hideError()
 
     }
 
@@ -177,6 +178,7 @@ function MainPanel () {
         setSpeed(null)
         setAltitude(null)
         setHeading(null)
+        statusPanel.showError()
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,

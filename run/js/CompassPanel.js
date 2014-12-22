@@ -56,7 +56,7 @@ function CompassPanel () {
             c.font = 'bold ' + size * 0.25 + 'px FreeMono, monospace'
             c.textAlign = 'center'
             c.textBaseline = 'top'
-            c.fillStyle = 'red'
+            c.fillStyle = '#f00'
             c.fillText('N', 0, radius)
             c.fillStyle = '#999'
             c.rotate(Math.PI / 2)
