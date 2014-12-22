@@ -9,7 +9,7 @@ function CompassPanel () {
         c.clearRect(0, 0, size, size)
         c.save()
         c.translate(halfSize, halfSize)
-        c.rotate(angle)
+        c.rotate(-angle)
 
         if (heading !== null) {
 
@@ -19,7 +19,7 @@ function CompassPanel () {
             c.beginPath()
             c.moveTo(0, 0)
             c.rotate(-Math.PI / 2)
-            c.arc(0, 0, halfSize - lineWidth, -angle, 0)
+            c.arc(0, 0, halfSize - lineWidth, 0, angle)
             c.closePath()
             c.fillStyle = '#444'
             c.fill()
