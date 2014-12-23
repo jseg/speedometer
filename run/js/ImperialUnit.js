@@ -1,10 +1,10 @@
 function ImperialUnit () {
     return {
         key: 'imperial',
-        distanceLabel: 'M',
-        speedLabel: 'M/H',
+        distanceLabel: 'MI',
+        speedLabel: 'MI/H',
         fix: function (n) {
-            return n
+            return n / 1.609344
         },
     }
 }

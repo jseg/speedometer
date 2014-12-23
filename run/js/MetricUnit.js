@@ -4,7 +4,7 @@ function MetricUnit () {
         distanceLabel: 'KM',
         speedLabel: 'KM/H',
         fix: function (n) {
-            return n * 1.609344
+            return n
         },
     }
 }

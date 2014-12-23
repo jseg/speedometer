@@ -16,6 +16,7 @@ function MainPanel () {
         tripDistancePanel.setUnit(unit)
         maxSpeedPanel.setUnit(unit)
         averageSpeedPanel.setUnit(unit)
+        altitudePanel.setUnit(unit)
         settings.unit = unit.key
         settings.save()
     }
@@ -44,6 +45,10 @@ function MainPanel () {
         if (accuracy < 8) statusPanel.setStatus('SIGNAL GOOD')
         else if (accuracy < 16) statusPanel.setStatus('SIGNAL OK')
         else statusPanel.setStatus('SIGNAL WEAK')
+
+        setAltitude(coords.altitude)
+        setHeading(coords.heading)
+        statusPanel.hideError()
 
     }
 
@@ -75,11 +80,19 @@ function MainPanel () {
         showPanel(averageSpeedPanel)
     }, function () {
         showPanel(settingsPanel)
+    }, function () {
+        showPanel(altitudePanel)
+    }, function () {
+        showPanel(headingPanel)
     })
 
     var tripTimePanel = TripTimePanel()
 
     var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
+
+    var altitudePanel = AltitudePanel(metricUnit)
+
+    var headingPanel = HeadingPanel()
 
     var clockPanel = ClockPanel()
 
@@ -133,6 +146,9 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
+    var setAltitude = altitudePanel.setAltitude,
+        setHeading = headingPanel.setHeading
+
 /*
     setInterval(function () {
         updatePosition({
@@ -159,7 +175,10 @@ function MainPanel () {
         } else {
             statusPanel.setStatus('TIMEOUT, RETRYING')
         }
-        setSpeed(0)
+        setSpeed(null)
+        setAltitude(null)
+        setHeading(null)
+        statusPanel.showError()
     }, {
         enableHighAccuracy: true,
         maximumAge: 30 * 1000,
@@ -191,6 +210,7 @@ function MainPanel () {
             if (scale * height > windowHeight) scale = windowHeight / height
 
             element.style.transform = 'scale(' + scale +  ')'
+            headingPanel.resize(scale)
 
         },
     }

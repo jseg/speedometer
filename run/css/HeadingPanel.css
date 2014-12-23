@@ -1,0 +1,26 @@
+.HeadingPanel-value {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    font-weight: bold;
+}
+
+.HeadingPanel-unit {
+    display: inline;
+    font-weight: normal;
+    color: #999;
+}
+
+@media (orientation: portrait) {
+    .HeadingPanel-value {
+        font-size: 34px;
+        line-height: 34px;
+    }
+}
+
+@media (orientation: landscape) {
+    .HeadingPanel-value {
+        font-size: 29px;
+        line-height: 29px;
+    }
+}

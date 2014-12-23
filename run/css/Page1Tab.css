@@ -1,0 +1,13 @@
+@media (orientation: portrait) {
+    .Page1Tab {
+        top: 0;
+        left: 212px;
+    }
+}
+
+@media (orientation: landscape) {
+    .Page1Tab {
+        top: 104px;
+        left: 0;
+    }
+}

@@ -1,0 +1,44 @@
+.AltitudePanel-integerPart {
+    display: inline;
+    font-weight: bold;
+    line-height: 130px;
+}
+
+.AltitudePanel-fractionalPart {
+    display: inline;
+    font-weight: bold;
+}
+
+.AltitudePanel-unit {
+    position: absolute;
+    right: 24px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+}
+
+@media (orientation: portrait) {
+    .AltitudePanel-integerPart {
+        font-size: 68px;
+    }
+    .AltitudePanel-fractionalPart {
+        font-size: 34px;
+        line-height: 34px;
+    }
+    .AltitudePanel-unit {
+        top: 36px;
+    }
+}
+
+@media (orientation: landscape) {
+    .AltitudePanel-integerPart {
+        font-size: 58px;
+    }
+    .AltitudePanel-fractionalPart {
+        font-size: 29px;
+        line-height: 29px;
+    }
+    .AltitudePanel-unit {
+        top: 39px;
+    }
+}

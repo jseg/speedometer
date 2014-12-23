@@ -10,7 +10,7 @@
     transition: background-color 0.5s linear;
 }
 .BottomPanel.highlight {
-    background-color: #333;
+    background-color: #555;
     transition: none;
 }
 

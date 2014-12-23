@@ -1,15 +1,15 @@
-.SettingsTab {
-    top: 52px;
+.HeadingTab {
+    top: 0;
 }
 
 @media (orientation: portrait) {
-    .SettingsTab {
+    .HeadingTab {
         left: 106px;
     }
 }
 
 @media (orientation: landscape) {
-    .SettingsTab {
+    .HeadingTab {
         left: 96px;
     }
 }

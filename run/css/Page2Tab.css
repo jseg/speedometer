@@ -1,15 +1,13 @@
-.SettingsTab {
-    top: 52px;
-}
-
 @media (orientation: portrait) {
-    .SettingsTab {
-        left: 106px;
+    .Page2Tab {
+        top: 52px;
+        left: 212px;
     }
 }
 
 @media (orientation: landscape) {
-    .SettingsTab {
+    .Page2Tab {
+        top: 104px;
         left: 96px;
     }
 }
