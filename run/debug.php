@@ -9,7 +9,7 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/BottomPanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/Tab.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/AltitudePanel.css" />'
-    .'<link rel="stylesheet" type="text/css" href="css/AltitudeStatsPanel.css" />'
+    .'<link rel="stylesheet" type="text/css" href="css/AltitudeStatPanel.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/AltitudeTab.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/AverageSpeedTab.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/ClockPanel.css" />'
@@ -34,7 +34,7 @@ echo_html(
     .'<link rel="stylesheet" type="text/css" href="css/Tabs.css" />'
     .'<link rel="stylesheet" type="text/css" href="css/MainPanel.css" />',
     '<script type="text/javascript" src="js/AltitudePanel.js"></script>'
-    .'<script type="text/javascript" src="js/AltitudeStatsPanel.js"></script>'
+    .'<script type="text/javascript" src="js/AltitudeStatPanel.js"></script>'
     .'<script type="text/javascript" src="js/AltitudeTab.js"></script>'
     .'<script type="text/javascript" src="js/AveragePosition.js"></script>'
     .'<script type="text/javascript" src="js/AverageSpeedPanel.js"></script>'

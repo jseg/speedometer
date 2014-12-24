@@ -38,14 +38,14 @@ function AltitudePanel (unit) {
 
     var labelClassList = labelElement.classList
 
-    var altitudeStatsPanel = AltitudeStatsPanel(unit)
+    var altitudeStatPanel = AltitudeStatPanel(unit)
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(integerPartElement)
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
-    element.appendChild(altitudeStatsPanel.element)
+    element.appendChild(altitudeStatPanel.element)
 
     var classList = element.classList
 
@@ -58,8 +58,8 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
-        start: altitudeStatsPanel.start,
-        stop: altitudeStatsPanel.stop,
+        start: altitudeStatPanel.start,
+        stop: altitudeStatPanel.stop,
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
@@ -82,7 +82,7 @@ function AltitudePanel (unit) {
                 averageAltitude /= previousAltitudes.length
 
                 altitude = averageAltitude
-                altitudeStatsPanel.setAltitude(altitude)
+                altitudeStatPanel.setAltitude(altitude)
 
             } else {
                 altitude = null
@@ -94,13 +94,13 @@ function AltitudePanel (unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
             update()
-            altitudeStatsPanel.setUnit(unit)
+            altitudeStatPanel.setUnit(unit)
         },
     }
 
 }
 ;
-function AltitudeStatsPanel (unit) {
+function AltitudeStatPanel (unit) {
 
     function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
@@ -118,7 +118,7 @@ function AltitudeStatsPanel (unit) {
         }
     }
 
-    var classPrefix = 'AltitudeStatsPanel'
+    var classPrefix = 'AltitudeStatPanel'
 
     var minValueField = StatField('MIN')
 

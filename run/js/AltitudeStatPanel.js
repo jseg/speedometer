@@ -1,4 +1,4 @@
-function AltitudeStatsPanel (unit) {
+function AltitudeStatPanel (unit) {
 
     function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
@@ -16,7 +16,7 @@ function AltitudeStatsPanel (unit) {
         }
     }
 
-    var classPrefix = 'AltitudeStatsPanel'
+    var classPrefix = 'AltitudeStatPanel'
 
     var minValueField = StatField('MIN')
 

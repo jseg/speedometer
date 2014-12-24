@@ -8,7 +8,7 @@ var uglifyJs = require('uglify-js')
 
 var files = [
     'AltitudePanel',
-    'AltitudeStatsPanel',
+    'AltitudeStatPanel',
     'AltitudeTab',
     'AveragePosition',
     'AverageSpeedPanel',
