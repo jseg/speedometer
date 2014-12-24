@@ -30,6 +30,7 @@ var files = [
     'SettingsTab',
     'SpeedLabel',
     'StartStopButton',
+    'StatField',
     'StatusPanel',
     'TripDistancePanel',
     'TripDistanceTab',

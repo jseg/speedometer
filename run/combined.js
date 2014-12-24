@@ -102,10 +102,9 @@ function AltitudePanel (unit) {
 ;
 function AltitudeStatsPanel (unit) {
 
-    function format (altitude) {
-        if (altitude === null) return '\xb7'
+    function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
-        return formatAltitude.integerPart + '.' + formatAltitude.fractionalPart
+        field.setValue(formatAltitude.integerPart, formatAltitude.fractionalPart)
     }
 
     function update () {
@@ -114,34 +113,20 @@ function AltitudeStatsPanel (unit) {
         } else {
             minValue = Math.min(minValue, altitude)
             maxValue = Math.max(maxValue, altitude)
+            setValue(minValueField, minValue)
+            setValue(maxValueField, maxValue)
         }
-        minValueNode.nodeValue = format(minValue)
-        maxValueNode.nodeValue = format(maxValue)
-    }
-
-    function Label (text) {
-        var element = Div(classPrefix + '-label')
-        element.appendChild(TextNode(text + ':'))
-        return element
     }
 
     var classPrefix = 'AltitudeStatsPanel'
 
-    var minValueNode = TextNode('\xb7')
+    var minValueField = StatField('MIN')
 
-    var minValueElement = Div(classPrefix + '-value')
-    minValueElement.appendChild(minValueNode)
-
-    var maxValueNode = TextNode('\xb7')
-
-    var maxValueElement = Div(classPrefix + '-value')
-    maxValueElement.appendChild(maxValueNode)
+    var maxValueField = StatField('MAX')
 
     var element = Div(classPrefix)
-    element.appendChild(Label('MIN'))
-    element.appendChild(minValueElement)
-    element.appendChild(Label('MAX'))
-    element.appendChild(maxValueElement)
+    element.appendChild(minValueField.element)
+    element.appendChild(maxValueField.element)
 
     var started = false,
         altitude = null,
@@ -1231,6 +1216,42 @@ function StartStopButton (startListener, stopListener) {
     })
 
     return { element: element }
+
+}
+;
+function StatField (label) {
+
+    var classPrefix = 'StatField'
+
+    var labelElement = Div(classPrefix + '-label')
+    labelElement.appendChild(TextNode(label))
+
+    var integerPartNode = TextNode('\xb7')
+
+    var integerPartElement = Div(classPrefix + '-integerPart')
+    integerPartElement.appendChild(integerPartNode)
+
+    var fractionalPartNode = TextNode('\xb7')
+
+    var fractionalPartElement = Div(classPrefix + '-fractionalPart')
+    fractionalPartElement.appendChild(TextNode('.'))
+    fractionalPartElement.appendChild(fractionalPartNode)
+
+    var valueElement = Div(classPrefix + '-value')
+    valueElement.appendChild(integerPartElement)
+    valueElement.appendChild(fractionalPartElement)
+
+    var element = Div(classPrefix)
+    element.appendChild(labelElement)
+    element.appendChild(valueElement)
+
+    return {
+        element: element,
+        setValue: function (integerPart, fractionalPart) {
+            integerPartNode.nodeValue = integerPart
+            fractionalPartNode.nodeValue = fractionalPart
+        },
+    }
 
 }
 ;

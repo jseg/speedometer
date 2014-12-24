@@ -16,12 +16,6 @@ function AltitudeStatsPanel (unit) {
         }
     }
 
-    function Label (text) {
-        var element = Div(classPrefix + '-label')
-        element.appendChild(TextNode(text + ':'))
-        return element
-    }
-
     var classPrefix = 'AltitudeStatsPanel'
 
     var minValueField = StatField('MIN')
