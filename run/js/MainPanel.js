@@ -126,9 +126,11 @@ function MainPanel () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
+        altitudePanel.start()
     }, function () {
         started = false
         tripTimePanel.stop()
+        altitudePanel.stop()
     })
 
     var statusPanel = StatusPanel()
@@ -153,7 +155,7 @@ function MainPanel () {
             coords: {
                 latitude: 40 + Math.random() * 0.001,
                 longitude: 40 + Math.random() * 0.001,
-                altitude: -10 + Math.random() * 20,
+                altitude: -20 + Math.random() * 40,
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
                 heading: Math.random() * 360,

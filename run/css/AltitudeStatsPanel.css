@@ -1,0 +1,14 @@
+.AltitudeStatsPanel {
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    text-align: left;
+}
+
+.AltitudeStatsPanel-label {
+    color: #999;
+}
+
+.AltitudeStatsPanel-value {
+    font-weight: bold;
+}

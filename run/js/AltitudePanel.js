@@ -6,17 +6,9 @@ function AltitudePanel (unit) {
             fractionalPart = '\xb7\xb7\xb7'
             integerPart = '\xb7'
         } else {
-
-            var visualAltitude = Math.floor(unit.fix(altitude))
-            visualAltitude = Math.min(999999, Math.max(-99999, visualAltitude))
-
-            var fractionalPart = String(Math.abs(visualAltitude) % 1000)
-            if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
-            else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
-
-            integerPart = Math.floor(Math.abs(visualAltitude) / 1000)
-            if (visualAltitude < 0) integerPart = '-' + integerPart
-
+            var formatAltitude = FormatAltitude(altitude, unit)
+            fractionalPart = formatAltitude.fractionalPart
+            integerPart = formatAltitude.integerPart
         }
         integerPartNode.nodeValue = integerPart
         fractionalPartNode.nodeValue = fractionalPart
@@ -45,11 +37,14 @@ function AltitudePanel (unit) {
 
     var labelClassList = labelElement.classList
 
+    var altitudeStatsPanel = AltitudeStatsPanel(unit)
+
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(integerPartElement)
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
+    element.appendChild(altitudeStatsPanel.element)
 
     var classList = element.classList
 
@@ -62,6 +57,8 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
+        start: altitudeStatsPanel.start,
+        stop: altitudeStatsPanel.stop,
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
@@ -84,6 +81,7 @@ function AltitudePanel (unit) {
                 averageAltitude /= previousAltitudes.length
 
                 altitude = averageAltitude
+                altitudeStatsPanel.setAltitude(altitude)
 
             } else {
                 altitude = null
@@ -95,6 +93,7 @@ function AltitudePanel (unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
             update()
+            altitudeStatsPanel.setUnit(unit)
         },
     }
 
