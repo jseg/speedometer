@@ -551,11 +551,9 @@ function MainPanel () {
 
     }
 
-    var requestAnimationFrame = window.requestAnimationFrame,
-        cancelAnimationFrame = window.cancelAnimationFrame
+    var requestAnimationFrame = window.requestAnimationFrame
     if (!requestAnimationFrame) {
         requestAnimationFrame = window.mozRequestAnimationFrame
-        cancelAnimationFrame = window.mozCancelAnimationFrame
     }
 
     var started = false
