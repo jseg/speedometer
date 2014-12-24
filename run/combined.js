@@ -7,17 +7,9 @@ function AltitudePanel (unit) {
             fractionalPart = '\xb7\xb7\xb7'
             integerPart = '\xb7'
         } else {
-
-            var visualAltitude = Math.floor(unit.fix(altitude))
-            visualAltitude = Math.min(999999, Math.max(-99999, visualAltitude))
-
-            var fractionalPart = String(Math.abs(visualAltitude) % 1000)
-            if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
-            else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
-
-            integerPart = Math.floor(Math.abs(visualAltitude) / 1000)
-            if (visualAltitude < 0) integerPart = '-' + integerPart
-
+            var formatAltitude = FormatAltitude(altitude, unit)
+            fractionalPart = formatAltitude.fractionalPart
+            integerPart = formatAltitude.integerPart
         }
         integerPartNode.nodeValue = integerPart
         fractionalPartNode.nodeValue = fractionalPart
@@ -46,11 +38,14 @@ function AltitudePanel (unit) {
 
     var labelClassList = labelElement.classList
 
+    var altitudeStatsPanel = AltitudeStatsPanel(unit)
+
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
     element.appendChild(integerPartElement)
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
+    element.appendChild(altitudeStatsPanel.element)
 
     var classList = element.classList
 
@@ -63,6 +58,8 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
+        start: altitudeStatsPanel.start,
+        stop: altitudeStatsPanel.stop,
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)
@@ -85,6 +82,7 @@ function AltitudePanel (unit) {
                 averageAltitude /= previousAltitudes.length
 
                 altitude = averageAltitude
+                altitudeStatsPanel.setAltitude(altitude)
 
             } else {
                 altitude = null
@@ -96,6 +94,77 @@ function AltitudePanel (unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
             update()
+            altitudeStatsPanel.setUnit(unit)
+        },
+    }
+
+}
+;
+function AltitudeStatsPanel (unit) {
+
+    function format (altitude) {
+        if (altitude === null) return '\xb7'
+        var formatAltitude = FormatAltitude(altitude, unit)
+        return formatAltitude.integerPart + '.' + formatAltitude.fractionalPart
+    }
+
+    function update () {
+        if (minValue === null) {
+            minValue = maxValue = altitude
+        } else {
+            minValue = Math.min(minValue, altitude)
+            maxValue = Math.max(maxValue, altitude)
+        }
+        minValueNode.nodeValue = format(minValue)
+        maxValueNode.nodeValue = format(maxValue)
+    }
+
+    function Label (text) {
+        var element = Div(classPrefix + '-label')
+        element.appendChild(TextNode(text + ':'))
+        return element
+    }
+
+    var classPrefix = 'AltitudeStatsPanel'
+
+    var minValueNode = TextNode('\xb7')
+
+    var minValueElement = Div(classPrefix + '-value')
+    minValueElement.appendChild(minValueNode)
+
+    var maxValueNode = TextNode('\xb7')
+
+    var maxValueElement = Div(classPrefix + '-value')
+    maxValueElement.appendChild(maxValueNode)
+
+    var element = Div(classPrefix)
+    element.appendChild(Label('MIN'))
+    element.appendChild(minValueElement)
+    element.appendChild(Label('MAX'))
+    element.appendChild(maxValueElement)
+
+    var started = false,
+        altitude = null,
+        minValue = null,
+        maxValue = null
+
+    return {
+        element: element,
+        setAltitude: function (_altitude) {
+            altitude = _altitude
+            if (!started) return
+            update()
+        },
+        setUnit: function (_unit) {
+            unit = _unit
+            update()
+        },
+        start: function () {
+            started = true
+            update()
+        },
+        stop: function () {
+            started = false
         },
     }
 
@@ -396,6 +465,25 @@ function Div (className) {
     return div
 }
 ;
+function FormatAltitude (altitude, unit) {
+
+    var visualAltitude = Math.floor(unit.fix(altitude))
+    visualAltitude = Math.min(999999, Math.max(-99999, visualAltitude))
+
+    var fractionalPart = String(Math.abs(visualAltitude) % 1000)
+    if (fractionalPart.length == 1) fractionalPart = '00' + fractionalPart
+    else if (fractionalPart.length == 2) fractionalPart = '0' + fractionalPart
+
+    integerPart = Math.floor(Math.abs(visualAltitude) / 1000)
+    if (visualAltitude < 0) integerPart = '-' + integerPart
+
+    return {
+        fractionalPart: fractionalPart,
+        integerPart: integerPart,
+    }
+
+}
+;
 function HeadingPanel () {
 
     function update () {
@@ -625,9 +713,11 @@ function MainPanel () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
+        altitudePanel.start()
     }, function () {
         started = false
         tripTimePanel.stop()
+        altitudePanel.stop()
     })
 
     var statusPanel = StatusPanel()
@@ -652,7 +742,7 @@ function MainPanel () {
             coords: {
                 latitude: 40 + Math.random() * 0.001,
                 longitude: 40 + Math.random() * 0.001,
-                altitude: -10 + Math.random() * 20,
+                altitude: -20 + Math.random() * 40,
                 accuracy: Math.random() * 20,
                 altitudeAccuracy: Math.random() * 10,
                 heading: Math.random() * 360,

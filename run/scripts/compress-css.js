@@ -13,6 +13,7 @@ var files = [
     'BottomPanel',
     'Tab',
     'AltitudePanel',
+    'AltitudeStatsPanel',
     'AltitudeTab',
     'AverageSpeedTab',
     'ClockPanel',

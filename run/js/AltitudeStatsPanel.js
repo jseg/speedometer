@@ -23,12 +23,6 @@ function AltitudeStatsPanel (unit) {
         return element
     }
 
-    function Value () {
-        var element = Div(classPrefix + '-label')
-        element.appendChild(TextNode(text + ':'))
-        return element
-    }
-
     var classPrefix = 'AltitudeStatsPanel'
 
     var minValueNode = TextNode('\xb7')
