@@ -120,6 +120,7 @@ function MainPanel () {
         tripTimePanel.reset()
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
+        altitudePanel.reset()
     })
 
     var startStopButton = StartStopButton(function () {

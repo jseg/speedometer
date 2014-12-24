@@ -58,6 +58,7 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
+        reset: altitudeStatPanel.reset,
         start: altitudeStatPanel.start,
         stop: altitudeStatPanel.stop,
         highlight: function () {
@@ -113,9 +114,9 @@ function AltitudeStatPanel (unit) {
         } else {
             minValue = Math.min(minValue, altitude)
             maxValue = Math.max(maxValue, altitude)
-            setValue(minValueField, minValue)
-            setValue(maxValueField, maxValue)
         }
+        setValue(minValueField, minValue)
+        setValue(maxValueField, maxValue)
     }
 
     var classPrefix = 'AltitudeStatPanel'
@@ -135,14 +136,19 @@ function AltitudeStatPanel (unit) {
 
     return {
         element: element,
+        reset: function () {
+            minValue = maxValue = null
+            minValueField.reset()
+            maxValueField.reset()
+            if (started) update()
+        },
         setAltitude: function (_altitude) {
             altitude = _altitude
-            if (!started) return
-            update()
+            if (started) update()
         },
         setUnit: function (_unit) {
             unit = _unit
-            update()
+            if (started) update()
         },
         start: function () {
             started = true
@@ -692,6 +698,7 @@ function MainPanel () {
         tripTimePanel.reset()
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
+        altitudePanel.reset()
     })
 
     var startStopButton = StartStopButton(function () {
@@ -1247,6 +1254,9 @@ function StatField (label) {
 
     return {
         element: element,
+        reset: function () {
+            integerPartNode.nodeValue = fractionalPartNode.nodeValue = '\xb7'
+        },
         setValue: function (integerPart, fractionalPart) {
             integerPartNode.nodeValue = integerPart
             fractionalPartNode.nodeValue = fractionalPart

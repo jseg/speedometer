@@ -57,6 +57,7 @@ function AltitudePanel (unit) {
 
     return {
         element: element,
+        reset: altitudeStatPanel.reset,
         start: altitudeStatPanel.start,
         stop: altitudeStatPanel.stop,
         highlight: function () {

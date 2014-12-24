@@ -11,9 +11,9 @@ function AltitudeStatPanel (unit) {
         } else {
             minValue = Math.min(minValue, altitude)
             maxValue = Math.max(maxValue, altitude)
-            setValue(minValueField, minValue)
-            setValue(maxValueField, maxValue)
         }
+        setValue(minValueField, minValue)
+        setValue(maxValueField, maxValue)
     }
 
     var classPrefix = 'AltitudeStatPanel'
@@ -33,14 +33,19 @@ function AltitudeStatPanel (unit) {
 
     return {
         element: element,
+        reset: function () {
+            minValue = maxValue = null
+            minValueField.reset()
+            maxValueField.reset()
+            if (started) update()
+        },
         setAltitude: function (_altitude) {
             altitude = _altitude
-            if (!started) return
-            update()
+            if (started) update()
         },
         setUnit: function (_unit) {
             unit = _unit
-            update()
+            if (started) update()
         },
         start: function () {
             started = true

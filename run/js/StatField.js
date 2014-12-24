@@ -26,6 +26,9 @@ function StatField (label) {
 
     return {
         element: element,
+        reset: function () {
+            integerPartNode.nodeValue = fractionalPartNode.nodeValue = '\xb7'
+        },
         setValue: function (integerPart, fractionalPart) {
             integerPartNode.nodeValue = integerPart
             fractionalPartNode.nodeValue = fractionalPart
