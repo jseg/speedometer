@@ -1,0 +1,18 @@
+.StatField-label {
+    color: #999;
+}
+
+.StatField-value {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.StatField-integerPart {
+    display: inline;
+}
+
+.StatField-fractionalPart {
+    display: inline;
+    font-size: 14px;
+}

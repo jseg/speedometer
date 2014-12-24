@@ -1,9 +1,8 @@
 function AltitudeStatsPanel (unit) {
 
-    function format (altitude) {
-        if (altitude === null) return '\xb7'
+    function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
-        return formatAltitude.integerPart + '.' + formatAltitude.fractionalPart
+        field.setValue(formatAltitude.integerPart, formatAltitude.fractionalPart)
     }
 
     function update () {
@@ -12,9 +11,9 @@ function AltitudeStatsPanel (unit) {
         } else {
             minValue = Math.min(minValue, altitude)
             maxValue = Math.max(maxValue, altitude)
+            setValue(minValueField, minValue)
+            setValue(maxValueField, maxValue)
         }
-        minValueNode.nodeValue = format(minValue)
-        maxValueNode.nodeValue = format(maxValue)
     }
 
     function Label (text) {
@@ -25,21 +24,13 @@ function AltitudeStatsPanel (unit) {
 
     var classPrefix = 'AltitudeStatsPanel'
 
-    var minValueNode = TextNode('\xb7')
+    var minValueField = StatField('MIN')
 
-    var minValueElement = Div(classPrefix + '-value')
-    minValueElement.appendChild(minValueNode)
-
-    var maxValueNode = TextNode('\xb7')
-
-    var maxValueElement = Div(classPrefix + '-value')
-    maxValueElement.appendChild(maxValueNode)
+    var maxValueField = StatField('MAX')
 
     var element = Div(classPrefix)
-    element.appendChild(Label('MIN'))
-    element.appendChild(minValueElement)
-    element.appendChild(Label('MAX'))
-    element.appendChild(maxValueElement)
+    element.appendChild(minValueField.element)
+    element.appendChild(maxValueField.element)
 
     var started = false,
         altitude = null,
