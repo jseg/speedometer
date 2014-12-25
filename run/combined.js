@@ -83,12 +83,12 @@ function AltitudePanel (unit) {
                 averageAltitude /= previousAltitudes.length
 
                 altitude = averageAltitude
-                altitudeStatPanel.setAltitude(altitude)
 
             } else {
                 altitude = null
                 previousAltitudes.splice(0)
             }
+            altitudeStatPanel.setAltitude(altitude)
             update()
         },
         setUnit: function (_unit) {
@@ -109,6 +109,7 @@ function AltitudeStatPanel (unit) {
     }
 
     function update () {
+        if (altitude === null) return
         if (minValue === null) {
             minValue = maxValue = altitude
         } else {
