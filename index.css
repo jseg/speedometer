@@ -8,6 +8,8 @@
     font: inherit;
     text-decoration: none;
     color: inherit;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 *::-moz-focus-inner {
@@ -58,15 +60,24 @@ a {
     background-color: #ccc;
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
     border: 2px solid #bbb;
-}
-.button:focus {
-    border-color: #26c;
+    width: 110px;
 }
 .button:active {
     border-color: #555;
     background-color: #777;
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+}
+.button:focus {
+    border-color: #26c;
+}
+.button[disabled],
+.button[disabled]:active {
+    opacity: 0.2;
+    background-color: #ccc;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+    border-color: #bbb;
+    box-shadow: none;
 }
 
 #installButton {
