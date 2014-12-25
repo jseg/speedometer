@@ -6,6 +6,7 @@ function AltitudeStatPanel (unit) {
     }
 
     function update () {
+        if (altitude === null) return
         if (minValue === null) {
             minValue = maxValue = altitude
         } else {
