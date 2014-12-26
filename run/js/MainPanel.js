@@ -1,5 +1,25 @@
 function MainPanel () {
 
+    function setDarkTheme () {
+        classList.add('dark')
+        settings.theme = 'dark'
+        settings.save()
+    }
+
+    function setImperialUnit () {
+        setUnit(imperialUnit)
+    }
+
+    function setLightTheme () {
+        classList.remove('dark')
+        settings.theme = 'light'
+        settings.save()
+    }
+
+    function setMetricUnit () {
+        setUnit(metricUnit)
+    }
+
     function showPanel (panel) {
         panelElement.removeChild(panelElement.firstChild)
         panelElement.appendChild(panel.element)
@@ -100,20 +120,8 @@ function MainPanel () {
 
     var settings = Settings()
 
-    var settingsPanel = SettingsPanel(settings, function () {
-        settings.theme = 'dark'
-        settings.save()
-    }, function () {
-        settings.theme = 'light'
-        settings.save()
-    }, function () {
-        setUnit(imperialUnit)
-    }, function () {
-        setUnit(metricUnit)
-    })
-
-    if (settings.unit == 'imperial') setUnit(imperialUnit)
-    else setUnit(metricUnit)
+    var settingsPanel = SettingsPanel(settings,
+        setDarkTheme, setLightTheme, setImperialUnit, setMetricUnit)
 
     var classPrefix = 'MainPanel'
 
@@ -153,8 +161,16 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
+    var classList = element.classList
+
     var setAltitude = altitudePanel.setAltitude,
         setHeading = headingPanel.setHeading
+
+    if (settings.theme == 'dark') setDarkTheme()
+    else setLightTheme()
+
+    if (settings.unit == 'imperial') setImperialUnit()
+    else setMetricUnit()
 
 /*
     setInterval(function () {
