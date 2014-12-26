@@ -166,8 +166,8 @@ function MainPanel () {
     var setAltitude = altitudePanel.setAltitude,
         setHeading = headingPanel.setHeading
 
-    if (settings.theme == 'dark') setDarkTheme()
-    else setLightTheme()
+    if (settings.theme == 'light') setLightTheme()
+    else setDarkTheme()
 
     if (settings.unit == 'imperial') setImperialUnit()
     else setMetricUnit()

@@ -5,7 +5,7 @@
 }
 
 .SettingsPanel-metricButton,
-.SettingsPanel-lightButton {
+.SettingsPanel-darkButton {
     right: 0;
 }
 
@@ -16,8 +16,8 @@
 }
 
 .SettingsPanel-fieldLabel.theme,
-.SettingsPanel-darkButton,
-.SettingsPanel-lightButton {
+.SettingsPanel-lightButton,
+.SettingsPanel-darkButton {
     bottom: 52px;
 }
 
@@ -29,12 +29,12 @@
 
 @media (orientation: portrait) {
 
-    .SettingsPanel-lightButton,
+    .SettingsPanel-darkButton,
     .SettingsPanel-metricButton {
         width: 80px;
     }
 
-    .SettingsPanel-darkButton,
+    .SettingsPanel-lightButton,
     .SettingsPanel-imperialButton {
         right: 82px;
         width: 100px;
@@ -48,12 +48,12 @@
 
 @media (orientation: landscape) {
 
-    .SettingsPanel-lightButton,
+    .SettingsPanel-darkButton,
     .SettingsPanel-metricButton {
         width: 75px;
     }
 
-    .SettingsPanel-darkButton,
+    .SettingsPanel-lightButton,
     .SettingsPanel-imperialButton {
         right: 77px;
         width: 95px;
