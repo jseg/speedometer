@@ -1,10 +1,10 @@
 function StatusPanel () {
 
     function highlight () {
-        classList.add(highlightClass)
+        contentClassList.add(highlightClass)
         clearTimeout(highlightTimeout)
         highlightTimeout = setTimeout(function () {
-            classList.remove(highlightClass)
+            contentClassList.remove(highlightClass)
         }, 200)
     }
 
@@ -17,11 +17,14 @@ function StatusPanel () {
 
     var valueClassList = valueElement.classList
 
-    var element = Div(classPrefix)
-    element.appendChild(TextNode('GPS'))
-    element.appendChild(valueElement)
+    var contentElement = Div(classPrefix + '-content')
+    contentElement.appendChild(TextNode('GPS'))
+    contentElement.appendChild(valueElement)
 
-    var classList = element.classList
+    var contentClassList = contentElement.classList
+
+    var element = Div(classPrefix)
+    element.appendChild(contentElement)
 
     var error = false,
         errorClass = 'error'
