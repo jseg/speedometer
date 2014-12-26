@@ -3,8 +3,11 @@
     top: 2px;
     left: 2px;
     text-align: right;
-    background: #111;
+    background-color: #111;
     padding-right: 24px;
+}
+.light .SpeedLabel {
+    background-color: #eee;
 }
 
 .SpeedLabel-label {
@@ -14,6 +17,9 @@
     font-size: 20px;
     line-height: 20px;
     color: #999;
+}
+.light .SpeedLabel-label {
+    color: #666;
 }
 
 .SpeedLabel-arrow {
@@ -42,6 +48,9 @@
     font-size: 20px;
     line-height: 20px;
     color: #999;
+}
+.light .SpeedLabel-unit {
+    color: #666;
 }
 
 @media (orientation: portrait) {

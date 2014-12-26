@@ -1,7 +1,7 @@
 function MainPanel () {
 
     function setDarkTheme () {
-        classList.add('dark')
+        classList.remove('light')
         settings.theme = 'dark'
         settings.save()
     }
@@ -11,7 +11,7 @@ function MainPanel () {
     }
 
     function setLightTheme () {
-        classList.remove('dark')
+        classList.add('light')
         settings.theme = 'light'
         settings.save()
     }
@@ -161,7 +161,7 @@ function MainPanel () {
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
-    var classList = element.classList
+    var classList = document.body.classList
 
     var setAltitude = altitudePanel.setAltitude,
         setHeading = headingPanel.setHeading

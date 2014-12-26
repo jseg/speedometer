@@ -1,6 +1,9 @@
 .StatField-label {
     color: #999;
 }
+.light .StatField-label {
+    color: #666;
+}
 
 .StatField-value {
     font-weight: bold;

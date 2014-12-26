@@ -4,16 +4,24 @@
     left: 2px;
     height: 28px;
     line-height: 28px;
-    background: #111;
+    background-color: #111;
     color: #999;
     text-align: left;
     padding-left: 8px;
     transition: color 0.5s linear, background-color 0.5s linear;
 }
+.light .StatusPanel {
+    background-color: #eee;
+    color: #666;
+}
 .StatusPanel.highlight {
     color: #fff;
     background-color: #555;
     transition: none;
+}
+.light .StatusPanel.highlight {
+    color: #000;
+    background-color: #aaa;
 }
 
 .StatusPanel-value {
@@ -22,6 +30,9 @@
     right: 8px;
     color: #fff;
     font-weight: bold;
+}
+.light .StatusPanel-value {
+    color: #000;
 }
 .StatusPanel-value.error {
     color: #f00;

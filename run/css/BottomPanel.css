@@ -4,14 +4,20 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: #111;
+    background-color: #111;
     padding-right: 24px;
     text-align: right;
     transition: background-color 0.5s linear;
 }
+.light .BottomPanel {
+    background-color: #eee;
+}
 .BottomPanel.highlight {
     background-color: #555;
     transition: none;
+}
+.light .BottomPanel.highlight {
+    background-color: #aaa;
 }
 
 .BottomPanel-label {
@@ -23,7 +29,13 @@
     color: #999;
     transition: color 0.5s linear;
 }
+.light .BottomPanel-label {
+    color: #666;
+}
 .BottomPanel-label.highlight {
     color: #fff;
     transition: none;
+}
+.light .BottomPanel-label.highlight {
+    color: #000;
 }

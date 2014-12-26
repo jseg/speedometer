@@ -16,6 +16,9 @@
     line-height: 20px;
     color: #999;
 }
+.light .AltitudePanel-unit {
+    color: #666;
+}
 
 @media (orientation: portrait) {
     .AltitudePanel-integerPart {

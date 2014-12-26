@@ -1,16 +1,29 @@
 .Button {
     text-align: center;
-    background: #444;
+    background-color: #444;
     cursor: pointer;
     font-size: 16px;
 }
+.light .Button {
+    background-color: #bbb;
+}
 .Button.active {
     color: rgba(255, 255, 255, 0.5);
-    background: #222;
+    background-color: #222;
+}
+.light .Button.active {
+    color: #000;
+    background-color: #999;
 }
 .Button.selected {
-    background: #07f;
+    background-color: #07f;
+}
+.light .Button.selected {
+    color: #fff;
 }
 .Button.selected.active {
-    background: #05b;
+    background-color: #05b;
+}
+.light .Button.selected.active {
+    color: rgba(255, 255, 255, 0.5);
 }

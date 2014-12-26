@@ -11,6 +11,10 @@
     color: #999;
 }
 
+.light .HeadingPanel-unit {
+    color: #666;
+}
+
 @media (orientation: portrait) {
     .HeadingPanel-value {
         font-size: 34px;
