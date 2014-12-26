@@ -1,43 +1,66 @@
 .SettingsPanel-button {
     position: absolute;
-    bottom: 24px;
     height: 50px;
     line-height: 50px;
 }
 
-.SettingsPanel-metricButton {
-    right: 24px;
+.SettingsPanel-metricButton,
+.SettingsPanel-lightButton {
+    right: 0;
 }
 
 .SettingsPanel-fieldLabel {
     position: absolute;
-    bottom: 24px;
     font-size: 16px;
     line-height: 50px;
 }
 
+.SettingsPanel-fieldLabel.theme,
+.SettingsPanel-darkButton,
+.SettingsPanel-lightButton {
+    bottom: 52px;
+}
+
+.SettingsPanel-fieldLabel.units,
+.SettingsPanel-imperialButton,
+.SettingsPanel-metricButton {
+    bottom: 0;
+}
+
 @media (orientation: portrait) {
+
+    .SettingsPanel-lightButton,
     .SettingsPanel-metricButton {
         width: 80px;
     }
+
+    .SettingsPanel-darkButton,
     .SettingsPanel-imperialButton {
-        right: 106px;
+        right: 82px;
         width: 100px;
     }
+
     .SettingsPanel-fieldLabel {
-        right: 208px;
+        right: 184px;
     }
+
 }
 
 @media (orientation: landscape) {
+
+    .SettingsPanel-lightButton,
     .SettingsPanel-metricButton {
         width: 75px;
     }
+
+    .SettingsPanel-darkButton,
     .SettingsPanel-imperialButton {
-        right: 101px;
+        right: 77px;
         width: 95px;
     }
+
     .SettingsPanel-fieldLabel {
-        right: 198px;
+        right: 174px;
     }
+
 }
