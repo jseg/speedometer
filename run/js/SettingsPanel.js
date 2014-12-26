@@ -1,4 +1,5 @@
-function SettingsPanel (settings, imperialListener, metricListener) {
+function SettingsPanel (settings, darkListener,
+    lightListener, imperialListener, metricListener) {
 
     var classPrefix = 'SettingsPanel'
 
@@ -9,6 +10,7 @@ function SettingsPanel (settings, imperialListener, metricListener) {
     OnClick(darkButton, function () {
         lightButton.classList.remove(selectedClass)
         darkButton.classList.add(selectedClass)
+        darkListener()
     })
 
     var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
@@ -16,6 +18,7 @@ function SettingsPanel (settings, imperialListener, metricListener) {
     OnClick(lightButton, function () {
         darkButton.classList.remove(selectedClass)
         lightButton.classList.add(selectedClass)
+        lightListener()
     })
 
     var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')

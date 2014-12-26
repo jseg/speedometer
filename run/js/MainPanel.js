@@ -101,6 +101,12 @@ function MainPanel () {
     var settings = Settings()
 
     var settingsPanel = SettingsPanel(settings, function () {
+        settings.theme = 'dark'
+        settings.save()
+    }, function () {
+        settings.theme = 'light'
+        settings.save()
+    }, function () {
         setUnit(imperialUnit)
     }, function () {
         setUnit(metricUnit)
