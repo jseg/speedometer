@@ -6,10 +6,17 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var darkButton = Div(classPrefix + '-darkButton ' + classPrefix + '-button Button')
     darkButton.appendChild(TextNode('DARK'))
+    OnClick(darkButton, function () {
+        lightButton.classList.remove(selectedClass)
+        darkButton.classList.add(selectedClass)
+    })
 
     var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
     lightButton.appendChild(TextNode('LIGHT'))
-    lightButton.classList.add(selectedClass)
+    OnClick(lightButton, function () {
+        darkButton.classList.remove(selectedClass)
+        lightButton.classList.add(selectedClass)
+    })
 
     var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(TextNode('IMPERIAL'))
@@ -29,6 +36,9 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     if (settings.unit == 'imperial') imperialButton.classList.add(selectedClass)
     else metricButton.classList.add(selectedClass)
+
+    if (settings.theme == 'dark') darkButton.classList.add(selectedClass)
+    else lightButton.classList.add(selectedClass)
 
     var unitsLabelElement = Div(classPrefix + '-fieldLabel units')
     unitsLabelElement.appendChild(TextNode('UNITS:'))
