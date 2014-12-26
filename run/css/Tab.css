@@ -18,15 +18,27 @@
     background-color: rgba(136, 136, 136, 0);
     transition: background-color 0.2s linear;
 }
+.light .Tab-highlight {
+    background-color: rgba(119, 119, 119, 0);
+}
 .Tab-highlight.selected {
     background-color: rgba(129, 188, 255, 0);
+}
+.light .Tab-highlight.selected {
+    background-color: rgba(0, 60, 128, 0);
 }
 .Tab-highlight.highlight {
     background-color: #888;
     transition: none;
 }
+.light .Tab-highlight.highlight {
+    background-color: #777;
+}
 .Tab-highlight.highlight.selected {
-    background-color: rgb(129, 188, 255);
+    background-color: #81bcff;
+}
+.light .Tab-highlight.highlight.selected {
+    background-color: #003c80;
 }
 
 .Tab-content {
