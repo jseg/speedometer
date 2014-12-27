@@ -5,43 +5,63 @@ function SettingsPanel (settings, darkListener,
 
     var selectedClass = 'selected'
 
-    var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
-    lightButton.appendChild(TextNode('LIGHT'))
-    OnClick(lightButton, function () {
-        darkButton.classList.remove(selectedClass)
-        lightButton.classList.add(selectedClass)
+    var lightButtonContent = Div('Button-content')
+    lightButtonContent.appendChild(TextNode('LIGHT'))
+    OnClick(lightButtonContent, function () {
+        darkButtonContentClassList.remove(selectedClass)
+        lightButtonContentClassList.add(selectedClass)
         lightListener()
     })
 
-    var darkButton = Div(classPrefix + '-darkButton ' + classPrefix + '-button Button')
-    darkButton.appendChild(TextNode('DARK'))
-    OnClick(darkButton, function () {
-        lightButton.classList.remove(selectedClass)
-        darkButton.classList.add(selectedClass)
+    var lightButtonContentClassList = lightButtonContent.classList
+
+    var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
+    lightButton.appendChild(lightButtonContent)
+
+    var darkButtonContent = Div('Button-content')
+    darkButtonContent.appendChild(TextNode('DARK'))
+    OnClick(darkButtonContent, function () {
+        lightButtonContentClassList.remove(selectedClass)
+        darkButtonContentClassList.add(selectedClass)
         darkListener()
     })
 
-    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
-    imperialButton.appendChild(TextNode('IMPERIAL'))
-    OnClick(imperialButton, function () {
-        metricButton.classList.remove(selectedClass)
-        imperialButton.classList.add(selectedClass)
+    var darkButtonContentClassList = darkButtonContent.classList
+
+    var darkButton = Div(classPrefix + '-darkButton ' + classPrefix + '-button Button')
+    darkButton.appendChild(darkButtonContent)
+
+    var imperialButtonContent = Div('Button-content')
+    imperialButtonContent.appendChild(TextNode('IMPERIAL'))
+    OnClick(imperialButtonContent, function () {
+        metricButtonContentClassList.remove(selectedClass)
+        imperialButtonContentClassList.add(selectedClass)
         imperialListener()
     })
 
-    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
-    metricButton.appendChild(TextNode('METRIC'))
-    OnClick(metricButton, function () {
-        imperialButton.classList.remove(selectedClass)
-        metricButton.classList.add(selectedClass)
+    var imperialButtonContentClassList = imperialButtonContent.classList
+
+    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
+    imperialButton.appendChild(imperialButtonContent)
+
+    var metricButtonContent = Div('Button-content')
+    metricButtonContent.appendChild(TextNode('METRIC'))
+    OnClick(metricButtonContent, function () {
+        imperialButtonContentClassList.remove(selectedClass)
+        metricButtonContentClassList.add(selectedClass)
         metricListener()
     })
 
-    if (settings.unit == 'imperial') imperialButton.classList.add(selectedClass)
-    else metricButton.classList.add(selectedClass)
+    var metricButtonContentClassList = metricButtonContent.classList
 
-    if (settings.theme == 'light') lightButton.classList.add(selectedClass)
-    else darkButton.classList.add(selectedClass)
+    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
+    metricButton.appendChild(metricButtonContent)
+
+    if (settings.unit == 'imperial') imperialButtonContentClassList.add(selectedClass)
+    else metricButtonContentClassList.add(selectedClass)
+
+    if (settings.theme == 'light') lightButtonContentClassList.add(selectedClass)
+    else darkButtonContentClassList.add(selectedClass)
 
     var unitsLabelElement = Div(classPrefix + '-fieldLabel units')
     unitsLabelElement.appendChild(TextNode('UNITS:'))

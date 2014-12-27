@@ -1,9 +1,11 @@
 function ResetButton (clickListener) {
 
-    var element = Div('ResetButton Button')
-    element.appendChild(TextNode('RESET'))
+    var contentElement = Div('Button-content')
+    contentElement.appendChild(TextNode('RESET'))
+    OnClick(contentElement, clickListener)
 
-    OnClick(element, clickListener)
+    var element = Div('ResetButton Button')
+    element.appendChild(contentElement)
 
     return element
 

@@ -4,9 +4,9 @@ function StartStopButton (startListener, stopListener) {
 
     var node = TextNode('START')
 
-    var element = Div('StartStopButton Button')
-    element.appendChild(node)
-    OnClick(element, function () {
+    var contentElement = Div('Button-content')
+    contentElement.appendChild(node)
+    OnClick(contentElement, function () {
         if (started) {
             started = false
             node.nodeValue = 'START'
@@ -17,6 +17,9 @@ function StartStopButton (startListener, stopListener) {
             startListener()
         }
     })
+
+    var element = Div('StartStopButton Button')
+    element.appendChild(contentElement)
 
     return { element: element }
 

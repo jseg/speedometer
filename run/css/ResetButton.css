@@ -1,5 +1,6 @@
 .ResetButton {
     position: absolute;
+    height: 54px;
     line-height: 54px;
     font-size: 22px;
 }

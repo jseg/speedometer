@@ -1,29 +1,39 @@
 .Button {
-    text-align: center;
-    background-color: #444;
     cursor: pointer;
+    text-align: center;
     font-size: 16px;
+    background-color: #444;
+    transition: background-color 0.5s linear, color 0.5s linear;
 }
 .light .Button {
     background-color: #bbb;
 }
-.Button.active {
+
+.Button-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.Button-content.active {
     color: rgba(255, 255, 255, 0.5);
     background-color: #222;
 }
-.light .Button.active {
+.light .Button-content.active {
     color: #000;
     background-color: #999;
 }
-.Button.selected {
+.Button-content.selected {
     background-color: #07f;
 }
-.light .Button.selected {
+.light .Button-content.selected {
     color: #fff;
 }
-.Button.selected.active {
+.Button-content.selected.active {
     background-color: #05b;
 }
-.light .Button.selected.active {
+.light .Button-content.selected.active {
     color: rgba(255, 255, 255, 0.5);
 }
