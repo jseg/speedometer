@@ -1,15 +1,5 @@
-function SettingsPanel (settings, darkListener,
-    lightListener, imperialListener, metricListener) {
-
-    function setDarkTheme (classList) {
-        classList.remove('lightTheme')
-        classList.add('darkTheme')
-    }
-
-    function setLightTheme (classList) {
-        classList.remove('darkTheme')
-        classList.add('lightTheme')
-    }
+function SettingsPanel (settings, darkListener, lightListener,
+    imperialListener, metricListener, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'SettingsPanel'
 

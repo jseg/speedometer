@@ -1,4 +1,4 @@
-function AltitudeStatPanel (unit) {
+function AltitudeStatPanel (unit, setDarkTheme, setLightTheme) {
 
     function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
@@ -19,9 +19,9 @@ function AltitudeStatPanel (unit) {
 
     var classPrefix = 'AltitudeStatPanel'
 
-    var minValueField = StatField('MIN')
+    var minValueField = StatField('MIN', setDarkTheme, setLightTheme)
 
-    var maxValueField = StatField('MAX')
+    var maxValueField = StatField('MAX', setDarkTheme, setLightTheme)
 
     var element = Div(classPrefix)
     element.appendChild(minValueField.element)

@@ -24,6 +24,11 @@ function MainPanel () {
 
     }
 
+    function setDarkThemeTool (classList) {
+        classList.remove(lightThemeClass)
+        classList.add(darkThemeClass)
+    }
+
     function setImperialUnit () {
         setUnit(imperialUnit)
     }
@@ -50,6 +55,11 @@ function MainPanel () {
         settings.theme = 'light'
         settings.save()
 
+    }
+
+    function setLightThemeTool (classList) {
+        classList.remove(darkThemeClass)
+        classList.add(lightThemeClass)
     }
 
     function setMetricUnit () {
@@ -108,6 +118,9 @@ function MainPanel () {
 
     }
 
+    var darkThemeClass = 'darkTheme',
+        lightThemeClass = 'lightTheme'
+
     var requestAnimationFrame = window.requestAnimationFrame
     if (!requestAnimationFrame) {
         requestAnimationFrame = window.mozRequestAnimationFrame
@@ -120,7 +133,7 @@ function MainPanel () {
     var imperialUnit = ImperialUnit(),
         metricUnit = MetricUnit()
 
-    var speedLabel = SpeedLabel(metricUnit)
+    var speedLabel = SpeedLabel(metricUnit, setDarkThemeTool, setLightThemeTool)
 
     var tabs = Tabs(function () {
         showPanel(tripTimePanel)
@@ -138,26 +151,30 @@ function MainPanel () {
         showPanel(altitudePanel)
     }, function () {
         showPanel(headingPanel)
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
-    var tripTimePanel = TripTimePanel()
+    var tripTimePanel = TripTimePanel(setDarkThemeTool, setLightThemeTool)
 
-    var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
+    var tripDistancePanel = TripDistancePanel(tripDistance,
+        metricUnit, setDarkThemeTool, setLightThemeTool)
 
-    var altitudePanel = AltitudePanel(metricUnit)
+    var altitudePanel = AltitudePanel(metricUnit,
+        setDarkThemeTool, setLightThemeTool)
 
-    var headingPanel = HeadingPanel()
+    var headingPanel = HeadingPanel(setDarkThemeTool, setLightThemeTool)
 
-    var clockPanel = ClockPanel()
+    var clockPanel = ClockPanel(setDarkThemeTool, setLightThemeTool)
 
-    var maxSpeedPanel = MaxSpeedPanel(metricUnit)
+    var maxSpeedPanel = MaxSpeedPanel(metricUnit, setDarkThemeTool, setLightThemeTool)
 
-    var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
+    var averageSpeedPanel = AverageSpeedPanel(tripDistance,
+        tripTimePanel, metricUnit, setDarkThemeTool, setLightThemeTool)
 
     var settings = Settings()
 
     var settingsPanel = SettingsPanel(settings,
-        setDarkTheme, setLightTheme, setImperialUnit, setMetricUnit)
+        setDarkTheme, setLightTheme, setImperialUnit,
+        setMetricUnit, setDarkThemeTool, setLightThemeTool)
 
     var classPrefix = 'MainPanel'
 
@@ -171,7 +188,7 @@ function MainPanel () {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
     var startStopButton = StartStopButton(function () {
         started = true
@@ -182,9 +199,9 @@ function MainPanel () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
-    var statusPanel = StatusPanel()
+    var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool)
 
     var contentElement = Div(classPrefix + '-content')
     contentElement.appendChild(speedLabel.element)

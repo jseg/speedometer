@@ -1,4 +1,5 @@
-function StartStopButton (startListener, stopListener) {
+function StartStopButton (startListener,
+    stopListener, setDarkTheme, setLightTheme) {
 
     var started = false
 
@@ -28,16 +29,12 @@ function StartStopButton (startListener, stopListener) {
     return {
         element: element,
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            contentClassList.remove('lightTheme')
-            contentClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(contentClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            contentClassList.remove('darkTheme')
-            contentClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(contentClassList)
         },
     }
 

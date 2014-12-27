@@ -1,4 +1,4 @@
-function HeadingPanel () {
+function HeadingPanel (setDarkTheme, setLightTheme) {
 
     function update () {
         var value
@@ -55,12 +55,9 @@ function HeadingPanel () {
             }, 200)
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
-            unitClassList.remove('lightTheme')
-            unitClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
         },
         setHeading: function (_heading) {
             if (typeof _heading == 'number' && isFinite(_heading)) {
@@ -91,12 +88,9 @@ function HeadingPanel () {
             update()
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
-            unitClassList.remove('darkTheme')
-            unitClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
         },
     }
 

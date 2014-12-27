@@ -1,4 +1,4 @@
-function SpeedLabel (unit) {
+function SpeedLabel (unit, setDarkTheme, setLightTheme) {
 
     function update () {
         var integerPart, fractionalPart, arrow

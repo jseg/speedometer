@@ -1,3 +1,4 @@
-function HeadingTab (listener) {
-    return OneLineTab('HEADING', 'HeadingTab', listener)
+function HeadingTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('HEADING', 'HeadingTab',
+        listener, setDarkTheme, setLightTheme)
 }

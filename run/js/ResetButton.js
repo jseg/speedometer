@@ -1,4 +1,4 @@
-function ResetButton (clickListener) {
+function ResetButton (clickListener, setDarkTheme, setLightTheme) {
 
     var contentElement = Div('Button-content')
     contentElement.appendChild(TextNode('RESET'))
@@ -14,16 +14,12 @@ function ResetButton (clickListener) {
     return {
         element: element,
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            contentClassList.remove('lightTheme')
-            contentClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(contentClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            contentClassList.remove('darkTheme')
-            contentClassList.add('lightTheme')
+            setLightTheme(classList)
+            setDarkTheme(contentClassList)
         },
     }
 

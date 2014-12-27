@@ -1,3 +1,4 @@
-function AltitudeTab (listener) {
-    return OneLineTab('ALTITUDE', 'AltitudeTab', listener)
+function AltitudeTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('ALTITUDE', 'AltitudeTab',
+        listener, setDarkTheme, setLightTheme)
 }

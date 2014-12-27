@@ -1,3 +1,4 @@
-function SettingsTab (listener) {
-    return OneLineTab('SETTINGS', 'SettingsTab', listener)
+function SettingsTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('SETTINGS', 'SettingsTab',
+        listener, setDarkTheme, setLightTheme)
 }

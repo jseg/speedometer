@@ -1,4 +1,4 @@
-function AltitudePanel (unit) {
+function AltitudePanel (unit, setDarkTheme, setLightTheme) {
 
     function update () {
         var integerPart, fractionalPart
@@ -39,7 +39,7 @@ function AltitudePanel (unit) {
 
     var labelClassList = labelElement.classList
 
-    var altitudeStatPanel = AltitudeStatPanel(unit)
+    var altitudeStatPanel = AltitudeStatPanel(unit, setDarkTheme, setLightTheme)
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
@@ -93,21 +93,15 @@ function AltitudePanel (unit) {
             update()
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
-            unitClassList.remove('lightTheme')
-            unitClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
             altitudeStatPanel.setDarkTheme()
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
-            unitClassList.remove('darkTheme')
-            unitClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
             altitudeStatPanel.setLightTheme()
         },
         setUnit: function (_unit) {

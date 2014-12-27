@@ -1,4 +1,4 @@
-function ClockPanel () {
+function ClockPanel (setDarkTheme, setLightTheme) {
 
     var classPrefix = 'ClockPanel'
 
@@ -44,16 +44,12 @@ function ClockPanel () {
             }, 200)
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
         },
         update: function () {
             var date = new Date

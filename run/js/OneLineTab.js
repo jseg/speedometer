@@ -1,4 +1,4 @@
-function OneLineTab (line, className, listener) {
+function OneLineTab (line, className, listener, setDarkTheme, setLightTheme) {
 
     var highlightElement = Div('Tab-highlight')
     highlightElement.appendChild(TextNode(line))
@@ -43,20 +43,14 @@ function OneLineTab (line, className, listener) {
             highlightClassList.add(selectedClass)
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            buttonContentClassList.remove('lightTheme')
-            buttonContentClassList.add('darkTheme')
-            highlightClassList.remove('lightTheme')
-            highlightClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(buttonContentClassList)
+            setDarkTheme(highlightClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            buttonContentClassList.remove('darkTheme')
-            buttonContentClassList.add('lightTheme')
-            highlightClassList.remove('darkTheme')
-            highlightClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(buttonContentClassList)
+            setLightTheme(highlightClassList)
         },
     }
 

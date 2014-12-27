@@ -1,4 +1,4 @@
-function TripTimePanel () {
+function TripTimePanel (setDarkTheme, setLightTheme) {
 
     var classPrefix = 'ClockPanel'
 
@@ -55,16 +55,12 @@ function TripTimePanel () {
             if (startTime !== null) startTime = Date.now()
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
         },
         start: function () {
             startTime = Date.now()

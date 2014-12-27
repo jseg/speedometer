@@ -1,6 +1,6 @@
-function Tabs (tripTimeListener, tripDistanceListener,
-    clockListener, maxSpeedListener, averageSpeedListener,
-    settingsListener, altitudeListener, headingListener) {
+function Tabs (tripTimeListener, tripDistanceListener, clockListener,
+    maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener,
+    headingListener, setDarkTheme, setLightTheme) {
 
     function select (tab) {
         tabs.forEach(function (itemTab) {
@@ -14,42 +14,42 @@ function Tabs (tripTimeListener, tripDistanceListener,
     var tripDistanceTab = TripDistanceTab(function () {
         select(tripDistanceTab)
         tripDistanceListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var tripTimeTab = TripTimeTab(function () {
         select(tripTimeTab)
         tripTimeListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var maxSpeedTab = MaxSpeedTab(function () {
         select(maxSpeedTab)
         maxSpeedListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var averageSpeedTab = AverageSpeedTab(function () {
         select(averageSpeedTab)
         averageSpeedListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var altitudeTab = AltitudeTab(function () {
         select(altitudeTab)
         altitudeListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var headingTab = HeadingTab(function () {
         select(headingTab)
         headingListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var clockTab = ClockTab(function () {
         select(clockTab)
         clockListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var settingsTab = SettingsTab(function () {
         select(settingsTab)
         settingsListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var page1Tab = Page1Tab(function () {
         if (page != 1) {
@@ -68,7 +68,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.highlight()
         maxSpeedTab.highlight()
         averageSpeedTab.highlight()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var page2Tab = Page2Tab(function () {
         if (page != 2) {
@@ -87,7 +87,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         headingTab.highlight()
         settingsTab.highlight()
         clockTab.highlight()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var tabs = [tripDistanceTab, tripTimeTab, maxSpeedTab,
         averageSpeedTab, altitudeTab, headingTab, clockTab, settingsTab]

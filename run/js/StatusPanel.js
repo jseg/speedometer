@@ -1,4 +1,4 @@
-function StatusPanel () {
+function StatusPanel (setDarkTheme, setLightTheme) {
 
     function highlight () {
         classList.add(highlightClass)
@@ -39,16 +39,12 @@ function StatusPanel () {
             }
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            valueClassList.remove('lightTheme')
-            valueClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(valueClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            valueClassList.remove('darkTheme')
-            valueClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(valueClassList)
         },
         setStatus: function (value) {
             valueNode.nodeValue = value

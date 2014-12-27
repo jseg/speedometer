@@ -1,4 +1,4 @@
-function TwoLineTab (line1, line2, className, listener) {
+function TwoLineTab (line1, line2, className, listener, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'TwoLineTab ' + className
 
@@ -51,20 +51,14 @@ function TwoLineTab (line1, line2, className, listener) {
             highlightClassList.add(selectedClass)
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            buttonContentClassList.remove('lightTheme')
-            buttonContentClassList.add('darkTheme')
-            highlightClassList.remove('lightTheme')
-            highlightClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(buttonContentClassList)
+            setDarkTheme(highlightClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            buttonContentClassList.remove('darkTheme')
-            buttonContentClassList.add('lightTheme')
-            highlightClassList.remove('darkTheme')
-            highlightClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(buttonContentClassList)
+            setLightTheme(highlightClassList)
         },
     }
 

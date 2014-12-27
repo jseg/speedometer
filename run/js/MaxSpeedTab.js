@@ -1,3 +1,4 @@
-function MaxSpeedTab (listener) {
-    return TwoLineTab('MAX', 'SPEED', 'MaxSpeedTab', listener)
+function MaxSpeedTab (listener, setDarkTheme, setLightTheme) {
+    return TwoLineTab('MAX', 'SPEED', 'MaxSpeedTab',
+        listener, setDarkTheme, setLightTheme)
 }

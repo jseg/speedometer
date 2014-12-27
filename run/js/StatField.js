@@ -1,4 +1,4 @@
-function StatField (label) {
+function StatField (label, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'StatField'
 
@@ -32,12 +32,10 @@ function StatField (label) {
             integerPartNode.nodeValue = fractionalPartNode.nodeValue = '\xb7'
         },
         setDarkTheme: function () {
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
+            setDarkTheme(labelClassList)
         },
         setLightTheme: function () {
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
+            setLightTheme(labelClassList)
         },
         setValue: function (integerPart, fractionalPart) {
             integerPartNode.nodeValue = integerPart

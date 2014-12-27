@@ -1,3 +1,4 @@
-function AverageSpeedTab (listener) {
-    return TwoLineTab('AVERAGE', 'SPEED', 'AverageSpeedTab', listener)
+function AverageSpeedTab (listener, setDarkTheme, setLightTheme) {
+    return TwoLineTab('AVERAGE', 'SPEED', 'AverageSpeedTab',
+        listener, setDarkTheme, setLightTheme)
 }

@@ -1,4 +1,4 @@
-function MaxSpeedPanel (unit) {
+function MaxSpeedPanel (unit, setDarkTheme, setLightTheme) {
 
     function setSpeed (speed) {
         maxSpeed = speed
@@ -68,20 +68,14 @@ function MaxSpeedPanel (unit) {
             setSpeed(0)
         },
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
-            unitClassList.remove('lightTheme')
-            unitClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
-            unitClassList.remove('darkTheme')
-            unitClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
         },
         setSpeed: function (speed) {
             if (!isFinite(speed)) speed = 0
