@@ -2,8 +2,10 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    background-color: #444;
     transition: background-color 0.5s linear, color 0.5s linear;
+}
+.darkTheme .Button {
+    background-color: #444;
 }
 .lightTheme .Button {
     background-color: #bbb;
@@ -17,7 +19,7 @@
     left: 0;
 }
 
-.Button-content.active {
+.darkTheme .Button-content.active {
     color: rgba(255, 255, 255, 0.5);
     background-color: #222;
 }
@@ -28,11 +30,17 @@
 .Button-content.selected {
     background-color: #07f;
 }
+.darkTheme .Button-content.selected {
+    color: #fff;
+}
 .lightTheme .Button-content.selected {
     color: #fff;
 }
 .Button-content.selected.active {
     background-color: #05b;
+}
+.darkTheme .Button-content.selected.active {
+    color: rgba(255, 255, 255, 0.5);
 }
 .lightTheme .Button-content.selected.active {
     color: rgba(255, 255, 255, 0.5);

@@ -51,8 +51,10 @@
     right: 24px;
     font-size: 20px;
     line-height: 20px;
-    color: #999;
     transition: color 0.5s linear;
+}
+.darkTheme .SpeedLabel-unit {
+    color: #999;
 }
 .lightTheme .SpeedLabel-unit {
     color: #666;

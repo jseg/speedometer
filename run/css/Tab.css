@@ -15,26 +15,30 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(136, 136, 136, 0);
     transition: background-color 0.2s linear;
+}
+.darkTheme .Tab-highlight {
+    background-color: rgba(136, 136, 136, 0);
 }
 .lightTheme .Tab-highlight {
     background-color: rgba(119, 119, 119, 0);
 }
-.Tab-highlight.selected {
+.darkTheme .Tab-highlight.selected {
     background-color: rgba(129, 188, 255, 0);
 }
 .lightTheme .Tab-highlight.selected {
     background-color: rgba(0, 60, 128, 0);
 }
 .Tab-highlight.highlight {
-    background-color: #888;
     transition: none;
+}
+.darkTheme .Tab-highlight.highlight {
+    background-color: #888;
 }
 .lightTheme .Tab-highlight.highlight {
     background-color: #777;
 }
-.Tab-highlight.highlight.selected {
+.darkTheme .Tab-highlight.highlight.selected {
     background-color: #81bcff;
 }
 .lightTheme .Tab-highlight.highlight.selected {

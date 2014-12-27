@@ -4,17 +4,21 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #111;
     padding-right: 24px;
     text-align: right;
     transition: background-color 0.5s linear;
+}
+.darkTheme .BottomPanel {
+    background-color: #111;
 }
 .lightTheme .BottomPanel {
     background-color: #eee;
 }
 .BottomPanel.highlight {
-    background-color: #555;
     transition: none;
+}
+.darkTheme .BottomPanel.highlight {
+    background-color: #555;
 }
 .lightTheme .BottomPanel.highlight {
     background-color: #aaa;
@@ -26,15 +30,19 @@
     left: 8px;
     font-size: 15px;
     line-height: 15px;
-    color: #999;
     transition: color 0.5s linear;
+}
+.darkTheme .BottomPanel-label {
+    color: #999;
 }
 .lightTheme .BottomPanel-label {
     color: #666;
 }
 .BottomPanel-label.highlight {
-    color: #fff;
     transition: none;
+}
+.darkTheme .BottomPanel-label.highlight {
+    color: #fff;
 }
 .lightTheme .BottomPanel-label.highlight {
     color: #000;

@@ -8,9 +8,10 @@
 .HeadingPanel-unit {
     display: inline;
     font-weight: normal;
+}
+.darkTheme .HeadingPanel-unit {
     color: #999;
 }
-
 .lightTheme .HeadingPanel-unit {
     color: #666;
 }

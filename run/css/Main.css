@@ -15,8 +15,6 @@ html, body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #000;
-    color: #fff;
     height: 100%;
     cursor: default;
     font: normal 14px/18px FreeMono, monospace;
@@ -25,6 +23,10 @@ html, body {
     transition: background-color 0.5s linear;
 }
 
+body.darkTheme {
+    background-color: #000;
+    color: #fff;
+}
 body.lightTheme {
     background-color: #fff;
     color: #000;
