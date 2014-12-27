@@ -22,6 +22,7 @@ html, body {
     font: normal 14px/18px FreeMono, monospace;
     white-space: nowrap;
     overflow: hidden;
+    transition: background-color 0.5s linear;
 }
 
 body.light {

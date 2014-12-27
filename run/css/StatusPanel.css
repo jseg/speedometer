@@ -30,12 +30,14 @@
     right: 8px;
     color: #fff;
     font-weight: bold;
+    transition: color 0.5s linear;
 }
 .light .StatusPanel-value {
     color: #000;
 }
 .StatusPanel-value.error {
     color: #f00;
+    transition: none;
 }
 
 @media (orientation: portrait) {
