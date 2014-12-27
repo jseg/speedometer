@@ -15,10 +15,10 @@
     font-size: 14px;
     line-height: 20px;
 }
-.darkTheme .AltitudePanel-unit {
+.AltitudePanel-unit.darkTheme {
     color: #999;
 }
-.lightTheme .AltitudePanel-unit {
+.AltitudePanel-unit.lightTheme {
     color: #666;
 }
 

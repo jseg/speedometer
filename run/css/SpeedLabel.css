@@ -3,11 +3,13 @@
     top: 2px;
     left: 2px;
     text-align: right;
-    background-color: #111;
     padding-right: 24px;
     transition: background-color 0.5s linear;
 }
-.lightTheme .SpeedLabel {
+.SpeedLabel.darkTheme {
+    background-color: #111;
+}
+.SpeedLabel.lightTheme {
     background-color: #eee;
 }
 
@@ -17,10 +19,12 @@
     left: 8px;
     font-size: 20px;
     line-height: 20px;
-    color: #999;
     transition: color 0.5s linear;
 }
-.lightTheme .SpeedLabel-label {
+.SpeedLabel-label.darkTheme {
+    color: #999;
+}
+.SpeedLabel-label.lightTheme {
     color: #666;
 }
 
@@ -53,10 +57,10 @@
     line-height: 20px;
     transition: color 0.5s linear;
 }
-.darkTheme .SpeedLabel-unit {
+.SpeedLabel-unit.darkTheme {
     color: #999;
 }
-.lightTheme .SpeedLabel-unit {
+.SpeedLabel-unit.lightTheme {
     color: #666;
 }
 

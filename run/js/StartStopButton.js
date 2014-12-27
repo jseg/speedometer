@@ -18,9 +18,27 @@ function StartStopButton (startListener, stopListener) {
         }
     })
 
+    var contentClassList = contentElement.classList
+
     var element = Div('StartStopButton Button')
     element.appendChild(contentElement)
 
-    return { element: element }
+    var classList = element.classList
+
+    return {
+        element: element,
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            contentClassList.remove('lightTheme')
+            contentClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            contentClassList.remove('darkTheme')
+            contentClassList.add('lightTheme')
+        },
+    }
 
 }

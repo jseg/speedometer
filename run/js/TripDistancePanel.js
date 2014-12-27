@@ -32,6 +32,8 @@ function TripDistancePanel (tripDistance, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('TRIP DISTANCE'))
 
@@ -59,6 +61,22 @@ function TripDistancePanel (tripDistance, unit) {
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
+        },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+            unitClassList.remove('lightTheme')
+            unitClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+            unitClassList.remove('darkTheme')
+            unitClassList.add('lightTheme')
         },
         setUnit: function (_unit) {
             unit = _unit

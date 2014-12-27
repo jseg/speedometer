@@ -47,8 +47,12 @@ function SpeedLabel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SPEED'))
+
+    var labelClassList = labelElement.classList
 
     var arrowNode = TextNode('\u2195')
 
@@ -61,6 +65,8 @@ function SpeedLabel (unit) {
     element.appendChild(integerPartElement)
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
+
+    var classList = element.classList
 
     var speed = null,
         previousSpeed = null
@@ -77,6 +83,22 @@ function SpeedLabel (unit) {
 
     return {
         element: element,
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+            unitClassList.remove('lightTheme')
+            unitClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+            unitClassList.remove('darkTheme')
+            unitClassList.add('lightTheme')
+        },
         setSpeed: function (_speed) {
             if (typeof _speed == 'number' && isFinite(_speed)) {
 

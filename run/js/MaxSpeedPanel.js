@@ -33,6 +33,8 @@ function MaxSpeedPanel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('MAX SPEED'))
 
@@ -64,6 +66,22 @@ function MaxSpeedPanel (unit) {
         },
         reset: function () {
             setSpeed(0)
+        },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+            unitClassList.remove('lightTheme')
+            unitClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+            unitClassList.remove('darkTheme')
+            unitClassList.add('lightTheme')
         },
         setSpeed: function (speed) {
             if (!isFinite(speed)) speed = 0

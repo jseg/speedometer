@@ -54,6 +54,18 @@ function TripTimePanel () {
             tripTime = 0
             if (startTime !== null) startTime = Date.now()
         },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+        },
         start: function () {
             startTime = Date.now()
         },

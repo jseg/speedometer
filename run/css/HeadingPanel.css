@@ -9,10 +9,10 @@
     display: inline;
     font-weight: normal;
 }
-.darkTheme .HeadingPanel-unit {
+.HeadingPanel-unit.darkTheme {
     color: #999;
 }
-.lightTheme .HeadingPanel-unit {
+.HeadingPanel-unit.lightTheme {
     color: #666;
 }
 

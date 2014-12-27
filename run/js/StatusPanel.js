@@ -38,6 +38,18 @@ function StatusPanel () {
                 highlight()
             }
         },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            valueClassList.remove('lightTheme')
+            valueClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            valueClassList.remove('darkTheme')
+            valueClassList.add('lightTheme')
+        },
         setStatus: function (value) {
             valueNode.nodeValue = value
         },

@@ -5,6 +5,8 @@ function StatField (label) {
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode(label))
 
+    var labelClassList = labelElement.classList
+
     var integerPartNode = TextNode('\xb7')
 
     var integerPartElement = Div(classPrefix + '-integerPart')
@@ -28,6 +30,14 @@ function StatField (label) {
         element: element,
         reset: function () {
             integerPartNode.nodeValue = fractionalPartNode.nodeValue = '\xb7'
+        },
+        setDarkTheme: function () {
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
         },
         setValue: function (integerPart, fractionalPart) {
             integerPartNode.nodeValue = integerPart

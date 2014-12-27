@@ -102,6 +102,22 @@ function Tabs (tripTimeListener, tripDistanceListener,
     element.appendChild(page1Tab.element)
     element.appendChild(page2Tab.element)
 
-    return { element: element }
+    return {
+        element: element,
+        setDarkTheme: function () {
+            tabs.forEach(function (tab) {
+                tab.setDarkTheme()
+            })
+            page1Tab.setDarkTheme()
+            page2Tab.setDarkTheme()
+        },
+        setLightTheme: function () {
+            tabs.forEach(function (tab) {
+                tab.setLightTheme()
+            })
+            page1Tab.setLightTheme()
+            page2Tab.setLightTheme()
+        },
+    }
 
 }

@@ -44,6 +44,14 @@ function AltitudeStatPanel (unit) {
             altitude = _altitude
             if (started) update()
         },
+        setDarkTheme: function () {
+            minValueField.setDarkTheme()
+            maxValueField.setDarkTheme()
+        },
+        setLightTheme: function () {
+            minValueField.setLightTheme()
+            maxValueField.setLightTheme()
+        },
         setUnit: function (_unit) {
             unit = _unit
             if (started) update()

@@ -14,6 +14,8 @@ function OneLineTab (line, className, listener) {
     var element = Div(className + ' OneLineTab Tab Button')
     element.appendChild(buttonContentElement)
 
+    var classList = element.classList
+
     var selected = false
 
     var selectedClass = 'selected'
@@ -39,6 +41,22 @@ function OneLineTab (line, className, listener) {
             selected = true
             buttonContentClassList.add(selectedClass)
             highlightClassList.add(selectedClass)
+        },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            buttonContentClassList.remove('lightTheme')
+            buttonContentClassList.add('darkTheme')
+            highlightClassList.remove('lightTheme')
+            highlightClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            buttonContentClassList.remove('darkTheme')
+            buttonContentClassList.add('lightTheme')
+            highlightClassList.remove('darkTheme')
+            highlightClassList.add('lightTheme')
         },
     }
 

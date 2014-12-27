@@ -1,7 +1,7 @@
-.darkTheme .StatField-label {
+.StatField-label.darkTheme {
     color: #999;
 }
-.lightTheme .StatField-label {
+.StatField-label.lightTheme {
     color: #666;
 }
 

@@ -1,10 +1,27 @@
 function MainPanel () {
 
     function setDarkTheme () {
+
+        tripDistancePanel.setDarkTheme()
+        tripTimePanel.setDarkTheme()
+        altitudePanel.setDarkTheme()
+        headingPanel.setDarkTheme()
+        statusPanel.setDarkTheme()
+        speedLabel.setDarkTheme()
+        maxSpeedPanel.setDarkTheme()
+        averageSpeedPanel.setDarkTheme()
+        clockPanel.setDarkTheme()
+        settingsPanel.setDarkTheme()
+        tabs.setDarkTheme()
+        startStopButton.setDarkTheme()
+        resetButton.setDarkTheme()
+
         classList.remove('lightTheme')
         classList.add('darkTheme')
+
         settings.theme = 'dark'
         settings.save()
+
     }
 
     function setImperialUnit () {
@@ -12,10 +29,27 @@ function MainPanel () {
     }
 
     function setLightTheme () {
+
+        tripDistancePanel.setLightTheme()
+        tripTimePanel.setLightTheme()
+        altitudePanel.setLightTheme()
+        headingPanel.setLightTheme()
+        statusPanel.setLightTheme()
+        speedLabel.setLightTheme()
+        maxSpeedPanel.setLightTheme()
+        averageSpeedPanel.setLightTheme()
+        clockPanel.setLightTheme()
+        settingsPanel.setLightTheme()
+        tabs.setLightTheme()
+        startStopButton.setLightTheme()
+        resetButton.setLightTheme()
+
         classList.add('lightTheme')
         classList.add('darkTheme')
+
         settings.theme = 'light'
         settings.save()
+
     }
 
     function setMetricUnit () {
@@ -157,7 +191,7 @@ function MainPanel () {
     contentElement.appendChild(panelElement)
     contentElement.appendChild(statusPanel.element)
     contentElement.appendChild(tabs.element)
-    contentElement.appendChild(resetButton)
+    contentElement.appendChild(resetButton.element)
     contentElement.appendChild(startStopButton.element)
 
     var element = Div(classPrefix)

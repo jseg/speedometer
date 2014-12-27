@@ -43,6 +43,18 @@ function ClockPanel () {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+        },
         update: function () {
             var date = new Date
             hourNode.nodeValue = TwoDigitPad(date.getHours())

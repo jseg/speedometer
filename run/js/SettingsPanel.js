@@ -1,6 +1,16 @@
 function SettingsPanel (settings, darkListener,
     lightListener, imperialListener, metricListener) {
 
+    function setDarkTheme (classList) {
+        classList.remove('lightTheme')
+        classList.add('darkTheme')
+    }
+
+    function setLightTheme (classList) {
+        classList.remove('darkTheme')
+        classList.add('lightTheme')
+    }
+
     var classPrefix = 'SettingsPanel'
 
     var selectedClass = 'selected'
@@ -18,6 +28,8 @@ function SettingsPanel (settings, darkListener,
     var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
     lightButton.appendChild(lightButtonContent)
 
+    var lightButtonClassList = lightButton.classList
+
     var darkButtonContent = Div('Button-content')
     darkButtonContent.appendChild(TextNode('DARK'))
     OnClick(darkButtonContent, function () {
@@ -30,6 +42,8 @@ function SettingsPanel (settings, darkListener,
 
     var darkButton = Div(classPrefix + '-darkButton ' + classPrefix + '-button Button')
     darkButton.appendChild(darkButtonContent)
+
+    var darkButtonClassList = darkButton.classList
 
     var imperialButtonContent = Div('Button-content')
     imperialButtonContent.appendChild(TextNode('IMPERIAL'))
@@ -44,6 +58,8 @@ function SettingsPanel (settings, darkListener,
     var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
     imperialButton.appendChild(imperialButtonContent)
 
+    var imperialButtonClassList = imperialButton.classList
+
     var metricButtonContent = Div('Button-content')
     metricButtonContent.appendChild(TextNode('METRIC'))
     OnClick(metricButtonContent, function () {
@@ -56,6 +72,8 @@ function SettingsPanel (settings, darkListener,
 
     var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
     metricButton.appendChild(metricButtonContent)
+
+    var metricButtonClassList = metricButton.classList
 
     if (settings.unit == 'imperial') imperialButtonContentClassList.add(selectedClass)
     else metricButtonContentClassList.add(selectedClass)
@@ -98,6 +116,30 @@ function SettingsPanel (settings, darkListener,
                 classList.remove(highlightClass)
                 labelClassList.remove(highlightClass)
             }, 200)
+        },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(lightButtonClassList)
+            setDarkTheme(lightButtonContentClassList)
+            setDarkTheme(darkButtonClassList)
+            setDarkTheme(darkButtonContentClassList)
+            setDarkTheme(imperialButtonClassList)
+            setDarkTheme(imperialButtonContentClassList)
+            setDarkTheme(metricButtonClassList)
+            setDarkTheme(metricButtonContentClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(lightButtonClassList)
+            setLightTheme(lightButtonContentClassList)
+            setLightTheme(darkButtonClassList)
+            setLightTheme(darkButtonContentClassList)
+            setLightTheme(imperialButtonClassList)
+            setLightTheme(imperialButtonContentClassList)
+            setLightTheme(metricButtonClassList)
+            setLightTheme(metricButtonContentClassList)
         },
     }
 

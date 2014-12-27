@@ -4,10 +4,10 @@
     font-size: 16px;
     transition: background-color 0.5s linear, color 0.5s linear;
 }
-.darkTheme .Button {
+.Button.darkTheme {
     background-color: #444;
 }
-.lightTheme .Button {
+.Button.lightTheme {
     background-color: #bbb;
 }
 
@@ -19,29 +19,29 @@
     left: 0;
 }
 
-.darkTheme .Button-content.active {
+.Button-content.active.darkTheme {
     color: rgba(255, 255, 255, 0.5);
     background-color: #222;
 }
-.lightTheme .Button-content.active {
+.Button-content.active.lightTheme {
     color: #000;
     background-color: #999;
 }
 .Button-content.selected {
     background-color: #07f;
 }
-.darkTheme .Button-content.selected {
+.Button-content.selected.darkTheme {
     color: #fff;
 }
-.lightTheme .Button-content.selected {
+.Button-content.selected.lightTheme {
     color: #fff;
 }
 .Button-content.selected.active {
     background-color: #05b;
 }
-.darkTheme .Button-content.selected.active {
+.Button-content.selected.active.darkTheme {
     color: rgba(255, 255, 255, 0.5);
 }
-.lightTheme .Button-content.selected.active {
+.Button-content.selected.active.lightTheme {
     color: rgba(255, 255, 255, 0.5);
 }

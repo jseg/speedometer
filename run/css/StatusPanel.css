@@ -8,22 +8,22 @@
     padding-left: 8px;
     transition: color 0.5s linear, background-color 0.5s linear;
 }
-.darkTheme .StatusPanel {
+.StatusPanel.darkTheme {
     background-color: #111;
     color: #999;
 }
-.lightTheme .StatusPanel {
+.StatusPanel.lightTheme {
     background-color: #eee;
     color: #666;
 }
 .StatusPanel.highlight {
     transition: none;
 }
-.darkTheme .StatusPanel.highlight {
+.StatusPanel.highlight.darkTheme {
     color: #fff;
     background-color: #555;
 }
-.lightTheme .StatusPanel.highlight {
+.StatusPanel.highlight.lightTheme {
     color: #000;
     background-color: #aaa;
 }
@@ -35,10 +35,10 @@
     font-weight: bold;
     transition: color 0.5s linear;
 }
-.darkTheme .StatusPanel-value {
+.StatusPanel-value.darkTheme {
     color: #fff;
 }
-.lightTheme .StatusPanel-value {
+.StatusPanel-value.lightTheme {
     color: #000;
 }
 .StatusPanel-value.error {

@@ -17,31 +17,31 @@
     left: 0;
     transition: background-color 0.2s linear;
 }
-.darkTheme .Tab-highlight {
+.Tab-highlight.darkTheme {
     background-color: rgba(136, 136, 136, 0);
 }
-.lightTheme .Tab-highlight {
+.Tab-highlight.lightTheme {
     background-color: rgba(119, 119, 119, 0);
 }
-.darkTheme .Tab-highlight.selected {
+.Tab-highlight.selected.darkTheme {
     background-color: rgba(129, 188, 255, 0);
 }
-.lightTheme .Tab-highlight.selected {
+.Tab-highlight.selected.lightTheme {
     background-color: rgba(0, 60, 128, 0);
 }
 .Tab-highlight.highlight {
     transition: none;
 }
-.darkTheme .Tab-highlight.highlight {
+.Tab-highlight.highlight.darkTheme {
     background-color: #888;
 }
-.lightTheme .Tab-highlight.highlight {
+.Tab-highlight.highlight.lightTheme {
     background-color: #777;
 }
-.darkTheme .Tab-highlight.highlight.selected {
+.Tab-highlight.highlight.selected.darkTheme {
     background-color: #81bcff;
 }
-.lightTheme .Tab-highlight.highlight.selected {
+.Tab-highlight.highlight.selected.lightTheme {
     background-color: #003c80;
 }
 

@@ -15,10 +15,10 @@
     font-size: 14px;
     line-height: 20px;
 }
-.darkTheme .SpeedPanel-unit {
+.SpeedPanel-unit.darkTheme {
     color: #999;
 }
-.lightTheme .SpeedPanel-unit {
+.SpeedPanel-unit.lightTheme {
     color: #666;
 }
 

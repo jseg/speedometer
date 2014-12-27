@@ -32,6 +32,8 @@ function AltitudePanel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('ALTITUDE'))
 
@@ -89,6 +91,24 @@ function AltitudePanel (unit) {
             }
             altitudeStatPanel.setAltitude(altitude)
             update()
+        },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+            unitClassList.remove('lightTheme')
+            unitClassList.add('darkTheme')
+            altitudeStatPanel.setDarkTheme()
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+            unitClassList.remove('darkTheme')
+            unitClassList.add('lightTheme')
+            altitudeStatPanel.setLightTheme()
         },
         setUnit: function (_unit) {
             unit = _unit

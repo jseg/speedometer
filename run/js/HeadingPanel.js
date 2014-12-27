@@ -12,6 +12,8 @@ function HeadingPanel () {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(TextNode('\xb0'))
 
+    var unitClassList = unitElement.classList
+
     var valueNode = TextNode('\xb7')
 
     var valueElement = Div(classPrefix + '-value')
@@ -52,6 +54,14 @@ function HeadingPanel () {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            classList.remove('lightTheme')
+            classList.add('darkTheme')
+            labelClassList.remove('lightTheme')
+            labelClassList.add('darkTheme')
+            unitClassList.remove('lightTheme')
+            unitClassList.add('darkTheme')
+        },
         setHeading: function (_heading) {
             if (typeof _heading == 'number' && isFinite(_heading)) {
 
@@ -79,6 +89,14 @@ function HeadingPanel () {
             }
             compassPanel.setHeading(heading)
             update()
+        },
+        setLightTheme: function () {
+            classList.remove('darkTheme')
+            classList.add('lightTheme')
+            labelClassList.remove('darkTheme')
+            labelClassList.add('lightTheme')
+            unitClassList.remove('darkTheme')
+            unitClassList.add('lightTheme')
         },
     }
 
