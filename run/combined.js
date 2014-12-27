@@ -1,5 +1,5 @@
 (function () {
-function AltitudePanel (unit) {
+function AltitudePanel (unit, setDarkTheme, setLightTheme) {
 
     function update () {
         var integerPart, fractionalPart
@@ -33,12 +33,14 @@ function AltitudePanel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('ALTITUDE'))
 
     var labelClassList = labelElement.classList
 
-    var altitudeStatPanel = AltitudeStatPanel(unit)
+    var altitudeStatPanel = AltitudeStatPanel(unit, setDarkTheme, setLightTheme)
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
@@ -91,6 +93,18 @@ function AltitudePanel (unit) {
             altitudeStatPanel.setAltitude(altitude)
             update()
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+            altitudeStatPanel.setDarkTheme()
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+            altitudeStatPanel.setLightTheme()
+        },
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
@@ -101,7 +115,7 @@ function AltitudePanel (unit) {
 
 }
 ;
-function AltitudeStatPanel (unit) {
+function AltitudeStatPanel (unit, setDarkTheme, setLightTheme) {
 
     function setValue (field, altitude) {
         var formatAltitude = FormatAltitude(altitude, unit)
@@ -122,9 +136,9 @@ function AltitudeStatPanel (unit) {
 
     var classPrefix = 'AltitudeStatPanel'
 
-    var minValueField = StatField('MIN')
+    var minValueField = StatField('MIN', setDarkTheme, setLightTheme)
 
-    var maxValueField = StatField('MAX')
+    var maxValueField = StatField('MAX', setDarkTheme, setLightTheme)
 
     var element = Div(classPrefix)
     element.appendChild(minValueField.element)
@@ -147,6 +161,14 @@ function AltitudeStatPanel (unit) {
             altitude = _altitude
             if (started) update()
         },
+        setDarkTheme: function () {
+            minValueField.setDarkTheme()
+            maxValueField.setDarkTheme()
+        },
+        setLightTheme: function () {
+            minValueField.setLightTheme()
+            maxValueField.setLightTheme()
+        },
         setUnit: function (_unit) {
             unit = _unit
             if (started) update()
@@ -162,8 +184,9 @@ function AltitudeStatPanel (unit) {
 
 }
 ;
-function AltitudeTab (listener) {
-    return OneLineTab('ALTITUDE', 'AltitudeTab', listener)
+function AltitudeTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('ALTITUDE', 'AltitudeTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
 function AveragePosition (positions) {
@@ -183,7 +206,8 @@ function AveragePosition (positions) {
 
 }
 ;
-function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
+function AverageSpeedPanel (tripDistance,
+    tripTimePanel, unit, setDarkTheme, setLightTheme) {
 
     function update () {
 
@@ -218,6 +242,8 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('AVERAGE SPEED'))
 
@@ -247,6 +273,16 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+        },
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.speedLabel
@@ -256,11 +292,12 @@ function AverageSpeedPanel (tripDistance, tripTimePanel, unit) {
 
 }
 ;
-function AverageSpeedTab (listener) {
-    return TwoLineTab('AVERAGE', 'SPEED', 'AverageSpeedTab', listener)
+function AverageSpeedTab (listener, setDarkTheme, setLightTheme) {
+    return TwoLineTab('AVERAGE', 'SPEED', 'AverageSpeedTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
-function ClockPanel () {
+function ClockPanel (setDarkTheme, setLightTheme) {
 
     var classPrefix = 'ClockPanel'
 
@@ -305,6 +342,14 @@ function ClockPanel () {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+        },
         update: function () {
             var date = new Date
             hourNode.nodeValue = TwoDigitPad(date.getHours())
@@ -315,8 +360,9 @@ function ClockPanel () {
 
 }
 ;
-function ClockTab (listener) {
-    return OneLineTab('CLOCK', 'ClockTab', listener)
+function ClockTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('CLOCK', 'ClockTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
 function CompassPanel () {
@@ -476,7 +522,7 @@ function FormatAltitude (altitude, unit) {
 
 }
 ;
-function HeadingPanel () {
+function HeadingPanel (setDarkTheme, setLightTheme) {
 
     function update () {
         var value
@@ -489,6 +535,8 @@ function HeadingPanel () {
 
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(TextNode('\xb0'))
+
+    var unitClassList = unitElement.classList
 
     var valueNode = TextNode('\xb7')
 
@@ -530,6 +578,11 @@ function HeadingPanel () {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+        },
         setHeading: function (_heading) {
             if (typeof _heading == 'number' && isFinite(_heading)) {
 
@@ -558,12 +611,18 @@ function HeadingPanel () {
             compassPanel.setHeading(heading)
             update()
         },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+        },
     }
 
 }
 ;
-function HeadingTab (listener) {
-    return OneLineTab('HEADING', 'HeadingTab', listener)
+function HeadingTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('HEADING', 'HeadingTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
 function ImperialUnit () {
@@ -578,6 +637,72 @@ function ImperialUnit () {
 }
 ;
 function MainPanel () {
+
+    function setDarkTheme () {
+
+        tripDistancePanel.setDarkTheme()
+        tripTimePanel.setDarkTheme()
+        altitudePanel.setDarkTheme()
+        headingPanel.setDarkTheme()
+        statusPanel.setDarkTheme()
+        speedLabel.setDarkTheme()
+        maxSpeedPanel.setDarkTheme()
+        averageSpeedPanel.setDarkTheme()
+        clockPanel.setDarkTheme()
+        settingsPanel.setDarkTheme()
+        tabs.setDarkTheme()
+        startStopButton.setDarkTheme()
+        resetButton.setDarkTheme()
+
+        classList.remove('lightTheme')
+        classList.add('darkTheme')
+
+        settings.theme = 'dark'
+        settings.save()
+
+    }
+
+    function setDarkThemeTool (classList) {
+        classList.remove(lightThemeClass)
+        classList.add(darkThemeClass)
+    }
+
+    function setImperialUnit () {
+        setUnit(imperialUnit)
+    }
+
+    function setLightTheme () {
+
+        tripDistancePanel.setLightTheme()
+        tripTimePanel.setLightTheme()
+        altitudePanel.setLightTheme()
+        headingPanel.setLightTheme()
+        statusPanel.setLightTheme()
+        speedLabel.setLightTheme()
+        maxSpeedPanel.setLightTheme()
+        averageSpeedPanel.setLightTheme()
+        clockPanel.setLightTheme()
+        settingsPanel.setLightTheme()
+        tabs.setLightTheme()
+        startStopButton.setLightTheme()
+        resetButton.setLightTheme()
+
+        classList.add('lightTheme')
+        classList.add('darkTheme')
+
+        settings.theme = 'light'
+        settings.save()
+
+    }
+
+    function setLightThemeTool (classList) {
+        classList.remove(darkThemeClass)
+        classList.add(lightThemeClass)
+    }
+
+    function setMetricUnit () {
+        setUnit(metricUnit)
+    }
 
     function showPanel (panel) {
         panelElement.removeChild(panelElement.firstChild)
@@ -631,6 +756,9 @@ function MainPanel () {
 
     }
 
+    var darkThemeClass = 'darkTheme',
+        lightThemeClass = 'lightTheme'
+
     var requestAnimationFrame = window.requestAnimationFrame
     if (!requestAnimationFrame) {
         requestAnimationFrame = window.mozRequestAnimationFrame
@@ -643,7 +771,7 @@ function MainPanel () {
     var imperialUnit = ImperialUnit(),
         metricUnit = MetricUnit()
 
-    var speedLabel = SpeedLabel(metricUnit)
+    var speedLabel = SpeedLabel(metricUnit, setDarkThemeTool, setLightThemeTool)
 
     var tabs = Tabs(function () {
         showPanel(tripTimePanel)
@@ -661,32 +789,30 @@ function MainPanel () {
         showPanel(altitudePanel)
     }, function () {
         showPanel(headingPanel)
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
-    var tripTimePanel = TripTimePanel()
+    var tripTimePanel = TripTimePanel(setDarkThemeTool, setLightThemeTool)
 
-    var tripDistancePanel = TripDistancePanel(tripDistance, metricUnit)
+    var tripDistancePanel = TripDistancePanel(tripDistance,
+        metricUnit, setDarkThemeTool, setLightThemeTool)
 
-    var altitudePanel = AltitudePanel(metricUnit)
+    var altitudePanel = AltitudePanel(metricUnit,
+        setDarkThemeTool, setLightThemeTool)
 
-    var headingPanel = HeadingPanel()
+    var headingPanel = HeadingPanel(setDarkThemeTool, setLightThemeTool)
 
-    var clockPanel = ClockPanel()
+    var clockPanel = ClockPanel(setDarkThemeTool, setLightThemeTool)
 
-    var maxSpeedPanel = MaxSpeedPanel(metricUnit)
+    var maxSpeedPanel = MaxSpeedPanel(metricUnit, setDarkThemeTool, setLightThemeTool)
 
-    var averageSpeedPanel = AverageSpeedPanel(tripDistance, tripTimePanel, metricUnit)
+    var averageSpeedPanel = AverageSpeedPanel(tripDistance,
+        tripTimePanel, metricUnit, setDarkThemeTool, setLightThemeTool)
 
     var settings = Settings()
 
-    var settingsPanel = SettingsPanel(settings, function () {
-        setUnit(imperialUnit)
-    }, function () {
-        setUnit(metricUnit)
-    })
-
-    if (settings.unit == 'imperial') setUnit(imperialUnit)
-    else setUnit(metricUnit)
+    var settingsPanel = SettingsPanel(settings,
+        setDarkTheme, setLightTheme, setImperialUnit,
+        setMetricUnit, setDarkThemeTool, setLightThemeTool)
 
     var classPrefix = 'MainPanel'
 
@@ -700,7 +826,7 @@ function MainPanel () {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
     var startStopButton = StartStopButton(function () {
         started = true
@@ -711,23 +837,31 @@ function MainPanel () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
-    })
+    }, setDarkThemeTool, setLightThemeTool)
 
-    var statusPanel = StatusPanel()
+    var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool)
 
     var contentElement = Div(classPrefix + '-content')
     contentElement.appendChild(speedLabel.element)
     contentElement.appendChild(panelElement)
     contentElement.appendChild(statusPanel.element)
     contentElement.appendChild(tabs.element)
-    contentElement.appendChild(resetButton)
+    contentElement.appendChild(resetButton.element)
     contentElement.appendChild(startStopButton.element)
 
     var element = Div(classPrefix)
     element.appendChild(contentElement)
 
+    var classList = document.body.classList
+
     var setAltitude = altitudePanel.setAltitude,
         setHeading = headingPanel.setHeading
+
+    if (settings.theme == 'light') setLightTheme()
+    else setDarkTheme()
+
+    if (settings.unit == 'imperial') setImperialUnit()
+    else setMetricUnit()
 
 /*
     setInterval(function () {
@@ -797,7 +931,7 @@ function MainPanel () {
 
 }
 ;
-function MaxSpeedPanel (unit) {
+function MaxSpeedPanel (unit, setDarkTheme, setLightTheme) {
 
     function setSpeed (speed) {
         maxSpeed = speed
@@ -832,6 +966,8 @@ function MaxSpeedPanel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('MAX SPEED'))
 
@@ -864,6 +1000,16 @@ function MaxSpeedPanel (unit) {
         reset: function () {
             setSpeed(0)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+        },
         setSpeed: function (speed) {
             if (!isFinite(speed)) speed = 0
             if (speed > maxSpeed) setSpeed(speed)
@@ -877,8 +1023,9 @@ function MaxSpeedPanel (unit) {
 
 }
 ;
-function MaxSpeedTab (listener) {
-    return TwoLineTab('MAX', 'SPEED', 'MaxSpeedTab', listener)
+function MaxSpeedTab (listener, setDarkTheme, setLightTheme) {
+    return TwoLineTab('MAX', 'SPEED', 'MaxSpeedTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
 function MetricUnit () {
@@ -925,16 +1072,21 @@ function OnClick (element, listener) {
 
 }
 ;
-function OneLineTab (line, className, listener) {
+function OneLineTab (line, className, listener, setDarkTheme, setLightTheme) {
 
     var highlightElement = Div('Tab-highlight')
     highlightElement.appendChild(TextNode(line))
 
     var highlightClassList = highlightElement.classList
 
+    var buttonContentElement = Div('Button-content')
+    buttonContentElement.appendChild(highlightElement)
+    OnClick(buttonContentElement, listener)
+
+    var buttonContentClassList = buttonContentElement.classList
+
     var element = Div(className + ' OneLineTab Tab Button')
-    element.appendChild(highlightElement)
-    OnClick(element, listener)
+    element.appendChild(buttonContentElement)
 
     var classList = element.classList
 
@@ -949,7 +1101,7 @@ function OneLineTab (line, className, listener) {
         element: element,
         deselect: function () {
             selected = false
-            classList.remove(selectedClass)
+            buttonContentClassList.remove(selectedClass)
             highlightClassList.remove(selectedClass)
         },
         highlight: function () {
@@ -961,44 +1113,75 @@ function OneLineTab (line, className, listener) {
         },
         select: function () {
             selected = true
-            classList.add(selectedClass)
+            buttonContentClassList.add(selectedClass)
             highlightClassList.add(selectedClass)
+        },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(buttonContentClassList)
+            setDarkTheme(highlightClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(buttonContentClassList)
+            setLightTheme(highlightClassList)
         },
     }
 
 }
 ;
-function Page1Tab (listener) {
-    return OneLineTab('PAGE 1', 'Page1Tab', listener)
+function Page1Tab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('PAGE 1', 'Page1Tab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
-function Page2Tab (listener) {
-    return OneLineTab('PAGE 2', 'Page2Tab', listener)
+function Page2Tab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('PAGE 2', 'Page2Tab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
-function ResetButton (clickListener) {
+function ResetButton (clickListener, setDarkTheme, setLightTheme) {
+
+    var contentElement = Div('Button-content')
+    contentElement.appendChild(TextNode('RESET'))
+    OnClick(contentElement, clickListener)
+
+    var contentClassList = contentElement.classList
 
     var element = Div('ResetButton Button')
-    element.appendChild(TextNode('RESET'))
+    element.appendChild(contentElement)
 
-    OnClick(element, clickListener)
+    var classList = element.classList
 
-    return element
+    return {
+        element: element,
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(contentClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setDarkTheme(contentClassList)
+        },
+    }
 
 }
 ;
 function Settings () {
 
-    var unit
+    var theme, unit
     try {
+        theme = localStorage.theme
         unit = localStorage.unit
     } catch (e) {
     }
 
     var that = {
+        theme: theme,
         unit: unit,
         save: function () {
             try {
+                localStorage.theme = that.theme
                 localStorage.unit = that.unit
             } catch (e) {
             }
@@ -1009,33 +1192,84 @@ function Settings () {
 
 }
 ;
-function SettingsPanel (settings, imperialListener, metricListener) {
+function SettingsPanel (settings, darkListener, lightListener,
+    imperialListener, metricListener, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'SettingsPanel'
 
     var selectedClass = 'selected'
 
-    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
-    imperialButton.appendChild(TextNode('IMPERIAL'))
-    OnClick(imperialButton, function () {
-        metricButton.classList.remove(selectedClass)
-        imperialButton.classList.add(selectedClass)
+    var lightButtonContent = Div('Button-content')
+    lightButtonContent.appendChild(TextNode('LIGHT'))
+    OnClick(lightButtonContent, function () {
+        darkButtonContentClassList.remove(selectedClass)
+        lightButtonContentClassList.add(selectedClass)
+        lightListener()
+    })
+
+    var lightButtonContentClassList = lightButtonContent.classList
+
+    var lightButton = Div(classPrefix + '-lightButton ' + classPrefix + '-button Button')
+    lightButton.appendChild(lightButtonContent)
+
+    var lightButtonClassList = lightButton.classList
+
+    var darkButtonContent = Div('Button-content')
+    darkButtonContent.appendChild(TextNode('DARK'))
+    OnClick(darkButtonContent, function () {
+        lightButtonContentClassList.remove(selectedClass)
+        darkButtonContentClassList.add(selectedClass)
+        darkListener()
+    })
+
+    var darkButtonContentClassList = darkButtonContent.classList
+
+    var darkButton = Div(classPrefix + '-darkButton ' + classPrefix + '-button Button')
+    darkButton.appendChild(darkButtonContent)
+
+    var darkButtonClassList = darkButton.classList
+
+    var imperialButtonContent = Div('Button-content')
+    imperialButtonContent.appendChild(TextNode('IMPERIAL'))
+    OnClick(imperialButtonContent, function () {
+        metricButtonContentClassList.remove(selectedClass)
+        imperialButtonContentClassList.add(selectedClass)
         imperialListener()
     })
 
-    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
-    metricButton.appendChild(TextNode('METRIC'))
-    OnClick(metricButton, function () {
-        imperialButton.classList.remove(selectedClass)
-        metricButton.classList.add(selectedClass)
+    var imperialButtonContentClassList = imperialButtonContent.classList
+
+    var imperialButton = Div(classPrefix + '-imperialButton ' + classPrefix + '-button Button')
+    imperialButton.appendChild(imperialButtonContent)
+
+    var imperialButtonClassList = imperialButton.classList
+
+    var metricButtonContent = Div('Button-content')
+    metricButtonContent.appendChild(TextNode('METRIC'))
+    OnClick(metricButtonContent, function () {
+        imperialButtonContentClassList.remove(selectedClass)
+        metricButtonContentClassList.add(selectedClass)
         metricListener()
     })
 
-    if (settings.unit == 'imperial') imperialButton.classList.add(selectedClass)
-    else metricButton.classList.add(selectedClass)
+    var metricButtonContentClassList = metricButtonContent.classList
 
-    var fieldLabelElement = Div(classPrefix + '-fieldLabel')
-    fieldLabelElement.appendChild(TextNode('UNITS:'))
+    var metricButton = Div(classPrefix + '-metricButton ' + classPrefix + '-button Button')
+    metricButton.appendChild(metricButtonContent)
+
+    var metricButtonClassList = metricButton.classList
+
+    if (settings.unit == 'imperial') imperialButtonContentClassList.add(selectedClass)
+    else metricButtonContentClassList.add(selectedClass)
+
+    if (settings.theme == 'light') lightButtonContentClassList.add(selectedClass)
+    else darkButtonContentClassList.add(selectedClass)
+
+    var unitsLabelElement = Div(classPrefix + '-fieldLabel units')
+    unitsLabelElement.appendChild(TextNode('UNITS:'))
+
+    var themeLabelElement = Div(classPrefix + '-fieldLabel theme')
+    themeLabelElement.appendChild(TextNode('THEME:'))
 
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('SETTINGS'))
@@ -1044,7 +1278,10 @@ function SettingsPanel (settings, imperialListener, metricListener) {
 
     var element = Div('BottomPanel')
     element.appendChild(labelElement)
-    element.appendChild(fieldLabelElement)
+    element.appendChild(themeLabelElement)
+    element.appendChild(lightButton)
+    element.appendChild(darkButton)
+    element.appendChild(unitsLabelElement)
     element.appendChild(imperialButton)
     element.appendChild(metricButton)
 
@@ -1064,15 +1301,40 @@ function SettingsPanel (settings, imperialListener, metricListener) {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(lightButtonClassList)
+            setDarkTheme(lightButtonContentClassList)
+            setDarkTheme(darkButtonClassList)
+            setDarkTheme(darkButtonContentClassList)
+            setDarkTheme(imperialButtonClassList)
+            setDarkTheme(imperialButtonContentClassList)
+            setDarkTheme(metricButtonClassList)
+            setDarkTheme(metricButtonContentClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(lightButtonClassList)
+            setLightTheme(lightButtonContentClassList)
+            setLightTheme(darkButtonClassList)
+            setLightTheme(darkButtonContentClassList)
+            setLightTheme(imperialButtonClassList)
+            setLightTheme(imperialButtonContentClassList)
+            setLightTheme(metricButtonClassList)
+            setLightTheme(metricButtonContentClassList)
+        },
     }
 
 }
 ;
-function SettingsTab (listener) {
-    return OneLineTab('SETTINGS', 'SettingsTab', listener)
+function SettingsTab (listener, setDarkTheme, setLightTheme) {
+    return OneLineTab('SETTINGS', 'SettingsTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
-function SpeedLabel (unit) {
+function SpeedLabel (unit, setDarkTheme, setLightTheme) {
 
     function update () {
         var integerPart, fractionalPart, arrow
@@ -1121,8 +1383,12 @@ function SpeedLabel (unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode('SPEED'))
+
+    var labelClassList = labelElement.classList
 
     var arrowNode = TextNode('\u2195')
 
@@ -1135,6 +1401,8 @@ function SpeedLabel (unit) {
     element.appendChild(integerPartElement)
     element.appendChild(fractionalPartElement)
     element.appendChild(unitElement)
+
+    var classList = element.classList
 
     var speed = null,
         previousSpeed = null
@@ -1151,6 +1419,16 @@ function SpeedLabel (unit) {
 
     return {
         element: element,
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+        },
         setSpeed: function (_speed) {
             if (typeof _speed == 'number' && isFinite(_speed)) {
 
@@ -1203,15 +1481,16 @@ function SpeedLabel (unit) {
 
 }
 ;
-function StartStopButton (startListener, stopListener) {
+function StartStopButton (startListener,
+    stopListener, setDarkTheme, setLightTheme) {
 
     var started = false
 
     var node = TextNode('START')
 
-    var element = Div('StartStopButton Button')
-    element.appendChild(node)
-    OnClick(element, function () {
+    var contentElement = Div('Button-content')
+    contentElement.appendChild(node)
+    OnClick(contentElement, function () {
         if (started) {
             started = false
             node.nodeValue = 'START'
@@ -1223,16 +1502,35 @@ function StartStopButton (startListener, stopListener) {
         }
     })
 
-    return { element: element }
+    var contentClassList = contentElement.classList
+
+    var element = Div('StartStopButton Button')
+    element.appendChild(contentElement)
+
+    var classList = element.classList
+
+    return {
+        element: element,
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(contentClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(contentClassList)
+        },
+    }
 
 }
 ;
-function StatField (label) {
+function StatField (label, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'StatField'
 
     var labelElement = Div(classPrefix + '-label')
     labelElement.appendChild(TextNode(label))
+
+    var labelClassList = labelElement.classList
 
     var integerPartNode = TextNode('\xb7')
 
@@ -1258,6 +1556,12 @@ function StatField (label) {
         reset: function () {
             integerPartNode.nodeValue = fractionalPartNode.nodeValue = '\xb7'
         },
+        setDarkTheme: function () {
+            setDarkTheme(labelClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(labelClassList)
+        },
         setValue: function (integerPart, fractionalPart) {
             integerPartNode.nodeValue = integerPart
             fractionalPartNode.nodeValue = fractionalPart
@@ -1266,7 +1570,7 @@ function StatField (label) {
 
 }
 ;
-function StatusPanel () {
+function StatusPanel (setDarkTheme, setLightTheme) {
 
     function highlight () {
         classList.add(highlightClass)
@@ -1306,6 +1610,14 @@ function StatusPanel () {
                 highlight()
             }
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(valueClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(valueClassList)
+        },
         setStatus: function (value) {
             valueNode.nodeValue = value
         },
@@ -1320,9 +1632,9 @@ function StatusPanel () {
 
 }
 ;
-function Tabs (tripTimeListener, tripDistanceListener,
-    clockListener, maxSpeedListener, averageSpeedListener,
-    settingsListener, altitudeListener, headingListener) {
+function Tabs (tripTimeListener, tripDistanceListener, clockListener,
+    maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener,
+    headingListener, setDarkTheme, setLightTheme) {
 
     function select (tab) {
         tabs.forEach(function (itemTab) {
@@ -1336,42 +1648,42 @@ function Tabs (tripTimeListener, tripDistanceListener,
     var tripDistanceTab = TripDistanceTab(function () {
         select(tripDistanceTab)
         tripDistanceListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var tripTimeTab = TripTimeTab(function () {
         select(tripTimeTab)
         tripTimeListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var maxSpeedTab = MaxSpeedTab(function () {
         select(maxSpeedTab)
         maxSpeedListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var averageSpeedTab = AverageSpeedTab(function () {
         select(averageSpeedTab)
         averageSpeedListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var altitudeTab = AltitudeTab(function () {
         select(altitudeTab)
         altitudeListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var headingTab = HeadingTab(function () {
         select(headingTab)
         headingListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var clockTab = ClockTab(function () {
         select(clockTab)
         clockListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var settingsTab = SettingsTab(function () {
         select(settingsTab)
         settingsListener()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var page1Tab = Page1Tab(function () {
         if (page != 1) {
@@ -1390,7 +1702,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         tripTimeTab.highlight()
         maxSpeedTab.highlight()
         averageSpeedTab.highlight()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var page2Tab = Page2Tab(function () {
         if (page != 2) {
@@ -1409,7 +1721,7 @@ function Tabs (tripTimeListener, tripDistanceListener,
         headingTab.highlight()
         settingsTab.highlight()
         clockTab.highlight()
-    })
+    }, setDarkTheme, setLightTheme)
 
     var tabs = [tripDistanceTab, tripTimeTab, maxSpeedTab,
         averageSpeedTab, altitudeTab, headingTab, clockTab, settingsTab]
@@ -1424,7 +1736,23 @@ function Tabs (tripTimeListener, tripDistanceListener,
     element.appendChild(page1Tab.element)
     element.appendChild(page2Tab.element)
 
-    return { element: element }
+    return {
+        element: element,
+        setDarkTheme: function () {
+            tabs.forEach(function (tab) {
+                tab.setDarkTheme()
+            })
+            page1Tab.setDarkTheme()
+            page2Tab.setDarkTheme()
+        },
+        setLightTheme: function () {
+            tabs.forEach(function (tab) {
+                tab.setLightTheme()
+            })
+            page1Tab.setLightTheme()
+            page2Tab.setLightTheme()
+        },
+    }
 
 }
 ;
@@ -1466,7 +1794,7 @@ function TripDistance () {
 
 }
 ;
-function TripDistancePanel (tripDistance, unit) {
+function TripDistancePanel (tripDistance, unit, setDarkTheme, setLightTheme) {
 
     function update () {
 
@@ -1500,6 +1828,8 @@ function TripDistancePanel (tripDistance, unit) {
     var unitElement = Div(classPrefix + '-unit')
     unitElement.appendChild(unitNode)
 
+    var unitClassList = unitElement.classList
+
     var labelElement = Div('BottomPanel-label')
     labelElement.appendChild(TextNode('TRIP DISTANCE'))
 
@@ -1528,6 +1858,16 @@ function TripDistancePanel (tripDistance, unit) {
                 labelClassList.remove(highlightClass)
             }, 200)
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
+        },
         setUnit: function (_unit) {
             unit = _unit
             unitNode.nodeValue = unit.distanceLabel
@@ -1537,13 +1877,14 @@ function TripDistancePanel (tripDistance, unit) {
 
 }
 ;
-function TripDistanceTab (listener) {
-    var tab = TwoLineTab('TRIP', 'DISTANCE', 'TripDistanceTab', listener)
+function TripDistanceTab (listener, setDarkTheme, setLightTheme) {
+    var tab = TwoLineTab('TRIP', 'DISTANCE', 'TripDistanceTab',
+        listener, setDarkTheme, setLightTheme)
     tab.select()
     return tab
 }
 ;
-function TripTimePanel () {
+function TripTimePanel (setDarkTheme, setLightTheme) {
 
     var classPrefix = 'ClockPanel'
 
@@ -1599,6 +1940,14 @@ function TripTimePanel () {
             tripTime = 0
             if (startTime !== null) startTime = Date.now()
         },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+        },
         start: function () {
             startTime = Date.now()
         },
@@ -1630,8 +1979,9 @@ function TripTimePanel () {
 
 }
 ;
-function TripTimeTab (listener) {
-    return TwoLineTab('TRIP', 'TIME', 'TripTimeTab', listener)
+function TripTimeTab (listener, setDarkTheme, setLightTheme) {
+    return TwoLineTab('TRIP', 'TIME', 'TripTimeTab',
+        listener, setDarkTheme, setLightTheme)
 }
 ;
 function TwoDigitPad (n) {
@@ -1640,7 +1990,7 @@ function TwoDigitPad (n) {
     return n
 }
 ;
-function TwoLineTab (line1, line2, className, listener) {
+function TwoLineTab (line1, line2, className, listener, setDarkTheme, setLightTheme) {
 
     var classPrefix = 'TwoLineTab ' + className
 
@@ -1655,9 +2005,14 @@ function TwoLineTab (line1, line2, className, listener) {
 
     var highlightClassList = highlightElement.classList
 
+    var buttonContentElement = Div('Button-content')
+    buttonContentElement.appendChild(highlightElement)
+    OnClick(buttonContentElement, listener)
+
+    var buttonContentClassList = buttonContentElement.classList
+
     var element = Div(classPrefix + ' Tab Button')
-    element.appendChild(highlightElement)
-    OnClick(element, listener)
+    element.appendChild(buttonContentElement)
 
     var classList = element.classList
 
@@ -1672,7 +2027,7 @@ function TwoLineTab (line1, line2, className, listener) {
         element: element,
         deselect: function () {
             selected = false
-            classList.remove(selectedClass)
+            buttonContentClassList.remove(selectedClass)
             highlightClassList.remove(selectedClass)
         },
         highlight: function () {
@@ -1684,8 +2039,18 @@ function TwoLineTab (line1, line2, className, listener) {
         },
         select: function () {
             selected = true
-            classList.add(selectedClass)
+            buttonContentClassList.add(selectedClass)
             highlightClassList.add(selectedClass)
+        },
+        setDarkTheme: function () {
+            setDarkTheme(classList)
+            setDarkTheme(buttonContentClassList)
+            setDarkTheme(highlightClassList)
+        },
+        setLightTheme: function () {
+            setLightTheme(classList)
+            setLightTheme(buttonContentClassList)
+            setLightTheme(highlightClassList)
         },
     }
 

@@ -84,20 +84,14 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme) {
     return {
         element: element,
         setDarkTheme: function () {
-            classList.remove('lightTheme')
-            classList.add('darkTheme')
-            labelClassList.remove('lightTheme')
-            labelClassList.add('darkTheme')
-            unitClassList.remove('lightTheme')
-            unitClassList.add('darkTheme')
+            setDarkTheme(classList)
+            setDarkTheme(labelClassList)
+            setDarkTheme(unitClassList)
         },
         setLightTheme: function () {
-            classList.remove('darkTheme')
-            classList.add('lightTheme')
-            labelClassList.remove('darkTheme')
-            labelClassList.add('lightTheme')
-            unitClassList.remove('darkTheme')
-            unitClassList.add('lightTheme')
+            setLightTheme(classList)
+            setLightTheme(labelClassList)
+            setLightTheme(unitClassList)
         },
         setSpeed: function (_speed) {
             if (typeof _speed == 'number' && isFinite(_speed)) {
