@@ -58,6 +58,7 @@ function HeadingPanel (setDarkTheme, setLightTheme) {
             setDarkTheme(classList)
             setDarkTheme(labelClassList)
             setDarkTheme(unitClassList)
+            compassPanel.setDarkTheme()
         },
         setHeading: function (_heading) {
             if (typeof _heading == 'number' && isFinite(_heading)) {
@@ -91,6 +92,7 @@ function HeadingPanel (setDarkTheme, setLightTheme) {
             setLightTheme(classList)
             setLightTheme(labelClassList)
             setLightTheme(unitClassList)
+            compassPanel.setLightTheme()
         },
     }
 

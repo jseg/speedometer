@@ -21,10 +21,10 @@ function CompassPanel () {
             c.rotate(-Math.PI / 2)
             c.arc(0, 0, halfSize - lineWidth, 0, angle)
             c.closePath()
-            c.fillStyle = '#444'
+            c.fillStyle = angleBackgroundColor
             c.fill()
             c.lineJoin = 'round'
-            c.strokeStyle = '#999'
+            c.strokeStyle = angleBorderColor
             c.stroke()
             c.restore()
 
@@ -38,12 +38,12 @@ function CompassPanel () {
                 c.lineWidth = lineWidth
                 c.moveTo(0, halfSize * 0.98)
                 c.lineTo(0, halfSize * 0.95)
-                c.strokeStyle = '#999'
+                c.strokeStyle = smallBarColor
             } else {
                 c.lineWidth = size * 0.03
                 c.moveTo(0, halfSize * 0.98)
                 c.lineTo(0, halfSize * 0.92)
-                c.strokeStyle = '#fff'
+                c.strokeStyle = bigBarColor
             }
             c.stroke()
             c.rotate(Math.PI / 30)
@@ -58,7 +58,7 @@ function CompassPanel () {
             c.textBaseline = 'top'
             c.fillStyle = '#f00'
             c.fillText('N', 0, radius)
-            c.fillStyle = '#999'
+            c.fillStyle = textColor
             c.rotate(Math.PI / 2)
             c.fillText('E', 0, radius)
             c.rotate(Math.PI / 2)
@@ -71,6 +71,9 @@ function CompassPanel () {
         c.restore()
 
     }
+
+    var textColor, bigBarColor, smallBarColor,
+        angleBorderColor, angleBackgroundColor
 
     var canvas = document.createElement('canvas')
     canvas.className = 'CompassPanel'
@@ -88,8 +91,24 @@ function CompassPanel () {
             canvas.width = canvas.height = size
             render()
         },
+        setDarkTheme: function () {
+            angleBorderColor = '#999'
+            angleBackgroundColor = '#444'
+            textColor = '#999'
+            bigBarColor = '#fff'
+            smallBarColor = '#999'
+            render()
+        },
         setHeading: function (_heading) {
             heading = _heading
+            render()
+        },
+        setLightTheme: function () {
+            angleBorderColor = '#666'
+            angleBackgroundColor = '#bbb'
+            textColor = '#666'
+            bigBarColor = '#000'
+            smallBarColor = '#666'
             render()
         },
     }
