@@ -19,7 +19,7 @@ function ResetButton (clickListener, setDarkTheme, setLightTheme) {
         },
         setLightTheme: function () {
             setLightTheme(classList)
-            setDarkTheme(contentClassList)
+            setLightTheme(contentClassList)
         },
     }
 
