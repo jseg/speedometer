@@ -225,6 +225,7 @@ function MainPanel () {
     if (settings.unit == 'imperial') setImperialUnit()
     else setMetricUnit()
 
+    window.setHeading = setHeading
 /*
     setInterval(function () {
         updatePosition({
