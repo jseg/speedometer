@@ -5,7 +5,7 @@
     height: 28px;
     background-color: #111;
 }
-.light .StatusPanel {
+.lightTheme .StatusPanel {
     background-color: #eee;
 }
 
@@ -22,7 +22,7 @@
     padding-left: 8px;
     transition: color 0.5s linear, background-color 0.5s linear;
 }
-.light .StatusPanel-content {
+.lightTheme .StatusPanel-content {
     background-color: rgba(238, 238, 238, 0);
     color: #666;
 }
@@ -31,7 +31,7 @@
     background-color: #555;
     transition: none;
 }
-.light .StatusPanel-content.highlight {
+.lightTheme .StatusPanel-content.highlight {
     color: #000;
     background-color: #aaa;
 }
@@ -44,7 +44,7 @@
     font-weight: bold;
     transition: color 0.5s linear;
 }
-.light .StatusPanel-value {
+.lightTheme .StatusPanel-value {
     color: #000;
 }
 .StatusPanel-value.error {

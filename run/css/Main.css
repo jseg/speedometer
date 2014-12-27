@@ -25,7 +25,7 @@ html, body {
     transition: background-color 0.5s linear;
 }
 
-body.light {
+body.lightTheme {
     background-color: #fff;
     color: #000;
 }

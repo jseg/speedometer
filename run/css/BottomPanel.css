@@ -9,14 +9,14 @@
     text-align: right;
     transition: background-color 0.5s linear;
 }
-.light .BottomPanel {
+.lightTheme .BottomPanel {
     background-color: #eee;
 }
 .BottomPanel.highlight {
     background-color: #555;
     transition: none;
 }
-.light .BottomPanel.highlight {
+.lightTheme .BottomPanel.highlight {
     background-color: #aaa;
 }
 
@@ -29,13 +29,13 @@
     color: #999;
     transition: color 0.5s linear;
 }
-.light .BottomPanel-label {
+.lightTheme .BottomPanel-label {
     color: #666;
 }
 .BottomPanel-label.highlight {
     color: #fff;
     transition: none;
 }
-.light .BottomPanel-label.highlight {
+.lightTheme .BottomPanel-label.highlight {
     color: #000;
 }

@@ -5,7 +5,7 @@
     background-color: #444;
     transition: background-color 0.5s linear, color 0.5s linear;
 }
-.light .Button {
+.lightTheme .Button {
     background-color: #bbb;
 }
 
@@ -21,19 +21,19 @@
     color: rgba(255, 255, 255, 0.5);
     background-color: #222;
 }
-.light .Button-content.active {
+.lightTheme .Button-content.active {
     color: #000;
     background-color: #999;
 }
 .Button-content.selected {
     background-color: #07f;
 }
-.light .Button-content.selected {
+.lightTheme .Button-content.selected {
     color: #fff;
 }
 .Button-content.selected.active {
     background-color: #05b;
 }
-.light .Button-content.selected.active {
+.lightTheme .Button-content.selected.active {
     color: rgba(255, 255, 255, 0.5);
 }

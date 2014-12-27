@@ -1,7 +1,8 @@
 function MainPanel () {
 
     function setDarkTheme () {
-        classList.remove('light')
+        classList.remove('lightTheme')
+        classList.add('darkTheme')
         settings.theme = 'dark'
         settings.save()
     }
@@ -11,7 +12,8 @@ function MainPanel () {
     }
 
     function setLightTheme () {
-        classList.add('light')
+        classList.add('lightTheme')
+        classList.add('darkTheme')
         settings.theme = 'light'
         settings.save()
     }
