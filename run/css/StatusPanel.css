@@ -3,35 +3,23 @@
     top: 290px;
     left: 2px;
     height: 28px;
-    background-color: #111;
-}
-.lightTheme .StatusPanel {
-    background-color: #eee;
-}
-
-.StatusPanel-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     line-height: 28px;
-    background-color: rgba(17, 17, 17, 0);
+    background-color: #111;
     color: #999;
     text-align: left;
     padding-left: 8px;
     transition: color 0.5s linear, background-color 0.5s linear;
 }
-.lightTheme .StatusPanel-content {
-    background-color: rgba(238, 238, 238, 0);
+.lightTheme .StatusPanel {
+    background-color: #eee;
     color: #666;
 }
-.StatusPanel-content.highlight {
+.StatusPanel.highlight {
     color: #fff;
     background-color: #555;
     transition: none;
 }
-.lightTheme .StatusPanel-content.highlight {
+.lightTheme .StatusPanel.highlight {
     color: #000;
     background-color: #aaa;
 }
