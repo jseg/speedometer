@@ -1,4 +1,4 @@
-function ClockPanel (setDarkTheme, setLightTheme) {
+function ClockPanel (setDarkTheme, setLightTheme, enableTransition) {
 
     var classPrefix = 'ClockPanel'
 
@@ -34,6 +34,10 @@ function ClockPanel (setDarkTheme, setLightTheme) {
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

@@ -1,4 +1,4 @@
-function TripTimeTab (listener, setDarkTheme, setLightTheme) {
+function TripTimeTab (listener, setDarkTheme, setLightTheme, enableTransition) {
     return TwoLineTab('TRIP', 'TIME', 'TripTimeTab',
-        listener, setDarkTheme, setLightTheme)
+        listener, setDarkTheme, setLightTheme, enableTransition)
 }

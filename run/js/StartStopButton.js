@@ -1,5 +1,5 @@
-function StartStopButton (startListener,
-    stopListener, setDarkTheme, setLightTheme) {
+function StartStopButton (startListener, stopListener,
+    setDarkTheme, setLightTheme, enableTransition) {
 
     var started = false
 
@@ -28,6 +28,9 @@ function StartStopButton (startListener,
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+        },
         setDarkTheme: function () {
             setDarkTheme(classList)
             setDarkTheme(contentClassList)

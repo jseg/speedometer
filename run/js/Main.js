@@ -1,5 +1,9 @@
 (function () {
 
+    function enableTransition (classList) {
+        classList.add('enableTransition')
+    }
+
     function resize () {
         mainPanel.resize(innerWidth, innerHeight)
     }
@@ -22,10 +26,17 @@
         document.head.appendChild(style)
     })()
 
-    var mainPanel = MainPanel()
-    document.body.appendChild(mainPanel.element)
+    var mainPanel = MainPanel(enableTransition)
+
+    var body = document.body
+    body.appendChild(mainPanel.element)
 
     addEventListener('resize', resize)
     resize()
+
+    setTimeout(function () {
+        enableTransition(body.classList)
+        mainPanel.enableTransition()
+    }, 200)
 
 })()

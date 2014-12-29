@@ -1,4 +1,5 @@
-function OneLineTab (line, className, listener, setDarkTheme, setLightTheme) {
+function OneLineTab (line, className, listener,
+    setDarkTheme, setLightTheme, enableTransition) {
 
     var highlightElement = Div('Tab-highlight')
     highlightElement.appendChild(TextNode(line))
@@ -29,6 +30,10 @@ function OneLineTab (line, className, listener, setDarkTheme, setLightTheme) {
             selected = false
             buttonContentClassList.remove(selectedClass)
             highlightClassList.remove(selectedClass)
+        },
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(highlightClassList)
         },
         highlight: function () {
             highlightClassList.add(highlightClass)

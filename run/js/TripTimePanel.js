@@ -1,4 +1,4 @@
-function TripTimePanel (setDarkTheme, setLightTheme) {
+function TripTimePanel (setDarkTheme, setLightTheme, enableTransition) {
 
     var classPrefix = 'ClockPanel'
 
@@ -38,6 +38,10 @@ function TripTimePanel (setDarkTheme, setLightTheme) {
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         getTripTime: function () {
             return tripTime
         },

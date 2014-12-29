@@ -1,4 +1,4 @@
-function MaxSpeedPanel (unit, setDarkTheme, setLightTheme) {
+function MaxSpeedPanel (unit, setDarkTheme, setLightTheme, enableTransition) {
 
     function setSpeed (speed) {
         maxSpeed = speed
@@ -55,6 +55,10 @@ function MaxSpeedPanel (unit, setDarkTheme, setLightTheme) {
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

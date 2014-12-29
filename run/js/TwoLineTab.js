@@ -1,4 +1,5 @@
-function TwoLineTab (line1, line2, className, listener, setDarkTheme, setLightTheme) {
+function TwoLineTab (line1, line2, className,
+    listener, setDarkTheme, setLightTheme, enableTransition) {
 
     var classPrefix = 'TwoLineTab ' + className
 
@@ -37,6 +38,10 @@ function TwoLineTab (line1, line2, className, listener, setDarkTheme, setLightTh
             selected = false
             buttonContentClassList.remove(selectedClass)
             highlightClassList.remove(selectedClass)
+        },
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(highlightClassList)
         },
         highlight: function () {
             highlightClassList.add(highlightClass)

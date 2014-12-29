@@ -1,5 +1,6 @@
-function SettingsPanel (settings, darkListener, lightListener,
-    imperialListener, metricListener, setDarkTheme, setLightTheme) {
+function SettingsPanel (settings, darkListener,
+    lightListener, imperialListener, metricListener,
+    setDarkTheme, setLightTheme, enableTransition) {
 
     var classPrefix = 'SettingsPanel'
 
@@ -98,6 +99,16 @@ function SettingsPanel (settings, darkListener, lightListener,
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+            enableTransition(lightButtonClassList)
+            enableTransition(darkButtonClassList)
+            enableTransition(imperialButtonClassList)
+            enableTransition(metricButtonClassList)
+            enableTransition(themeLabelElement.classList)
+            enableTransition(unitsLabelElement.classList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

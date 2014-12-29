@@ -1,4 +1,4 @@
-function AltitudePanel (unit, setDarkTheme, setLightTheme) {
+function AltitudePanel (unit, setDarkTheme, setLightTheme, enableTransition) {
 
     function update () {
         var integerPart, fractionalPart
@@ -62,6 +62,10 @@ function AltitudePanel (unit, setDarkTheme, setLightTheme) {
         reset: altitudeStatPanel.reset,
         start: altitudeStatPanel.start,
         stop: altitudeStatPanel.stop,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

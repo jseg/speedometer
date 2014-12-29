@@ -1,4 +1,5 @@
-function TripDistancePanel (tripDistance, unit, setDarkTheme, setLightTheme) {
+function TripDistancePanel (tripDistance, unit,
+    setDarkTheme, setLightTheme, enableTransition) {
 
     function update () {
 
@@ -53,6 +54,10 @@ function TripDistancePanel (tripDistance, unit, setDarkTheme, setLightTheme) {
     return {
         element: element,
         update: update,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

@@ -15,6 +15,8 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+.Tab-highlight.enableTransition {
     transition: background-color 0.2s linear;
 }
 .Tab-highlight.darkTheme {
@@ -29,7 +31,7 @@
 .Tab-highlight.selected.lightTheme {
     background-color: rgba(0, 60, 128, 0);
 }
-.Tab-highlight.highlight {
+.Tab-highlight.highlight.enableTransition {
     transition: none;
 }
 .Tab-highlight.highlight.darkTheme {

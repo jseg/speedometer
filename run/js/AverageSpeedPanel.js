@@ -1,5 +1,5 @@
-function AverageSpeedPanel (tripDistance,
-    tripTimePanel, unit, setDarkTheme, setLightTheme) {
+function AverageSpeedPanel (tripDistance, tripTimePanel,
+    unit, setDarkTheme, setLightTheme, enableTransition) {
 
     function update () {
 
@@ -56,6 +56,10 @@ function AverageSpeedPanel (tripDistance,
         element: element,
         reset: update,
         update: update,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

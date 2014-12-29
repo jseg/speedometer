@@ -1,4 +1,4 @@
-function Page1Tab (listener, setDarkTheme, setLightTheme) {
-    return OneLineTab('PAGE 1', 'Page1Tab',
-        listener, setDarkTheme, setLightTheme)
+function Page1Tab (listener, setDarkTheme, setLightTheme, enableTransition) {
+    return OneLineTab('PAGE 1', 'Page1Tab', listener,
+        setDarkTheme, setLightTheme, enableTransition)
 }

@@ -1,4 +1,4 @@
-function ClockTab (listener, setDarkTheme, setLightTheme) {
-    return OneLineTab('CLOCK', 'ClockTab',
-        listener, setDarkTheme, setLightTheme)
+function ClockTab (listener, setDarkTheme, setLightTheme, enableTransition) {
+    return OneLineTab('CLOCK', 'ClockTab', listener,
+        setDarkTheme, setLightTheme, enableTransition)
 }

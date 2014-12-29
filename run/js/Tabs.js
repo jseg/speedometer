@@ -1,6 +1,6 @@
 function Tabs (tripTimeListener, tripDistanceListener, clockListener,
     maxSpeedListener, averageSpeedListener, settingsListener, altitudeListener,
-    headingListener, setDarkTheme, setLightTheme) {
+    headingListener, setDarkTheme, setLightTheme, enableTransition) {
 
     function select (tab) {
         tabs.forEach(function (itemTab) {
@@ -14,42 +14,42 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
     var tripDistanceTab = TripDistanceTab(function () {
         select(tripDistanceTab)
         tripDistanceListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var tripTimeTab = TripTimeTab(function () {
         select(tripTimeTab)
         tripTimeListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var maxSpeedTab = MaxSpeedTab(function () {
         select(maxSpeedTab)
         maxSpeedListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var averageSpeedTab = AverageSpeedTab(function () {
         select(averageSpeedTab)
         averageSpeedListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var altitudeTab = AltitudeTab(function () {
         select(altitudeTab)
         altitudeListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var headingTab = HeadingTab(function () {
         select(headingTab)
         headingListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var clockTab = ClockTab(function () {
         select(clockTab)
         clockListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var settingsTab = SettingsTab(function () {
         select(settingsTab)
         settingsListener()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var page1Tab = Page1Tab(function () {
         if (page != 1) {
@@ -68,7 +68,7 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
         tripTimeTab.highlight()
         maxSpeedTab.highlight()
         averageSpeedTab.highlight()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var page2Tab = Page2Tab(function () {
         if (page != 2) {
@@ -87,7 +87,7 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
         headingTab.highlight()
         settingsTab.highlight()
         clockTab.highlight()
-    }, setDarkTheme, setLightTheme)
+    }, setDarkTheme, setLightTheme, enableTransition)
 
     var tabs = [tripDistanceTab, tripTimeTab, maxSpeedTab,
         averageSpeedTab, altitudeTab, headingTab, clockTab, settingsTab]
@@ -104,6 +104,13 @@ function Tabs (tripTimeListener, tripDistanceListener, clockListener,
 
     return {
         element: element,
+        enableTransition: function () {
+            tabs.forEach(function (tab) {
+                tab.enableTransition()
+            })
+            page1Tab.enableTransition()
+            page2Tab.enableTransition()
+        },
         setDarkTheme: function () {
             tabs.forEach(function (tab) {
                 tab.setDarkTheme()

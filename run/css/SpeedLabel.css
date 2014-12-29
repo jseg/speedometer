@@ -4,6 +4,8 @@
     left: 2px;
     text-align: right;
     padding-right: 24px;
+}
+.SpeedLabel.enableTransition {
     transition: background-color 0.5s linear;
 }
 .SpeedLabel.darkTheme {
@@ -19,6 +21,8 @@
     left: 8px;
     font-size: 20px;
     line-height: 20px;
+}
+.SpeedLabel-label.enableTransition {
     transition: color 0.5s linear;
 }
 .SpeedLabel-label.darkTheme {
@@ -41,12 +45,16 @@
     display: inline;
     font-weight: bold;
     line-height: 154px;
+}
+.SpeedLabel-integerPart.enableTransition {
     transition: color 0.5s linear;
 }
 
 .SpeedLabel-fractionalPart {
     display: inline;
     font-weight: bold;
+}
+.SpeedLabel-fractionalPart.enableTransition {
     transition: color 0.5s linear;
 }
 
@@ -55,6 +63,8 @@
     right: 24px;
     font-size: 20px;
     line-height: 20px;
+}
+.SpeedLabel-unit.enableTransition {
     transition: color 0.5s linear;
 }
 .SpeedLabel-unit.darkTheme {

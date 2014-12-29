@@ -1,4 +1,4 @@
-function HeadingPanel (setDarkTheme, setLightTheme) {
+function HeadingPanel (setDarkTheme, setLightTheme, enableTransition) {
 
     function update () {
         var value
@@ -45,6 +45,10 @@ function HeadingPanel (setDarkTheme, setLightTheme) {
     return {
         element: element,
         resize: compassPanel.resize,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+        },
         highlight: function () {
             classList.add(highlightClass)
             labelClassList.add(highlightClass)

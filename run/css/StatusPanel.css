@@ -6,6 +6,8 @@
     line-height: 28px;
     text-align: left;
     padding-left: 8px;
+}
+.StatusPanel.enableTransition {
     transition: color 0.5s linear, background-color 0.5s linear;
 }
 .StatusPanel.darkTheme {
@@ -16,7 +18,7 @@
     background-color: #eee;
     color: #666;
 }
-.StatusPanel.highlight {
+.StatusPanel.highlight.enableTransition {
     transition: none;
 }
 .StatusPanel.highlight.darkTheme {
@@ -33,6 +35,8 @@
     top: 0;
     right: 8px;
     font-weight: bold;
+}
+.StatusPanel-value.enableTransition {
     transition: color 0.5s linear;
 }
 .StatusPanel-value.darkTheme {
@@ -43,6 +47,8 @@
 }
 .StatusPanel-value.error {
     color: #f00;
+}
+.StatusPanel-value.error.enableTransition {
     transition: none;
 }
 

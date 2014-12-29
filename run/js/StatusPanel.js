@@ -1,4 +1,4 @@
-function StatusPanel (setDarkTheme, setLightTheme) {
+function StatusPanel (setDarkTheme, setLightTheme, enableTransition) {
 
     function highlight () {
         classList.add(highlightClass)
@@ -31,6 +31,10 @@ function StatusPanel (setDarkTheme, setLightTheme) {
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(valueClassList)
+        },
         hideError: function () {
             if (error) {
                 error =false

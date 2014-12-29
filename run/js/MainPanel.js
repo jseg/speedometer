@@ -1,24 +1,23 @@
-function MainPanel () {
+function MainPanel (enableTransition) {
 
     function setDarkTheme () {
 
         tripDistancePanel.setDarkTheme()
         tripTimePanel.setDarkTheme()
-        altitudePanel.setDarkTheme()
-        headingPanel.setDarkTheme()
-        statusPanel.setDarkTheme()
-        speedLabel.setDarkTheme()
         maxSpeedPanel.setDarkTheme()
         averageSpeedPanel.setDarkTheme()
+        altitudePanel.setDarkTheme()
+        headingPanel.setDarkTheme()
         clockPanel.setDarkTheme()
         settingsPanel.setDarkTheme()
+
+        statusPanel.setDarkTheme()
+        speedLabel.setDarkTheme()
         tabs.setDarkTheme()
         startStopButton.setDarkTheme()
         resetButton.setDarkTheme()
 
-        classList.remove('lightTheme')
-        classList.add('darkTheme')
-
+        setDarkThemeTool(classList)
         settings.theme = 'dark'
         settings.save()
 
@@ -37,21 +36,20 @@ function MainPanel () {
 
         tripDistancePanel.setLightTheme()
         tripTimePanel.setLightTheme()
-        altitudePanel.setLightTheme()
-        headingPanel.setLightTheme()
-        statusPanel.setLightTheme()
-        speedLabel.setLightTheme()
         maxSpeedPanel.setLightTheme()
         averageSpeedPanel.setLightTheme()
+        altitudePanel.setLightTheme()
+        headingPanel.setLightTheme()
         clockPanel.setLightTheme()
         settingsPanel.setLightTheme()
+
+        statusPanel.setLightTheme()
+        speedLabel.setLightTheme()
         tabs.setLightTheme()
         startStopButton.setLightTheme()
         resetButton.setLightTheme()
 
-        classList.add('lightTheme')
-        classList.add('darkTheme')
-
+        setLightThemeTool(classList)
         settings.theme = 'light'
         settings.save()
 
@@ -133,7 +131,8 @@ function MainPanel () {
     var imperialUnit = ImperialUnit(),
         metricUnit = MetricUnit()
 
-    var speedLabel = SpeedLabel(metricUnit, setDarkThemeTool, setLightThemeTool)
+    var speedLabel = SpeedLabel(metricUnit,
+        setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var tabs = Tabs(function () {
         showPanel(tripTimePanel)
@@ -151,30 +150,35 @@ function MainPanel () {
         showPanel(altitudePanel)
     }, function () {
         showPanel(headingPanel)
-    }, setDarkThemeTool, setLightThemeTool)
+    }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
-    var tripTimePanel = TripTimePanel(setDarkThemeTool, setLightThemeTool)
+    var tripTimePanel = TripTimePanel(setDarkThemeTool,
+        setLightThemeTool, enableTransition)
 
     var tripDistancePanel = TripDistancePanel(tripDistance,
-        metricUnit, setDarkThemeTool, setLightThemeTool)
+        metricUnit, setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var altitudePanel = AltitudePanel(metricUnit,
-        setDarkThemeTool, setLightThemeTool)
+        setDarkThemeTool, setLightThemeTool, enableTransition)
 
-    var headingPanel = HeadingPanel(setDarkThemeTool, setLightThemeTool)
+    var headingPanel = HeadingPanel(setDarkThemeTool,
+        setLightThemeTool, enableTransition)
 
-    var clockPanel = ClockPanel(setDarkThemeTool, setLightThemeTool)
+    var clockPanel = ClockPanel(setDarkThemeTool,
+        setLightThemeTool, enableTransition)
 
-    var maxSpeedPanel = MaxSpeedPanel(metricUnit, setDarkThemeTool, setLightThemeTool)
+    var maxSpeedPanel = MaxSpeedPanel(metricUnit,
+        setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var averageSpeedPanel = AverageSpeedPanel(tripDistance,
-        tripTimePanel, metricUnit, setDarkThemeTool, setLightThemeTool)
+        tripTimePanel, metricUnit, setDarkThemeTool,
+        setLightThemeTool, enableTransition)
 
     var settings = Settings()
 
-    var settingsPanel = SettingsPanel(settings,
-        setDarkTheme, setLightTheme, setImperialUnit,
-        setMetricUnit, setDarkThemeTool, setLightThemeTool)
+    var settingsPanel = SettingsPanel(settings, setDarkTheme,
+        setLightTheme, setImperialUnit, setMetricUnit, setDarkThemeTool,
+        setLightThemeTool, enableTransition)
 
     var classPrefix = 'MainPanel'
 
@@ -188,7 +192,7 @@ function MainPanel () {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
-    }, setDarkThemeTool, setLightThemeTool)
+    }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var startStopButton = StartStopButton(function () {
         started = true
@@ -199,9 +203,9 @@ function MainPanel () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
-    }, setDarkThemeTool, setLightThemeTool)
+    }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
-    var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool)
+    var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var contentElement = Div(classPrefix + '-content')
     contentElement.appendChild(speedLabel.element)
@@ -225,7 +229,6 @@ function MainPanel () {
     if (settings.unit == 'imperial') setImperialUnit()
     else setMetricUnit()
 
-    window.setHeading = setHeading
 /*
     setInterval(function () {
         updatePosition({
@@ -267,6 +270,24 @@ function MainPanel () {
 
     return {
         element: element,
+        enableTransition: function () {
+
+            statusPanel.enableTransition()
+            speedLabel.enableTransition()
+            resetButton.enableTransition()
+            startStopButton.enableTransition()
+            tabs.enableTransition()
+
+            tripDistancePanel.enableTransition()
+            tripTimePanel.enableTransition()
+            maxSpeedPanel.enableTransition()
+            averageSpeedPanel.enableTransition()
+            altitudePanel.enableTransition()
+            headingPanel.enableTransition()
+            clockPanel.enableTransition()
+            settingsPanel.enableTransition()
+
+        },
         resize: function (windowWidth, windowHeight) {
 
             var width = 320,

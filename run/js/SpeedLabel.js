@@ -1,4 +1,4 @@
-function SpeedLabel (unit, setDarkTheme, setLightTheme) {
+function SpeedLabel (unit, setDarkTheme, setLightTheme, enableTransition) {
 
     function update () {
         var integerPart, fractionalPart, arrow
@@ -83,6 +83,13 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme) {
 
     return {
         element: element,
+        enableTransition: function () {
+            enableTransition(classList)
+            enableTransition(labelClassList)
+            enableTransition(integerPartElement.classList)
+            enableTransition(fractionalPartElement.classList)
+            enableTransition(unitClassList)
+        },
         setDarkTheme: function () {
             setDarkTheme(classList)
             setDarkTheme(labelClassList)

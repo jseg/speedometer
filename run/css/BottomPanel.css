@@ -6,6 +6,8 @@
     left: 0;
     padding-right: 24px;
     text-align: right;
+}
+.BottomPanel.enableTransition {
     transition: background-color 0.5s linear;
 }
 .BottomPanel.darkTheme {
@@ -14,7 +16,7 @@
 .BottomPanel.lightTheme {
     background-color: #eee;
 }
-.BottomPanel.highlight {
+.BottomPanel.highlight.enableTransition {
     transition: none;
 }
 .BottomPanel.highlight.darkTheme {
@@ -30,6 +32,8 @@
     left: 8px;
     font-size: 15px;
     line-height: 15px;
+}
+.BottomPanel-label.enableTransition {
     transition: color 0.5s linear;
 }
 .BottomPanel-label.darkTheme {
@@ -38,7 +42,7 @@
 .BottomPanel-label.lightTheme {
     color: #666;
 }
-.BottomPanel-label.highlight {
+.BottomPanel-label.highlight.enableTransition {
     transition: none;
 }
 .BottomPanel-label.highlight.darkTheme {
