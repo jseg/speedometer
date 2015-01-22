@@ -447,6 +447,21 @@ function CompassPanel () {
             c.restore()
 
         }
+
+        c.save()
+        c.rotate(angle)
+        c.beginPath()
+        c.lineJoin = 'round'
+        c.lineWidth = halfSize * 0.05
+        c.moveTo(0, halfSize * 0.3)
+        c.lineTo(0, -halfSize * 0.3)
+        c.moveTo(-halfSize * 0.15, -halfSize * 0.15)
+        c.lineTo(0, -halfSize * 0.3)
+        c.lineTo(halfSize * 0.15, -halfSize * 0.15)
+        c.strokeStyle = bigBarColor
+        c.stroke()
+        c.restore()
+
         c.restore()
 
     }
@@ -747,7 +762,7 @@ function MainPanel (enableTransition) {
 
     function setSpeed (speed) {
         speedLabel.setSpeed(speed)
-        if (started) maxSpeedPanel.setSpeed(speed)
+        if (started) maxSpeedPanel.setSpeed(speedLabel.getSpeed())
     }
 
     function setUnit (unit) {
@@ -1507,6 +1522,9 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme, enableTransition) {
             enableTransition(integerPartElement.classList)
             enableTransition(fractionalPartElement.classList)
             enableTransition(unitClassList)
+        },
+        getSpeed: function () {
+            return speed
         },
         setDarkTheme: function () {
             setDarkTheme(classList)
