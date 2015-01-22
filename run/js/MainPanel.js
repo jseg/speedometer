@@ -72,7 +72,7 @@ function MainPanel (enableTransition) {
 
     function setSpeed (speed) {
         speedLabel.setSpeed(speed)
-        if (started) maxSpeedPanel.setSpeed(speed)
+        if (started) maxSpeedPanel.setSpeed(speedLabel.getSpeed())
     }
 
     function setUnit (unit) {

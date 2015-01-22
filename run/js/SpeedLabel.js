@@ -90,6 +90,9 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme, enableTransition) {
             enableTransition(fractionalPartElement.classList)
             enableTransition(unitClassList)
         },
+        getSpeed: function () {
+            return speed
+        },
         setDarkTheme: function () {
             setDarkTheme(classList)
             setDarkTheme(labelClassList)
