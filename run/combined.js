@@ -884,15 +884,19 @@ function MainPanel (enableTransition) {
         altitudePanel.reset()
     }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
+    var wakeLock = WakeLock()
+
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
         altitudePanel.start()
+        wakeLock.lock()
     }, function () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
+        wakeLock.unlock()
     }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
@@ -2187,6 +2191,30 @@ function TwoLineTab (line1, line2, className,
             setLightTheme(buttonContentClassList)
             setLightTheme(highlightClassList)
         },
+    }
+
+}
+;
+function WakeLock () {
+
+    var lockFn, unlockFn
+
+    var lock
+
+    if (navigator.requestWakeLock) {
+        lockFn = function () {
+            lock = navigator.requestWakeLock('screen')
+        }
+        unlockFn = function () {
+            lock.unlock()
+        }
+    } else {
+        lockFn = unlockFn = function () {}
+    }
+
+    return {
+        lock: lockFn,
+        unlock: unlockFn,
     }
 
 }

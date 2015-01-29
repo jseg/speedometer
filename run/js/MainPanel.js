@@ -194,15 +194,19 @@ function MainPanel (enableTransition) {
         altitudePanel.reset()
     }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
+    var wakeLock = WakeLock()
+
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
         altitudePanel.start()
+        wakeLock.lock()
     }, function () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
+        wakeLock.unlock()
     }, setDarkThemeTool, setLightThemeTool, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)

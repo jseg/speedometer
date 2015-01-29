@@ -47,6 +47,7 @@ var files = [
     'TripTimeTab',
     'TwoDigitPad',
     'TwoLineTab',
+    'WakeLock',
     'Main',
 ]
 

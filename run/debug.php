@@ -73,5 +73,6 @@ echo_html(
     .'<script type="text/javascript" src="js/TripTimeTab.js"></script>'
     .'<script type="text/javascript" src="js/TwoDigitPad.js"></script>'
     .'<script type="text/javascript" src="js/TwoLineTab.js"></script>'
+    .'<script type="text/javascript" src="js/WakeLock.js"></script>'
     .'<script type="text/javascript" src="js/Main.js"></script>'
 );
