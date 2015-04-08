@@ -19,6 +19,16 @@ function echo_html ($html, $head, $body) {
                 .' href="../images/icons/32.png?'.$revisions['images/icons/32.png'].'" />'
                 .'<link rel="icon" type="image/png" sizes="64x64"'
                 .' href="../images/icons/64.png?'.$revisions['images/icons/64.png'].'" />'
+                .'<link rel="icon" type="image/png" sizes="90x90"'
+                .' href="../images/icons/90.png?'.$revisions['images/icons/90.png'].'" />'
+                .'<link rel="icon" type="image/png" sizes="120x120"'
+                .' href="../images/icons/120.png?'.$revisions['images/icons/120.png'].'" />'
+                .'<link rel="icon" type="image/png" sizes="128x128"'
+                .' href="../images/icons/128.png?'.$revisions['images/icons/128.png'].'" />'
+                .'<link rel="icon" type="image/png" sizes="256x256"'
+                .' href="../images/icons/256.png?'.$revisions['images/icons/256.png'].'" />'
+                .'<link rel="icon" type="image/png" sizes="512x512"'
+                .' href="../images/icons/512.png?'.$revisions['images/icons/512.png'].'" />'
                 .$head
             .'</head>'
             ."<body>$body</body>"

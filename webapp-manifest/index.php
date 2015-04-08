@@ -19,11 +19,11 @@ echo json_encode([
         '16' => '/images/icons/16.png?'.$revisions['images/icons/16.png'],
         '32' => '/images/icons/32.png?'.$revisions['images/icons/32.png'],
         '64' => '/images/icons/64.png?'.$revisions['images/icons/64.png'],
-        '90' => '/images/icons/90.png?3',
-        '120' => '/images/icons/120.png?3',
+        '90' => '/images/icons/90.png?'.$revisions['images/icons/90.png'],
+        '120' => '/images/icons/120.png?'.$revisions['images/icons/120.png'],
         '128' => '/images/icons/128.png?'.$revisions['images/icons/128.png'],
-        '256' => '/images/icons/256.png?3',
-        '512' => '/images/icons/512.png',
+        '256' => '/images/icons/256.png?'.$revisions['images/icons/256.png'],
+        '512' => '/images/icons/512.png?'.$revisions['images/icons/512.png'],
     ],
     'permissions' => [
         'geolocation' => [
