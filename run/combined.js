@@ -704,8 +704,6 @@ function MainPanel (enableTransition) {
         statusPanel.setDarkTheme()
         speedLabel.setDarkTheme()
         tabs.setDarkTheme()
-        startStopButton.setDarkTheme()
-        resetButton.setDarkTheme()
 
         setDarkThemeTool(classList)
         settings.theme = 'dark'
@@ -736,8 +734,6 @@ function MainPanel (enableTransition) {
         statusPanel.setLightTheme()
         speedLabel.setLightTheme()
         tabs.setLightTheme()
-        startStopButton.setLightTheme()
-        resetButton.setLightTheme()
 
         setLightThemeTool(classList)
         settings.theme = 'light'
@@ -882,7 +878,8 @@ function MainPanel (enableTransition) {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
-    }, setDarkThemeTool, setLightThemeTool, enableTransition)
+        startStopButton.reset()
+    }, enableTransition)
 
     var wakeLock = WakeLock()
 
@@ -897,7 +894,7 @@ function MainPanel (enableTransition) {
         tripTimePanel.stop()
         altitudePanel.stop()
         wakeLock.unlock()
-    }, setDarkThemeTool, setLightThemeTool, enableTransition)
+    }, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
 
@@ -1227,15 +1224,15 @@ function Page2Tab (listener, setDarkTheme, setLightTheme, enableTransition) {
         setDarkTheme, setLightTheme, enableTransition)
 }
 ;
-function ResetButton (clickListener, setDarkTheme, setLightTheme, enableTransition) {
+function ResetButton (clickListener, enableTransition) {
 
-    var contentElement = Div('Button-content')
+    var classPrefix = 'ResetButton'
+
+    var contentElement = Div(classPrefix + '-content Button-content')
     contentElement.appendChild(TextNode('RESET'))
     OnClick(contentElement, clickListener)
 
-    var contentClassList = contentElement.classList
-
-    var element = Div('ResetButton Button')
+    var element = Div(classPrefix + ' Button')
     element.appendChild(contentElement)
 
     var classList = element.classList
@@ -1244,14 +1241,6 @@ function ResetButton (clickListener, setDarkTheme, setLightTheme, enableTransiti
         element: element,
         enableTransition: function () {
             enableTransition(classList)
-        },
-        setDarkTheme: function () {
-            setDarkTheme(classList)
-            setDarkTheme(contentClassList)
-        },
-        setLightTheme: function () {
-            setLightTheme(classList)
-            setLightTheme(contentClassList)
         },
     }
 
@@ -1592,30 +1581,35 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme, enableTransition) {
 
 }
 ;
-function StartStopButton (startListener, stopListener,
-    setDarkTheme, setLightTheme, enableTransition) {
+function StartStopButton (startListener, stopListener, enableTransition) {
+
+    var classPrefix = 'StartStopButton'
 
     var started = false
 
     var node = TextNode('START')
 
-    var contentElement = Div('Button-content')
+    var contentElement = Div(classPrefix + '-content Button-content start')
     contentElement.appendChild(node)
     OnClick(contentElement, function () {
         if (started) {
             started = false
-            node.nodeValue = 'START'
+            node.nodeValue = 'RESUME'
+            contentClassList.remove('stop')
+            contentClassList.add('start')
             stopListener()
         } else {
             started = true
-            node.nodeValue = 'STOP'
+            node.nodeValue = 'PAUSE'
+            contentClassList.remove('start')
+            contentClassList.add('stop')
             startListener()
         }
     })
 
     var contentClassList = contentElement.classList
 
-    var element = Div('StartStopButton Button')
+    var element = Div(classPrefix + ' Button')
     element.appendChild(contentElement)
 
     var classList = element.classList
@@ -1625,13 +1619,8 @@ function StartStopButton (startListener, stopListener,
         enableTransition: function () {
             enableTransition(classList)
         },
-        setDarkTheme: function () {
-            setDarkTheme(classList)
-            setDarkTheme(contentClassList)
-        },
-        setLightTheme: function () {
-            setLightTheme(classList)
-            setLightTheme(contentClassList)
+        reset: function () {
+            if (!started) node.nodeValue = 'START'
         },
     }
 

@@ -6,8 +6,6 @@ function ResetButton (clickListener, enableTransition) {
     contentElement.appendChild(TextNode('RESET'))
     OnClick(contentElement, clickListener)
 
-    var contentClassList = contentElement.classList
-
     var element = Div(classPrefix + ' Button')
     element.appendChild(contentElement)
 
