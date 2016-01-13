@@ -3,6 +3,9 @@
     font-size: 28px;
 }
 
+.StartStopButton-content {
+    color: #fff;
+}
 .StartStopButton-content.start {
     background-color: #0a0;
 }
@@ -12,10 +15,10 @@
 .StartStopButton-content.active {
     color: rgba(255, 255, 255, 0.5);
 }
-.StartStopButton-content.start.active {
+.StartStopButton-content.active.start {
     background-color: #070;
 }
-.StartStopButton-content.stop.active {
+.StartStopButton-content.active.stop {
     background-color: #a50;
 }
 

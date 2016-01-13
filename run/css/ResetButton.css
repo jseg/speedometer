@@ -6,6 +6,7 @@
 }
 
 .ResetButton-content {
+    color: #fff;
     background-color: #e00;
 }
 .ResetButton-content.active {
