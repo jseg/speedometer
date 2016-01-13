@@ -308,7 +308,7 @@ function MainPanel (enableTransition) {
             var scale = windowWidth / width
             if (scale * height > windowHeight) scale = windowHeight / height
 
-            element.style.transform = 'scale(' + scale +  ')'
+            element.style.transform = element.style.webkitTransform = 'scale(' + scale +  ')'
             headingPanel.resize(scale)
 
         },
