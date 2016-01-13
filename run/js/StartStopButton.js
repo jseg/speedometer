@@ -11,13 +11,13 @@ function StartStopButton (startListener, stopListener, enableTransition) {
     OnClick(contentElement, function () {
         if (started) {
             started = false
-            node.nodeValue = 'START'
+            node.nodeValue = 'RESUME'
             contentClassList.remove('stop')
             contentClassList.add('start')
             stopListener()
         } else {
             started = true
-            node.nodeValue = 'STOP'
+            node.nodeValue = 'PAUSE'
             contentClassList.remove('start')
             contentClassList.add('stop')
             startListener()
@@ -35,6 +35,9 @@ function StartStopButton (startListener, stopListener, enableTransition) {
         element: element,
         enableTransition: function () {
             enableTransition(classList)
+        },
+        reset: function () {
+            if (!started) node.nodeValue = 'START'
         },
     }
 

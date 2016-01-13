@@ -188,6 +188,7 @@ function MainPanel (enableTransition) {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
+        startStopButton.reset()
     }, enableTransition)
 
     var wakeLock = WakeLock()
