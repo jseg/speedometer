@@ -14,8 +14,6 @@ function MainPanel (enableTransition) {
         statusPanel.setDarkTheme()
         speedLabel.setDarkTheme()
         tabs.setDarkTheme()
-        startStopButton.setDarkTheme()
-        resetButton.setDarkTheme()
 
         setDarkThemeTool(classList)
         settings.theme = 'dark'
@@ -46,8 +44,6 @@ function MainPanel (enableTransition) {
         statusPanel.setLightTheme()
         speedLabel.setLightTheme()
         tabs.setLightTheme()
-        startStopButton.setLightTheme()
-        resetButton.setLightTheme()
 
         setLightThemeTool(classList)
         settings.theme = 'light'
@@ -192,7 +188,7 @@ function MainPanel (enableTransition) {
         maxSpeedPanel.reset()
         averageSpeedPanel.reset()
         altitudePanel.reset()
-    }, setDarkThemeTool, setLightThemeTool, enableTransition)
+    }, enableTransition)
 
     var wakeLock = WakeLock()
 
@@ -207,7 +203,7 @@ function MainPanel (enableTransition) {
         tripTimePanel.stop()
         altitudePanel.stop()
         wakeLock.unlock()
-    }, setDarkThemeTool, setLightThemeTool, enableTransition)
+    }, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
 

@@ -1,12 +1,14 @@
-function ResetButton (clickListener, setDarkTheme, setLightTheme, enableTransition) {
+function ResetButton (clickListener, enableTransition) {
 
-    var contentElement = Div('Button-content')
+    var classPrefix = 'ResetButton'
+
+    var contentElement = Div(classPrefix + '-content Button-content')
     contentElement.appendChild(TextNode('RESET'))
     OnClick(contentElement, clickListener)
 
     var contentClassList = contentElement.classList
 
-    var element = Div('ResetButton Button')
+    var element = Div(classPrefix + ' Button')
     element.appendChild(contentElement)
 
     var classList = element.classList
@@ -15,14 +17,6 @@ function ResetButton (clickListener, setDarkTheme, setLightTheme, enableTransiti
         element: element,
         enableTransition: function () {
             enableTransition(classList)
-        },
-        setDarkTheme: function () {
-            setDarkTheme(classList)
-            setDarkTheme(contentClassList)
-        },
-        setLightTheme: function () {
-            setLightTheme(classList)
-            setLightTheme(contentClassList)
         },
     }
 

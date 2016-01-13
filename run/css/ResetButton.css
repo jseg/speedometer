@@ -5,6 +5,14 @@
     font-size: 22px;
 }
 
+.ResetButton-content {
+    background-color: #e00;
+}
+.ResetButton-content.active {
+    background-color: #b00;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 @media (orientation: portrait) {
     .ResetButton {
         top: 424px;

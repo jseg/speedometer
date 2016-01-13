@@ -3,6 +3,22 @@
     font-size: 28px;
 }
 
+.StartStopButton-content.start {
+    background-color: #0a0;
+}
+.StartStopButton-content.stop {
+    background-color: #f70;
+}
+.StartStopButton-content.active {
+    color: rgba(255, 255, 255, 0.5);
+}
+.StartStopButton-content.start.active {
+    background-color: #070;
+}
+.StartStopButton-content.stop.active {
+    background-color: #a50;
+}
+
 @media (orientation: portrait) {
     .StartStopButton {
         top: 424px;
