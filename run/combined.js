@@ -881,19 +881,19 @@ function MainPanel (enableTransition) {
         startStopButton.reset()
     }, enableTransition)
 
-    var noSleep = new NoSleep();
+    
 
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
         altitudePanel.start()
-        noSleep.enable()
+        //noSleep.enable()
     }, function () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
-        noSleep.disable()
+        //noSleep.disable()
     }, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
@@ -1597,12 +1597,14 @@ function StartStopButton (startListener, stopListener, enableTransition) {
             node.nodeValue = 'RESUME'
             contentClassList.remove('stop')
             contentClassList.add('start')
+            noSleep.enable()
             stopListener()
         } else {
             started = true
             node.nodeValue = 'PAUSE'
             contentClassList.remove('start')
             contentClassList.add('stop')
+            noSleep.disable()
             startListener()
         }
     })
