@@ -881,19 +881,19 @@ function MainPanel (enableTransition) {
         startStopButton.reset()
     }, enableTransition)
 
-    var wakeLock = WakeLock()
+    var noSleep = new NoSleep();
 
     var startStopButton = StartStopButton(function () {
         started = true
         tripTimePanel.start()
         tripDistance.start()
         altitudePanel.start()
-        wakeLock.lock()
+        noSleep.enable()
     }, function () {
         started = false
         tripTimePanel.stop()
         altitudePanel.stop()
-        wakeLock.unlock()
+        noSleep.disable()
     }, enableTransition)
 
     var statusPanel = StatusPanel(setDarkThemeTool, setLightThemeTool, enableTransition)
