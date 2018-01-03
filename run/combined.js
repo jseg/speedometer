@@ -1581,6 +1581,9 @@ function SpeedLabel (unit, setDarkTheme, setLightTheme, enableTransition) {
 
 }
 ;
+    
+var noSleep = new NoSleep();
+    
 function StartStopButton (startListener, stopListener, enableTransition) {
 
     var classPrefix = 'StartStopButton'
